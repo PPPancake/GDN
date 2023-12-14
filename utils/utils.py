@@ -111,7 +111,7 @@ def load_data(data, prefix='/data'):
 
 	return [homo, relation1, relation2, relation3], feat_data, labels
 
-# 标准化，使每行元素之和为1
+# 正则化，使每行元素之和为1
 def normalize(mx):
 	"""
 		Row-normalize sparse matrix

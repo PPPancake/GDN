@@ -218,6 +218,7 @@ class IntraAgg(nn.Module):
         unique_nodes_list = list(set.union(*samp_neighs))
         unique_nodes = {n: i for i, n in enumerate(unique_nodes_list)}
 
+        # 表示每个节点在整个特征矩阵中的位置
         mask = Variable(torch.zeros(len(samp_neighs), len(unique_nodes)))
         column_indices = [unique_nodes[n] for samp_neigh in samp_neighs for n in samp_neigh]
         row_indices = [i for i in range(len(samp_neighs)) for _ in range(len(samp_neighs[i]))]
@@ -225,7 +226,7 @@ class IntraAgg(nn.Module):
         if self.cuda:
             mask = mask.cuda()
         num_neigh = mask.sum(1, keepdim=True)
-        mask = mask.div(num_neigh)
+        mask = mask.div(num_neigh)# 归一化的权重矩阵
         
         if self.cuda:
             self_feats = self.features(torch.LongTensor(nodes).cuda()) # 当前批次节点的特征
@@ -233,7 +234,7 @@ class IntraAgg(nn.Module):
         else:
             self_feats = self.features(torch.LongTensor(nodes))
             embed_matrix = self.features(torch.LongTensor(unique_nodes_list))
-        agg_feats = mask.mm(embed_matrix) # 得到每个节点对邻居节点的加权平均特征
+        agg_feats = mask.mm(embed_matrix) # 得到v的所有邻居节点的加权平均特征
         cat_feats = torch.cat((self_feats, agg_feats), dim=1) # 自身特征与邻居特征进行聚合
         to_feats = F.relu(cat_feats.mm(self.weight))
         return to_feats

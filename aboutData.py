@@ -1,21 +1,28 @@
-from scipy.io import loadmat
-import pickle
-prefix = './data/'
-data_file = loadmat(prefix + 'YelpChi.mat')
-labels = data_file['label'].flatten()
-feat_data = data_file['features'].todense().A
-# load the preprocessed adj_lists
-with open(prefix + 'yelp_homo_adjlists.pickle', 'rb') as file:
-    homo = pickle.load(file)
-file.close()
-with open(prefix + 'yelp_rur_adjlists.pickle', 'rb') as file:
-    relation1 = pickle.load(file)
-file.close()
-with open(prefix + 'yelp_rtr_adjlists.pickle', 'rb') as file:
-    relation2 = pickle.load(file)
-file.close()
-with open(prefix + 'yelp_rsr_adjlists.pickle', 'rb') as file:
-    relation3 = pickle.load(file)
-file.close()
+from torch.autograd import Variable
+import torch
+# to_neighs_list = [[2,3], [], [4], [3,5], [4]]
+# samp_neighs = [set(x) for x in to_neighs_list]
 
-print(labels)
+# unique_nodes_list = list(set.union(*samp_neighs))
+# unique_nodes = {n: i for i, n in enumerate(unique_nodes_list)}
+# print(unique_nodes_list)
+# print(unique_nodes)
+
+# mask = Variable(torch.zeros(len(samp_neighs), len(unique_nodes)))
+# column_indices = [unique_nodes[n] for samp_neigh in samp_neighs for n in samp_neigh]
+# row_indices = [i for i in range(len(samp_neighs)) for _ in range(len(samp_neighs[i]))]
+# mask[row_indices, column_indices] = 1 # 对值为1的节点进行采样
+# print(mask)
+# num_neigh = mask.sum(1, keepdim=True)
+# print(num_neigh)
+# mask = mask.div(num_neigh)
+# print(mask)
+
+# self_feats = torch.tensor([[1,2], [2, 0], [2, 4]])
+# agg_feats = torch.tensor([[2], [2], [3]])
+# cat_feats = torch.cat((self_feats, agg_feats), dim=1)
+# print(cat_feats)
+
+labels = torch.tensor([[1, 2],[2, 3],[4, 5]])
+
+print(labels.squeeze())

@@ -54,7 +54,7 @@ class ModelHandler(object):
         # 下采样
         train_pos, train_neg = pos_neg_split(idx_train, y_train)
 
-        # amzon数据集额外处理
+        # amzon数据集正则化
         if args.data_name == 'amazon':
             feat_data = normalize(feat_data)
         
@@ -77,6 +77,13 @@ class ModelHandler(object):
 						'train_pos': train_pos, 'train_neg': train_neg}
     
     def train(self):
+        """
+        在训练过程中，通常会执行以下步骤：
+        1. 计算模型的输出（前向传播）
+        2. 计算损失函数
+        3. 执行梯度反向传播，计算损失函数对模型参数的梯度
+        4. 使用优化器更新模型参数
+        """
         args = self.args
         feat_data, adj_lists = self.dataset['feat_data'], self.dataset['adj_lists']
         idx_train, y_train = self.dataset['idx_train'], self.dataset['y_train']
@@ -121,7 +128,7 @@ class ModelHandler(object):
             group_1 = []
             group_2 = []
             for name, param in gnn_model.named_parameters():
-                print(name)
+                # print(name)
                 if name == 'inter1.features.weight':
                     group_2 += [param]
                 else:
@@ -155,12 +162,12 @@ class ModelHandler(object):
                 batch_nodes = idx_train[i_start: i_end]
                 batch_label = self.dataset['labels'][np.array(batch_nodes)]
                 optimizer.zero_grad() # 模型梯度清零，以便进行反向传播
-                # 损失计算
+                # 1. 前向传播 2. 损失计算
                 if args.cuda:
                     loss = gnn_model.loss(batch_nodes, Variable(torch.cuda.LongTensor(batch_label)))
                 else:
                     loss = gnn_model.loss(batch_nodes, Variable(torch.LongTensor(batch_label)))
-                # 反向传播
+                # 3. 反向传播
                 loss.backward(retain_graph=True)
 
                 # 添加模型参数约束机制
@@ -196,6 +203,7 @@ class ModelHandler(object):
                     loss_fn = args.Beta * torch.exp((fn_pos - fn_neg))
                     loss_fn.backward()
                 
+                # 4. 使用优化器更新模型参数
                 optimizer.step()
                 end_time = time.time()
                 epoch_time += end_time - start_time
