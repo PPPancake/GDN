@@ -42,7 +42,6 @@ def grid(kwargs):
     ####################
 
     sin = OrderedDict({k: v for k, v in kwargs.items() if isinstance(v, list)})
-    # print(sin)
     for k, v in sin.items():
         copy_v = []
         for e in v:
@@ -95,9 +94,7 @@ def multi_run_main(config):
 
 if __name__ == '__main__':
     cfg = get_args()
-    # print(cfg)
     config = get_config(cfg['config'])
-    print(config)
     if cfg['multi_run']: 
         multi_run_main(config)
     else:

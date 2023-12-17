@@ -11,7 +11,7 @@ from sklearn.model_selection import train_test_split
 
 from utils.utils import load_data, biased_split, normalize, pos_neg_split, test_GDN, test_sage
 from models.model import GDNLayer # GDN模型的定义
-from models.layers import InterAgg, IntraAgg # GDN中用到的一些图卷积层
+from models.layers import InterAgg, IntraAgg, MLP_ # GDN中用到的一些图卷积层
 from models.graphsage import * # 图神经网络GraphSAGE的实现
 
 timestamp = time.time()
@@ -97,13 +97,14 @@ class ModelHandler(object):
         if args.cuda:
             features.cuda()
         
+        mlp = MLP_(features, feat_data.shape[1], args.emb_size, cuda = args.cuda)
 
         if args.model == 'GDN':
             intra1 = IntraAgg(features, feat_data.shape[1], args.emb_size, self.dataset['train_pos'], cuda=args.cuda)
             intra2 = IntraAgg(features, feat_data.shape[1], args.emb_size, self.dataset['train_pos'], cuda=args.cuda)
             intra3 = IntraAgg(features, feat_data.shape[1], args.emb_size, self.dataset['train_pos'], cuda=args.cuda)
             inter1 = InterAgg(features, feat_data.shape[1], args.emb_size, self.dataset['train_pos'], self.dataset['train_neg'],
-							  adj_lists, [intra1, intra2, intra3], inter=args.multi_relation, cuda=args.cuda)
+							  adj_lists, lambda nodes: mlp(nodes), [intra1, intra2, intra3], inter=args.multi_relation, cuda=args.cuda)
         elif args.model == 'SAGE':
             agg_sage = MeanAggregator(features, cuda=args.cuda) # 均值聚合器
             enc_sage = Encoder(features, feat_data.shape[1], args.emb_size, adj_lists, agg_sage, self.dataset['train_pos'], self.dataset['train_neg'], gcn=False, cuda=args.cuda)
@@ -128,7 +129,6 @@ class ModelHandler(object):
             group_1 = []
             group_2 = []
             for name, param in gnn_model.named_parameters():
-                # print(name)
                 if name == 'inter1.features.weight':
                     group_2 += [param]
                 else:

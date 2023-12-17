@@ -132,7 +132,6 @@ def sparse_to_adjlist(sp_matrix, filename):
 	:param filename: the filename of adjlist
 	"""
 	# add self loop
-	print(sp_matrix[1])
 	homo_adj = sp_matrix + sp.eye(sp_matrix.shape[0])
 	# create adj_list
 	adj_lists = defaultdict(set)

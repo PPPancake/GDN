@@ -6,9 +6,37 @@ import torch.nn.functional as F
 from torch.autograd import Variable
 import random
 
+class MLP_(nn.Module):
+    def __init__(self, features, feature_dim, embed_dim, cuda=True):
+        super(MLP_, self).__init__()
+
+        self.features = features
+        self.feature_dim = feature_dim
+        self.embed_dim = embed_dim
+        self.cuda = cuda
+        self.mlp_layer = nn.Linear(self.feature_dim, self.embed_dim)
+    
+    def forward(self, nodes):
+        if(self.cuda):
+            batch_features = self.features(torch.cuda.LongTensor(nodes))
+        else:
+            batch_features = self.features(torch.LongTensor(nodes))
+        
+        if self.cuda:
+            self.mlp_layer.cuda()
+        
+        # print(batch_features.shape[0])
+        # print(batch_features.shape[1])
+        result = self.mlp_layer(batch_features)
+        # print(result.shape[0])
+        # print(result.shape[1])
+        result = F.relu(result)
+        return result
+
+
 class InterAgg(nn.Module):
     def __init__(self, features, feature_dim, embed_dim, 
-				 train_pos, train_neg, adj_lists, intraggs, inter='GNN', cuda=True):
+				 train_pos, train_neg, adj_lists, mlp, intraggs, inter='GNN', cuda=True):
         """
 		Initialize the inter-relation aggregator
 		:param features: the input node features or embeddings for all nodes
@@ -32,6 +60,7 @@ class InterAgg(nn.Module):
 
         self.dropout = 0.6
         self.adj_lists = adj_lists
+        self.mlp = mlp
         self.intra_agg1 = intraggs[0]
         self.intra_agg2 = intraggs[1]
         self.intra_agg3 = intraggs[2]
@@ -96,11 +125,25 @@ class InterAgg(nn.Module):
         r2_feats = self.intra_agg2.forward(nodes, r2_list)
         r3_feats = self.intra_agg3.forward(nodes, r3_list)
 
+        # print(type(self.features)) # 'torch.nn.modules.sparse.Embedding'
+        # print(type(self.mlp(nodes))) # 'torch.Tensor'
+
         # get features or embeddings for batch nodes
         self_feats = self.fetch_feat(nodes)
 
+        # if self.cuda and isinstance(nodes, list):
+        #     self_feats = self.mlp(torch.cuda.LongTensor(nodes))
+        # else:
+        #     self_feats = self.mlp(torch.LongTensor(nodes))
+        # print(self_feats.shape[0])
+        # print(self_feats.shape[1])
+
+        # print(type(self_feats)) # 'torch.Tensor'
+
         # Update label vector
         self.update_label_vector(self.features)
+
+        # print(type(self.features)) # 'torch.nn.modules.sparse.Embedding'
 
         # concat the intra-aggregated embeddings from each relation
         cat_feats = torch.cat((self_feats, r1_feats, r2_feats, r3_feats), dim=1)
@@ -174,7 +217,7 @@ class InterAgg(nn.Module):
         r1_list = [list(to_neigh) for to_neigh in to_neighs[0]]
         r2_list = [list(to_neigh) for to_neigh in to_neighs[1]]
         r3_list = [list(to_neigh) for to_neigh in to_neighs[2]]
-        # print(non_grad_idx)
+        
         pos_1, neg_1 = self.intra_agg1.fn_loss(non_grad_idx, target[0], r1_list, self.unique_nodes, to_neighs_all)
         pos_2, neg_2 = self.intra_agg2.fn_loss(non_grad_idx, target[1], r2_list, self.unique_nodes, to_neighs_all)
         pos_3, neg_3 = self.intra_agg3.fn_loss(non_grad_idx, target[2], r3_list, self.unique_nodes, to_neighs_all)
@@ -239,20 +282,21 @@ class IntraAgg(nn.Module):
         to_feats = F.relu(cat_feats.mm(self.weight))
         return to_feats
     
-    def update_label_vector(self, x):
-        if self.cuda and isinstance(self.train_pos, list) and isinstance(self.train_neg, list):
-            pos_index = torch.LongTensor(self.train_pos).cuda()
-            neg_index = torch.LongTensor(self.train_neg).cuda()
-        if self.pos_vector is None: # 第一次更新
-            self.pos_vector = torch.mean(x(pos_index), dim=0, keepdim=True).detach()
-            self.neg_vector = torch.mean(x(neg_index), dim=0, keepdim=True).detach()
-        else:
-            cosine_pos = self.cos(self.pos_vector, x(pos_index))
-            cosine_neg = self.cos(self.neg_vector, x(neg_index))
-            weights_pos = self.softmax_with_temperature(cosine_pos, t=5).reshape(1, -1)
-            weights_neg = self.softmax_with_temperature(cosine_neg, t=5).reshape(1, -1)
-            self.pos_vector = torch.mm(weights_pos, x(pos_index)).detach()
-            self.neg_vector = torch.mm(weights_neg, x(neg_index)).detach()
+    # def update_label_vector(self, x):
+    #     if self.cuda and isinstance(self.train_pos, list) and isinstance(self.train_neg, list):
+    #         pos_index = torch.LongTensor(self.train_pos).cuda()
+    #         neg_index = torch.LongTensor(self.train_neg).cuda()
+    #     if self.pos_vector is None: # 第一次更新
+    #         self.pos_vector = torch.mean(x(pos_index), dim=0, keepdim=True).detach()
+    #         self.neg_vector = torch.mean(x(neg_index), dim=0, keepdim=True).detach()
+    #     else:
+    #         cosine_pos = self.cos(self.pos_vector, x(pos_index))
+    #         cosine_neg = self.cos(self.neg_vector, x(neg_index))
+    #         weights_pos = self.softmax_with_temperature(cosine_pos, t=5).reshape(1, -1)
+    #         weights_neg = self.softmax_with_temperature(cosine_neg, t=5).reshape(1, -1)
+    #         self.pos_vector = torch.mm(weights_pos, x(pos_index)).detach()
+    #         self.neg_vector = torch.mm(weights_neg, x(neg_index)).detach()
+
     def fetch_feat(self, nodes):
         if self.cuda and isinstance(nodes, list):
             index = torch.LongTensor(nodes).cuda()
@@ -260,10 +304,10 @@ class IntraAgg(nn.Module):
             index = torch.LongTensor(nodes)
         return self.features(index)
     
-    def softmax_with_temperature(self, input, t=1, axis=-1):
-        ex = torch.exp(input/t)
-        sum = torch.sum(ex, axis=axis)
-        return ex/sum
+    # def softmax_with_temperature(self, input, t=1, axis=-1):
+    #     ex = torch.exp(input/t)
+    #     sum = torch.sum(ex, axis=axis)
+    #     return ex/sum
     
     def fn_loss(self, non_grad_idx, target, neights, all_nodes, all_neighs):
         x = F.log_softmax(self.fetch_feat(target)[:, non_grad_idx], dim=-1)
