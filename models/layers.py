@@ -32,6 +32,7 @@ class InterAgg(nn.Module):
 
         self.dropout = 0.6
         self.adj_lists = adj_lists
+        self.mlp = mlp
         self.intra_agg1 = intraggs[0]
         self.intra_agg2 = intraggs[1]
         self.intra_agg3 = intraggs[2]
