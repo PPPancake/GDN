@@ -6,7 +6,7 @@ test_ratio: 0.33
 save_dir: './pytorch_models/'
 
 # Model
-model: 'SAGE'
+model: 'GDN'
 multi_relation: 'GNN'
 
 
