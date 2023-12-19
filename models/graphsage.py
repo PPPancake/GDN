@@ -169,7 +169,7 @@ class Encoder(nn.Module):
 		"""
 		Generates embeddings for a batch of nodes.
 
-		nodes     -- list of nodes
+		nodes	 -- list of nodes
 		"""
 		neigh_feats = self.aggregator.forward(nodes, [self.adj_lists[int(node)] for node in nodes],
 											  self.num_sample)
@@ -402,7 +402,7 @@ class GCNEncoder(nn.Module):
 		Input:
 			nodes -- list of nodes
 		Output:
-		    embed_dim*len(nodes)
+			embed_dim*len(nodes)
 		"""
 		neigh_feats = self.aggregator.forward(nodes, [self.adj_lists[int(node)] for node in nodes])
 		self.update_label_vector(self.features)

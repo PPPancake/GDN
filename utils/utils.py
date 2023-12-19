@@ -11,63 +11,62 @@ import logging
 logging.basicConfig(filename='result.log', level=logging.INFO)
 
 def biased_split(dataset):
-    prefix = '/data'
-    if dataset == 'yelp':
-        data_name = 'YelpChi.mat'
-    elif dataset == 'amazon':
-        data_name = 'Amazon.mat'
-    data = loadmat(prefix + data_name)
-    print(data.keys())
+	prefix = '/data'
+	if dataset == 'yelp':
+		data_name = 'YelpChi.mat'
+	elif dataset == 'amazon':
+		data_name = 'Amazon.mat'
+	data = loadmat(prefix + data_name)
 
-    if data_name == 'YelpChi.mat':
-        net_list = [data['net_rur'].nonzero(), data['net_rtr'].nonzero(),
-                    data['net_rsr'].nonzero(), data['homo'].nonzero()]
-    else:
-        net_list = [data['net_upu'].nonzero(), data['net_usu'].nonzero(),
+	if data_name == 'YelpChi.mat':
+		net_list = [data['net_rur'].nonzero(), data['net_rtr'].nonzero(),
+					data['net_rsr'].nonzero(), data['homo'].nonzero()]
+	else:
+		net_list = [data['net_upu'].nonzero(), data['net_usu'].nonzero(),
 					data['net_uvu'].nonzero(), data['homo'].nonzero()]
 
-    label = data['label'][0]
-    pos_nodes = set(label.nonzero()[0].tolist())
-    pos_node_dict, neg_node_dict = defaultdict(lambda: [0, 0]), defaultdict(lambda: [0, 0])
-    net  = net_list[-1]
+	label = data['label'][0]
+	pos_nodes = set(label.nonzero()[0].tolist())
+	pos_node_dict, neg_node_dict = defaultdict(lambda: [0, 0]), defaultdict(lambda: [0, 0])
+	net  = net_list[-1]
 
-    # 计算同质性概率
-    for u, v in zip(net[0].tolist(), net[1].tolist()):
-        if dataset == 'amazon' and min(u, v) < 3305:
-            continue
-        if u in pos_nodes:
-            pos_node_dict[u][0] += 1
-            if label[u] == label[v]:
-                pos_node_dict[u][1] += 1
-        else:
-            neg_node_dict[u][0] += 1
-            if label[u] == label[v]:
-                neg_node_dict[u][1] += 1
-    
-    p1 = np.zeros(len(label))
-    for k in pos_node_dict:
-        p1[k] = pos_node_dict[k][1] / pos_node_dict[k][0] # 计算每个节点的同质性概率
-    p1 = p1 / p1.sum() # 归一化，确保和为1
-    # 按照同质性概率，随机选择60%的节点作为训练集
-    pos_index = np.random.choice(range(len(p1)), size=round(0.6 * len(pos_node_dict)), replace=False, p = p1.ravel())
-    p2 = np.zeros(len(label))
-    for k in neg_node_dict:
-        p2[k] = neg_node_dict[k][1] / neg_node_dict[k][0]
-    p2 = p2 / p2.sum()
-    neg_index = np.random.choice(range(len(p2)), size=round(0.6 * len(neg_node_dict)), replace=False, p = p2.ravel())
+	# 计算同质性概率
+	for u, v in zip(net[0].tolist(), net[1].tolist()):
+		if dataset == 'amazon' and min(u, v) < 3305:
+			continue
+		if u in pos_nodes:
+			pos_node_dict[u][0] += 1
+			if label[u] == label[v]:
+				pos_node_dict[u][1] += 1
+		else:
+			neg_node_dict[u][0] += 1
+			if label[u] == label[v]:
+				neg_node_dict[u][1] += 1
+	
+	p1 = np.zeros(len(label))
+	for k in pos_node_dict:
+		p1[k] = pos_node_dict[k][1] / pos_node_dict[k][0] # 计算每个节点的同质性概率
+	p1 = p1 / p1.sum() # 归一化，确保和为1
+	# 按照同质性概率，随机选择60%的节点作为训练集
+	pos_index = np.random.choice(range(len(p1)), size=round(0.6 * len(pos_node_dict)), replace=False, p = p1.ravel())
+	p2 = np.zeros(len(label))
+	for k in neg_node_dict:
+		p2[k] = neg_node_dict[k][1] / neg_node_dict[k][0]
+	p2 = p2 / p2.sum()
+	neg_index = np.random.choice(range(len(p2)), size=round(0.6 * len(neg_node_dict)), replace=False, p = p2.ravel())
 
-    # 生成训练集
-    idx_train = np.concatenate((pos_index, neg_index))
-    np.random.shuffle(idx_train)
-    idx_train = list(idx_train)
-    y_train = np.array(label[idx_train])
+	# 生成训练集
+	idx_train = np.concatenate((pos_index, neg_index))
+	np.random.shuffle(idx_train)
+	idx_train = list(idx_train)
+	y_train = np.array(label[idx_train])
 
-    # 生成测试集
-    idx_test = list(set(range(len(label))).difference(set(idx_train)).difference(set(range(3305))))
-    random.shuffle(idx_test)
-    y_test = np.array(label[idx_test])
-    
-    return idx_train, idx_test, y_train, y_test
+	# 生成测试集
+	idx_test = list(set(range(len(label))).difference(set(idx_train)).difference(set(range(3305))))
+	random.shuffle(idx_test)
+	y_test = np.array(label[idx_test])
+	
+	return idx_train, idx_test, y_train, y_test
 
 def load_data(data, prefix='/data'):
 	"""
@@ -145,15 +144,15 @@ def sparse_to_adjlist(sp_matrix, filename):
 
 # 划分正负节点
 def pos_neg_split(nodes, labels):
-    pos_nodes = []
-    neg_nodes = cp.deepcopy(nodes)
-    aux_nodes = cp.deepcopy(nodes)
-    for idx, label in enumerate(labels):
-        if label == 1:
-            pos_nodes.append(aux_nodes[idx])
-            neg_nodes.remove(aux_nodes[idx])
-    
-    return pos_nodes, neg_nodes
+	pos_nodes = []
+	neg_nodes = cp.deepcopy(nodes)
+	aux_nodes = cp.deepcopy(nodes)
+	for idx, label in enumerate(labels):
+		if label == 1:
+			pos_nodes.append(aux_nodes[idx])
+			neg_nodes.remove(aux_nodes[idx])
+	
+	return pos_nodes, neg_nodes
 
 # 根据概率阈值，输出预测结果
 def prob2pred(y_prob, thres=0.5):
@@ -210,7 +209,7 @@ def test_sage(test_cases, labels, model, batch_size, thres=0.5, save=False):
 
 # GDN测试
 def test_GDN(test_cases, labels, model, batch_size, thres=0.5, save=False):
-    """
+	"""
 	Test the performance of GDN
 	:param test_cases: a list of testing node
 	:param labels: a list of testing node labels
@@ -219,28 +218,28 @@ def test_GDN(test_cases, labels, model, batch_size, thres=0.5, save=False):
 	:returns: the AUC and Recall of GNN and Simi modules
 	"""
 
-    test_batch_num = int(len(test_cases) / batch_size) + 1
-    gnn_pred_list = []
-    gnn_prob_list = []
+	test_batch_num = int(len(test_cases) / batch_size) + 1
+	gnn_pred_list = []
+	gnn_prob_list = []
 
-    for iteration in range(test_batch_num):
-        i_start = iteration * batch_size
-        i_end = min((iteration + 1) * batch_size, len(test_cases))
-        batch_nodes = test_cases[i_start:i_end]
-        batch_label = labels[i_start:i_end]
-        gnn_prob = model.to_prob(batch_nodes, batch_label)
-        gnn_prob_arr = gnn_prob.data.cpu().numpy()[:, 1]
-        gnn_pred = prob2pred(gnn_prob_arr, thres)
+	for iteration in range(test_batch_num):
+		i_start = iteration * batch_size
+		i_end = min((iteration + 1) * batch_size, len(test_cases))
+		batch_nodes = test_cases[i_start:i_end]
+		batch_label = labels[i_start:i_end]
+		gnn_prob = model.to_prob(batch_nodes, batch_label)
+		gnn_prob_arr = gnn_prob.data.cpu().numpy()[:, 1]
+		gnn_pred = prob2pred(gnn_prob_arr, thres)
 
-        gnn_pred_list.extend(gnn_pred.tolist())
-        gnn_prob_list.extend(gnn_prob_arr.tolist())
+		gnn_pred_list.extend(gnn_pred.tolist())
+		gnn_prob_list.extend(gnn_prob_arr.tolist())
 
-    auc_gnn = roc_auc_score(labels, np.array(gnn_prob_list))
-    f1_macro_gnn = f1_score(labels, np.array(gnn_pred_list), average='macro')
-    conf_gnn = confusion_matrix(labels, np.array(gnn_pred_list))
-    tn, fp, fn, tp = conf_gnn.ravel()
-    gmean_gnn = conf_gmean(conf_gnn)
+	auc_gnn = roc_auc_score(labels, np.array(gnn_prob_list))
+	f1_macro_gnn = f1_score(labels, np.array(gnn_pred_list), average='macro')
+	conf_gnn = confusion_matrix(labels, np.array(gnn_pred_list))
+	tn, fp, fn, tp = conf_gnn.ravel()
+	gmean_gnn = conf_gmean(conf_gnn)
 
-    logging.info(f"\tF1-macro: {f1_macro_gnn:.4f}\tG-Mean: {gmean_gnn:.4f}\tAUC: {auc_gnn:.4f}")
-    logging.info(f"   GNN TP: {tp}\tTN: {tn}\tFN: {fn}\tFP: {fp}")
-    return f1_macro_gnn, auc_gnn, gmean_gnn
+	logging.info(f"\tF1-macro: {f1_macro_gnn:.4f}\tG-Mean: {gmean_gnn:.4f}\tAUC: {auc_gnn:.4f}")
+	logging.info(f"   GNN TP: {tp}\tTN: {tn}\tFN: {fn}\tFP: {fp}")
+	return f1_macro_gnn, auc_gnn, gmean_gnn
