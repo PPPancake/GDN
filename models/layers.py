@@ -94,8 +94,8 @@ class InterAgg(nn.Module):
 		self.thresholds = [0.5, 0.5, 0.5]
 
 		# parameter used to transform node embeddings before inter-relation aggregation
-		self.weight = nn.Parameter(torch.FloatTensor(self.embed_dim*len(intraggs)+self.feat_dim, self.embed_dim))
-		init.xavier_uniform_(self.weight)
+		#self.weight = nn.Parameter(torch.FloatTensor(self.embed_dim*len(intraggs)+self.feat_dim, self.embed_dim))
+		#init.xavier_uniform_(self.weight)
 
 		# label predictor for similarity measure
 		self.label_clf = nn.Linear(self.feat_dim, 2)
@@ -146,13 +146,21 @@ class InterAgg(nn.Module):
 		self.unique_nodes = unique_nodes
 
 		# get features or embeddings for batch nodes
-		self_feats = self.fetch_feat(nodes)
-		batch_features = self.fetch_feat(list(self.unique_nodes))
+		#self_features = self.fetch_feat(nodes)
+		#batch_features = self.fetch_feat(list(self.unique_nodes))
+		if self.cuda:
+			batch_features = self.mlp(torch.cuda.LongTensor(list(unique_nodes)))
+			self_features = self.mlp(torch.cuda.LongTensor(nodes))
+		else:
+			batch_features = self.mlp(torch.LongTensor(list(unique_nodes)))
+			self_features = self.mlp(torch.LongTensor(nodes))
+		
+		
 
 		# intra-aggregation steps for each relation
-		r1_feats = self.intra_agg1.forward(batch_features[:, -self.embed_dim:], nodes, r1_list, self_feats[:, -self.embed_dim:])
-		r2_feats = self.intra_agg2.forward(batch_features[:, -self.embed_dim:], nodes, r2_list, self_feats[:, -self.embed_dim:])
-		r3_feats = self.intra_agg3.forward(batch_features[:, -self.embed_dim:], nodes, r3_list, self_feats[:, -self.embed_dim:])
+		r1_feats = self.intra_agg1.forward(batch_features[:, -self.embed_dim:], nodes, r1_list, self_features[:, -self.embed_dim:])
+		r2_feats = self.intra_agg2.forward(batch_features[:, -self.embed_dim:], nodes, r2_list, self_features[:, -self.embed_dim:])
+		r3_feats = self.intra_agg3.forward(batch_features[:, -self.embed_dim:], nodes, r3_list, self_features[:, -self.embed_dim:])
 
 		# Update label vector
 		self.update_label_vector(self.features)
@@ -160,7 +168,7 @@ class InterAgg(nn.Module):
 		# concat the intra-aggregated embeddings from each relatio
 		neigh_feats = torch.cat((r1_feats, r2_feats, r3_feats), dim = 0)
 		attention_layer_outputs = weight_inter_agg(len(self.adj_lists), neigh_feats, self.embed_dim, self.alpha, len(nodes), self.cuda)
-		cat_feats = torch.cat((self_feats, attention_layer_outputs), dim=1)
+		cat_feats = torch.cat((self_features, attention_layer_outputs), dim=1)
 		return cat_feats
 	
 	def fetch_feat(self, nodes):
@@ -239,7 +247,7 @@ class InterAgg(nn.Module):
 		return pos_1 + pos_2 + pos_3, neg_1 + neg_2 + neg_3
 
 class IntraAgg(nn.Module):
-	def __init__(self, cuda=False):
+	def __init__(self, feat_dim, embed_dim, cuda=False):
 		"""
 		Initialize the intra-relation aggregator
 		:param features: the input node features or embeddings for all nodes
@@ -253,10 +261,10 @@ class IntraAgg(nn.Module):
 		#self.features = features
 		self.cuda = cuda
 		#self.train_pos = train_pos
-		#self.embed_dim = embed_dim
-		#self.feat_dim = feat_dim
-		# self.weight = nn.Parameter(torch.FloatTensor(2*self.feat_dim, self.embed_dim))
-		# init.xavier_uniform_(self.weight)
+		self.embed_dim = embed_dim
+		self.feat_dim = feat_dim
+		self.weight = nn.Parameter(torch.FloatTensor(4*self.feat_dim, self.embed_dim))
+		init.xavier_uniform_(self.weight)
 		self.KLDiv = nn.KLDivLoss(reduction='batchmean')
 	
 	def forward(self, features, nodes, to_neighs_list, self_feats):
@@ -299,9 +307,9 @@ class IntraAgg(nn.Module):
 		agg_feats = mask.mm(embed_matrix) # 得到v的所有邻居节点的加权平均特征
 		diff_feats = self_feats - agg_feats
 		cat_feats = torch.cat((diff_feats, agg_feats), dim=1) # 自身特征与邻居特征进行聚合
-		# to_feats = F.relu(cat_feats.mm(self.weight))
-		# return to_feats
-		return cat_feats
+		to_feats = F.relu(cat_feats.mm(self.weight))
+		return to_feats
+		#return cat_feats
 
 	def fetch_feat(self, features, nodes):
 		if self.cuda and isinstance(nodes, list):

@@ -13,7 +13,7 @@ class GDNLayer(nn.Module):
 		self.softmax = nn.Softmax(dim=-1)
 		self.KLDiv = nn.KLDivLoss(reduction='batchmean') # KL 散度损失函数, 衡量两个概率分布之间的差异
 		self.cos = nn.CosineSimilarity(dim=1, eps=1e-6) 
-		self.weight = nn.Parameter(torch.FloatTensor(inter1.embed_dim + inter1.feat_dim, 64))
+		self.weight = nn.Parameter(torch.FloatTensor(inter1.embed_dim * 2, 64))
 		self.weight2 = nn.Parameter(torch.FloatTensor(64, 2))
 		self.fn = nn.LeakyReLU(0.3)
 		
