@@ -13,14 +13,21 @@ class GDNLayer(nn.Module):
 		self.softmax = nn.Softmax(dim=-1)
 		self.KLDiv = nn.KLDivLoss(reduction='batchmean') # KL 散度损失函数, 衡量两个概率分布之间的差异
 		self.cos = nn.CosineSimilarity(dim=1, eps=1e-6) 
-		self.weight = nn.Parameter(torch.FloatTensor(inter1.embed_dim + inter1.feat_dim, num_classes))
+		self.weight = nn.Parameter(torch.FloatTensor(inter1.embed_dim + inter1.feat_dim, 64))
+		self.weight2 = nn.Parameter(torch.FloatTensor(64, 2))
+		self.fn = nn.LeakyReLU(0.3)
 		
 		init.xavier_uniform_(self.weight) # 初始化weight参数
+		init.xavier_uniform_(self.weight2)
 
 	# 前向传播
 	def forward(self, nodes, labels):
 		embeds1 = self.inter1(nodes, labels)
+
 		scores = embeds1.mm(self.weight)
+		scores = self.fn(scores)
+		scores = scores.mm(self.weight2)
+
 		return scores
 	
 	# 将模型的输出通过softmax转为概率

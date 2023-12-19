@@ -93,6 +93,7 @@ def multi_run_main(config):
 
 
 if __name__ == '__main__':
+	print(torch.cuda.is_available())
 	cfg = get_args()
 	config = get_config(cfg['config'])
 	if cfg['multi_run']: 
