@@ -100,9 +100,9 @@ class ModelHandler(object):
 		mlp = MLP_(features, feat_data.shape[1], args.emb_size, cuda = args.cuda)
 
 		if args.model == 'GDN':
-			intra1 = IntraAgg(features, feat_data.shape[1], args.emb_size, self.dataset['train_pos'], cuda=args.cuda)
-			intra2 = IntraAgg(features, feat_data.shape[1], args.emb_size, self.dataset['train_pos'], cuda=args.cuda)
-			intra3 = IntraAgg(features, feat_data.shape[1], args.emb_size, self.dataset['train_pos'], cuda=args.cuda)
+			intra1 = IntraAgg(cuda=args.cuda)
+			intra2 = IntraAgg(cuda=args.cuda)
+			intra3 = IntraAgg(cuda=args.cuda)
 			inter1 = InterAgg(features, feat_data.shape[1], args.emb_size, self.dataset['train_pos'], self.dataset['train_neg'],
 							  adj_lists, lambda nodes: mlp(nodes), [intra1, intra2, intra3], inter=args.multi_relation, cuda=args.cuda)
 		elif args.model == 'SAGE':

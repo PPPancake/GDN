@@ -3401,3 +3401,533 @@ INFO:root:valid_epochs             -->   5
 INFO:root:weight_decay             -->   0.001
 INFO:root:weight_decay_2           -->   0.1
 INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:2023-12-19 13:03:08
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:Beta                     -->   0.1
+INFO:root:add_constraint           -->   True
+INFO:root:batch_size               -->   1024
+INFO:root:biased_split             -->   False
+INFO:root:cuda_id                  -->   2
+INFO:root:data_dir                 -->   data/
+INFO:root:data_name                -->   yelp
+INFO:root:emb_size                 -->   64
+INFO:root:lr_1                     -->   0.001
+INFO:root:lr_2                     -->   1e-05
+INFO:root:model                    -->   GDN
+INFO:root:multi_relation           -->   GNN
+INFO:root:no_cuda                  -->   True
+INFO:root:num_epochs               -->   51
+INFO:root:optimizer                -->   adam
+INFO:root:save_dir                 -->   ./pytorch_models/
+INFO:root:seed                     -->   42
+INFO:root:test_batch_size          -->   1024
+INFO:root:test_ratio               -->   0.33
+INFO:root:thres                    -->   0.2
+INFO:root:topk                     -->   10
+INFO:root:train_ratio              -->   0.6
+INFO:root:valid_epochs             -->   5
+INFO:root:weight_decay             -->   0.001
+INFO:root:weight_decay_2           -->   0.1
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:	F1-macro: 0.5226	G-Mean: 0.4395	AUC: 0.5473
+INFO:root:   GNN TP: 312	TN: 6366	FN: 1010	FP: 1411
+INFO:root:	F1-macro: 0.5658	G-Mean: 0.4664	AUC: 0.6648
+INFO:root:   GNN TP: 326	TN: 6859	FN: 996	FP: 918
+INFO:root:	F1-macro: 0.6013	G-Mean: 0.5598	AUC: 0.7154
+INFO:root:   GNN TP: 484	TN: 6657	FN: 838	FP: 1120
+INFO:root:	F1-macro: 0.6175	G-Mean: 0.6093	AUC: 0.7363
+INFO:root:   GNN TP: 587	TN: 6503	FN: 735	FP: 1274
+INFO:root:	F1-macro: 0.6257	G-Mean: 0.6346	AUC: 0.7464
+INFO:root:   GNN TP: 645	TN: 6420	FN: 677	FP: 1357
+INFO:root:	F1-macro: 0.6279	G-Mean: 0.6452	AUC: 0.7523
+INFO:root:   GNN TP: 672	TN: 6368	FN: 650	FP: 1409
+INFO:root:	F1-macro: 0.6321	G-Mean: 0.6574	AUC: 0.7563
+INFO:root:   GNN TP: 702	TN: 6330	FN: 620	FP: 1447
+INFO:root:	F1-macro: 0.6345	G-Mean: 0.6640	AUC: 0.7592
+INFO:root:   GNN TP: 718	TN: 6313	FN: 604	FP: 1464
+INFO:root:	F1-macro: 0.6360	G-Mean: 0.6693	AUC: 0.7615
+INFO:root:   GNN TP: 732	TN: 6291	FN: 590	FP: 1486
+INFO:root:	F1-macro: 0.6396	G-Mean: 0.6770	AUC: 0.7632
+INFO:root:   GNN TP: 750	TN: 6282	FN: 572	FP: 1495
+INFO:root:	F1-macro: 0.6392	G-Mean: 0.6786	AUC: 0.7647
+INFO:root:   GNN TP: 756	TN: 6262	FN: 566	FP: 1515
+INFO:root:	F1-macro: 0.6373	G-Mean: 0.6808	AUC: 0.7668
+INFO:root:   GNN TP: 1549	TN: 12556	FN: 1122	FP: 3155
+INFO:root:2023-12-19 14:12:10
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:Beta                     -->   0.1
+INFO:root:add_constraint           -->   True
+INFO:root:batch_size               -->   1024
+INFO:root:biased_split             -->   False
+INFO:root:cuda_id                  -->   2
+INFO:root:data_dir                 -->   data/
+INFO:root:data_name                -->   yelp
+INFO:root:emb_size                 -->   64
+INFO:root:lr_1                     -->   0.001
+INFO:root:lr_2                     -->   1e-05
+INFO:root:model                    -->   GDN
+INFO:root:multi_relation           -->   GNN
+INFO:root:no_cuda                  -->   True
+INFO:root:num_epochs               -->   51
+INFO:root:optimizer                -->   adam
+INFO:root:save_dir                 -->   ./pytorch_models/
+INFO:root:seed                     -->   42
+INFO:root:test_batch_size          -->   1024
+INFO:root:test_ratio               -->   0.33
+INFO:root:thres                    -->   0.2
+INFO:root:topk                     -->   10
+INFO:root:train_ratio              -->   0.6
+INFO:root:valid_epochs             -->   5
+INFO:root:weight_decay             -->   0.001
+INFO:root:weight_decay_2           -->   0.1
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:2023-12-19 14:14:49
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:Beta                     -->   0.1
+INFO:root:add_constraint           -->   True
+INFO:root:batch_size               -->   1024
+INFO:root:biased_split             -->   False
+INFO:root:cuda_id                  -->   2
+INFO:root:data_dir                 -->   data/
+INFO:root:data_name                -->   yelp
+INFO:root:emb_size                 -->   64
+INFO:root:lr_1                     -->   0.001
+INFO:root:lr_2                     -->   1e-05
+INFO:root:model                    -->   GDN
+INFO:root:multi_relation           -->   GNN
+INFO:root:no_cuda                  -->   True
+INFO:root:num_epochs               -->   51
+INFO:root:optimizer                -->   adam
+INFO:root:save_dir                 -->   ./pytorch_models/
+INFO:root:seed                     -->   42
+INFO:root:test_batch_size          -->   1024
+INFO:root:test_ratio               -->   0.33
+INFO:root:thres                    -->   0.2
+INFO:root:topk                     -->   10
+INFO:root:train_ratio              -->   0.6
+INFO:root:valid_epochs             -->   5
+INFO:root:weight_decay             -->   0.001
+INFO:root:weight_decay_2           -->   0.1
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:2023-12-19 14:19:11
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:Beta                     -->   0.1
+INFO:root:add_constraint           -->   True
+INFO:root:batch_size               -->   1024
+INFO:root:biased_split             -->   False
+INFO:root:cuda_id                  -->   2
+INFO:root:data_dir                 -->   data/
+INFO:root:data_name                -->   yelp
+INFO:root:emb_size                 -->   64
+INFO:root:lr_1                     -->   0.001
+INFO:root:lr_2                     -->   1e-05
+INFO:root:model                    -->   GDN
+INFO:root:multi_relation           -->   GNN
+INFO:root:no_cuda                  -->   True
+INFO:root:num_epochs               -->   51
+INFO:root:optimizer                -->   adam
+INFO:root:save_dir                 -->   ./pytorch_models/
+INFO:root:seed                     -->   42
+INFO:root:test_batch_size          -->   1024
+INFO:root:test_ratio               -->   0.33
+INFO:root:thres                    -->   0.2
+INFO:root:topk                     -->   10
+INFO:root:train_ratio              -->   0.6
+INFO:root:valid_epochs             -->   5
+INFO:root:weight_decay             -->   0.001
+INFO:root:weight_decay_2           -->   0.1
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:2023-12-19 14:20:40
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:Beta                     -->   0.1
+INFO:root:add_constraint           -->   True
+INFO:root:batch_size               -->   1024
+INFO:root:biased_split             -->   False
+INFO:root:cuda_id                  -->   2
+INFO:root:data_dir                 -->   data/
+INFO:root:data_name                -->   yelp
+INFO:root:emb_size                 -->   64
+INFO:root:lr_1                     -->   0.001
+INFO:root:lr_2                     -->   1e-05
+INFO:root:model                    -->   GDN
+INFO:root:multi_relation           -->   GNN
+INFO:root:no_cuda                  -->   True
+INFO:root:num_epochs               -->   51
+INFO:root:optimizer                -->   adam
+INFO:root:save_dir                 -->   ./pytorch_models/
+INFO:root:seed                     -->   42
+INFO:root:test_batch_size          -->   1024
+INFO:root:test_ratio               -->   0.33
+INFO:root:thres                    -->   0.2
+INFO:root:topk                     -->   10
+INFO:root:train_ratio              -->   0.6
+INFO:root:valid_epochs             -->   5
+INFO:root:weight_decay             -->   0.001
+INFO:root:weight_decay_2           -->   0.1
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:2023-12-19 14:34:06
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:Beta                     -->   0.1
+INFO:root:add_constraint           -->   True
+INFO:root:batch_size               -->   1024
+INFO:root:biased_split             -->   False
+INFO:root:cuda_id                  -->   2
+INFO:root:data_dir                 -->   data/
+INFO:root:data_name                -->   yelp
+INFO:root:emb_size                 -->   64
+INFO:root:lr_1                     -->   0.001
+INFO:root:lr_2                     -->   1e-05
+INFO:root:model                    -->   GDN
+INFO:root:multi_relation           -->   GNN
+INFO:root:no_cuda                  -->   True
+INFO:root:num_epochs               -->   51
+INFO:root:optimizer                -->   adam
+INFO:root:save_dir                 -->   ./pytorch_models/
+INFO:root:seed                     -->   42
+INFO:root:test_batch_size          -->   1024
+INFO:root:test_ratio               -->   0.33
+INFO:root:thres                    -->   0.2
+INFO:root:topk                     -->   10
+INFO:root:train_ratio              -->   0.6
+INFO:root:valid_epochs             -->   5
+INFO:root:weight_decay             -->   0.001
+INFO:root:weight_decay_2           -->   0.1
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:2023-12-19 14:34:36
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:Beta                     -->   0.1
+INFO:root:add_constraint           -->   True
+INFO:root:batch_size               -->   1024
+INFO:root:biased_split             -->   False
+INFO:root:cuda_id                  -->   2
+INFO:root:data_dir                 -->   data/
+INFO:root:data_name                -->   yelp
+INFO:root:emb_size                 -->   64
+INFO:root:lr_1                     -->   0.001
+INFO:root:lr_2                     -->   1e-05
+INFO:root:model                    -->   GDN
+INFO:root:multi_relation           -->   GNN
+INFO:root:no_cuda                  -->   True
+INFO:root:num_epochs               -->   51
+INFO:root:optimizer                -->   adam
+INFO:root:save_dir                 -->   ./pytorch_models/
+INFO:root:seed                     -->   42
+INFO:root:test_batch_size          -->   1024
+INFO:root:test_ratio               -->   0.33
+INFO:root:thres                    -->   0.2
+INFO:root:topk                     -->   10
+INFO:root:train_ratio              -->   0.6
+INFO:root:valid_epochs             -->   5
+INFO:root:weight_decay             -->   0.001
+INFO:root:weight_decay_2           -->   0.1
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:2023-12-19 14:39:38
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:Beta                     -->   0.1
+INFO:root:add_constraint           -->   True
+INFO:root:batch_size               -->   1024
+INFO:root:biased_split             -->   False
+INFO:root:cuda_id                  -->   2
+INFO:root:data_dir                 -->   data/
+INFO:root:data_name                -->   yelp
+INFO:root:emb_size                 -->   64
+INFO:root:lr_1                     -->   0.001
+INFO:root:lr_2                     -->   1e-05
+INFO:root:model                    -->   GDN
+INFO:root:multi_relation           -->   GNN
+INFO:root:no_cuda                  -->   True
+INFO:root:num_epochs               -->   51
+INFO:root:optimizer                -->   adam
+INFO:root:save_dir                 -->   ./pytorch_models/
+INFO:root:seed                     -->   42
+INFO:root:test_batch_size          -->   1024
+INFO:root:test_ratio               -->   0.33
+INFO:root:thres                    -->   0.2
+INFO:root:topk                     -->   10
+INFO:root:train_ratio              -->   0.6
+INFO:root:valid_epochs             -->   5
+INFO:root:weight_decay             -->   0.001
+INFO:root:weight_decay_2           -->   0.1
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:2023-12-19 14:40:59
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:Beta                     -->   0.1
+INFO:root:add_constraint           -->   True
+INFO:root:batch_size               -->   1024
+INFO:root:biased_split             -->   False
+INFO:root:cuda_id                  -->   2
+INFO:root:data_dir                 -->   data/
+INFO:root:data_name                -->   yelp
+INFO:root:emb_size                 -->   64
+INFO:root:lr_1                     -->   0.001
+INFO:root:lr_2                     -->   1e-05
+INFO:root:model                    -->   GDN
+INFO:root:multi_relation           -->   GNN
+INFO:root:no_cuda                  -->   True
+INFO:root:num_epochs               -->   51
+INFO:root:optimizer                -->   adam
+INFO:root:save_dir                 -->   ./pytorch_models/
+INFO:root:seed                     -->   42
+INFO:root:test_batch_size          -->   1024
+INFO:root:test_ratio               -->   0.33
+INFO:root:thres                    -->   0.2
+INFO:root:topk                     -->   10
+INFO:root:train_ratio              -->   0.6
+INFO:root:valid_epochs             -->   5
+INFO:root:weight_decay             -->   0.001
+INFO:root:weight_decay_2           -->   0.1
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:2023-12-19 14:41:57
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:Beta                     -->   0.1
+INFO:root:add_constraint           -->   True
+INFO:root:batch_size               -->   1024
+INFO:root:biased_split             -->   False
+INFO:root:cuda_id                  -->   2
+INFO:root:data_dir                 -->   data/
+INFO:root:data_name                -->   yelp
+INFO:root:emb_size                 -->   64
+INFO:root:lr_1                     -->   0.001
+INFO:root:lr_2                     -->   1e-05
+INFO:root:model                    -->   GDN
+INFO:root:multi_relation           -->   GNN
+INFO:root:no_cuda                  -->   True
+INFO:root:num_epochs               -->   51
+INFO:root:optimizer                -->   adam
+INFO:root:save_dir                 -->   ./pytorch_models/
+INFO:root:seed                     -->   42
+INFO:root:test_batch_size          -->   1024
+INFO:root:test_ratio               -->   0.33
+INFO:root:thres                    -->   0.2
+INFO:root:topk                     -->   10
+INFO:root:train_ratio              -->   0.6
+INFO:root:valid_epochs             -->   5
+INFO:root:weight_decay             -->   0.001
+INFO:root:weight_decay_2           -->   0.1
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:2023-12-19 14:45:51
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:Beta                     -->   0.1
+INFO:root:add_constraint           -->   True
+INFO:root:batch_size               -->   1024
+INFO:root:biased_split             -->   False
+INFO:root:cuda_id                  -->   2
+INFO:root:data_dir                 -->   data/
+INFO:root:data_name                -->   yelp
+INFO:root:emb_size                 -->   64
+INFO:root:lr_1                     -->   0.001
+INFO:root:lr_2                     -->   1e-05
+INFO:root:model                    -->   GDN
+INFO:root:multi_relation           -->   GNN
+INFO:root:no_cuda                  -->   True
+INFO:root:num_epochs               -->   51
+INFO:root:optimizer                -->   adam
+INFO:root:save_dir                 -->   ./pytorch_models/
+INFO:root:seed                     -->   42
+INFO:root:test_batch_size          -->   1024
+INFO:root:test_ratio               -->   0.33
+INFO:root:thres                    -->   0.2
+INFO:root:topk                     -->   10
+INFO:root:train_ratio              -->   0.6
+INFO:root:valid_epochs             -->   5
+INFO:root:weight_decay             -->   0.001
+INFO:root:weight_decay_2           -->   0.1
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:2023-12-19 14:47:48
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:Beta                     -->   0.1
+INFO:root:add_constraint           -->   True
+INFO:root:batch_size               -->   1024
+INFO:root:biased_split             -->   False
+INFO:root:cuda_id                  -->   2
+INFO:root:data_dir                 -->   data/
+INFO:root:data_name                -->   yelp
+INFO:root:emb_size                 -->   64
+INFO:root:lr_1                     -->   0.001
+INFO:root:lr_2                     -->   1e-05
+INFO:root:model                    -->   GDN
+INFO:root:multi_relation           -->   GNN
+INFO:root:no_cuda                  -->   True
+INFO:root:num_epochs               -->   51
+INFO:root:optimizer                -->   adam
+INFO:root:save_dir                 -->   ./pytorch_models/
+INFO:root:seed                     -->   42
+INFO:root:test_batch_size          -->   1024
+INFO:root:test_ratio               -->   0.33
+INFO:root:thres                    -->   0.2
+INFO:root:topk                     -->   10
+INFO:root:train_ratio              -->   0.6
+INFO:root:valid_epochs             -->   5
+INFO:root:weight_decay             -->   0.001
+INFO:root:weight_decay_2           -->   0.1
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:2023-12-19 14:48:53
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:Beta                     -->   0.1
+INFO:root:add_constraint           -->   True
+INFO:root:batch_size               -->   1024
+INFO:root:biased_split             -->   False
+INFO:root:cuda_id                  -->   2
+INFO:root:data_dir                 -->   data/
+INFO:root:data_name                -->   yelp
+INFO:root:emb_size                 -->   64
+INFO:root:lr_1                     -->   0.001
+INFO:root:lr_2                     -->   1e-05
+INFO:root:model                    -->   GDN
+INFO:root:multi_relation           -->   GNN
+INFO:root:no_cuda                  -->   True
+INFO:root:num_epochs               -->   51
+INFO:root:optimizer                -->   adam
+INFO:root:save_dir                 -->   ./pytorch_models/
+INFO:root:seed                     -->   42
+INFO:root:test_batch_size          -->   1024
+INFO:root:test_ratio               -->   0.33
+INFO:root:thres                    -->   0.2
+INFO:root:topk                     -->   10
+INFO:root:train_ratio              -->   0.6
+INFO:root:valid_epochs             -->   5
+INFO:root:weight_decay             -->   0.001
+INFO:root:weight_decay_2           -->   0.1
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:2023-12-19 14:49:47
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:Beta                     -->   0.1
+INFO:root:add_constraint           -->   True
+INFO:root:batch_size               -->   1024
+INFO:root:biased_split             -->   False
+INFO:root:cuda_id                  -->   2
+INFO:root:data_dir                 -->   data/
+INFO:root:data_name                -->   yelp
+INFO:root:emb_size                 -->   64
+INFO:root:lr_1                     -->   0.001
+INFO:root:lr_2                     -->   1e-05
+INFO:root:model                    -->   GDN
+INFO:root:multi_relation           -->   GNN
+INFO:root:no_cuda                  -->   True
+INFO:root:num_epochs               -->   51
+INFO:root:optimizer                -->   adam
+INFO:root:save_dir                 -->   ./pytorch_models/
+INFO:root:seed                     -->   42
+INFO:root:test_batch_size          -->   1024
+INFO:root:test_ratio               -->   0.33
+INFO:root:thres                    -->   0.2
+INFO:root:topk                     -->   10
+INFO:root:train_ratio              -->   0.6
+INFO:root:valid_epochs             -->   5
+INFO:root:weight_decay             -->   0.001
+INFO:root:weight_decay_2           -->   0.1
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:2023-12-19 14:54:43
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:Beta                     -->   0.1
+INFO:root:add_constraint           -->   True
+INFO:root:batch_size               -->   1024
+INFO:root:biased_split             -->   False
+INFO:root:cuda_id                  -->   2
+INFO:root:data_dir                 -->   data/
+INFO:root:data_name                -->   yelp
+INFO:root:emb_size                 -->   64
+INFO:root:lr_1                     -->   0.001
+INFO:root:lr_2                     -->   1e-05
+INFO:root:model                    -->   GDN
+INFO:root:multi_relation           -->   GNN
+INFO:root:no_cuda                  -->   True
+INFO:root:num_epochs               -->   51
+INFO:root:optimizer                -->   adam
+INFO:root:save_dir                 -->   ./pytorch_models/
+INFO:root:seed                     -->   42
+INFO:root:test_batch_size          -->   1024
+INFO:root:test_ratio               -->   0.33
+INFO:root:thres                    -->   0.2
+INFO:root:topk                     -->   10
+INFO:root:train_ratio              -->   0.6
+INFO:root:valid_epochs             -->   5
+INFO:root:weight_decay             -->   0.001
+INFO:root:weight_decay_2           -->   0.1
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:2023-12-19 14:56:08
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:Beta                     -->   0.1
+INFO:root:add_constraint           -->   True
+INFO:root:batch_size               -->   1024
+INFO:root:biased_split             -->   False
+INFO:root:cuda_id                  -->   2
+INFO:root:data_dir                 -->   data/
+INFO:root:data_name                -->   yelp
+INFO:root:emb_size                 -->   64
+INFO:root:lr_1                     -->   0.001
+INFO:root:lr_2                     -->   1e-05
+INFO:root:model                    -->   GDN
+INFO:root:multi_relation           -->   GNN
+INFO:root:no_cuda                  -->   True
+INFO:root:num_epochs               -->   51
+INFO:root:optimizer                -->   adam
+INFO:root:save_dir                 -->   ./pytorch_models/
+INFO:root:seed                     -->   42
+INFO:root:test_batch_size          -->   1024
+INFO:root:test_ratio               -->   0.33
+INFO:root:thres                    -->   0.2
+INFO:root:topk                     -->   10
+INFO:root:train_ratio              -->   0.6
+INFO:root:valid_epochs             -->   5
+INFO:root:weight_decay             -->   0.001
+INFO:root:weight_decay_2           -->   0.1
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:2023-12-19 14:56:41
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:Beta                     -->   0.1
+INFO:root:add_constraint           -->   True
+INFO:root:batch_size               -->   1024
+INFO:root:biased_split             -->   False
+INFO:root:cuda_id                  -->   2
+INFO:root:data_dir                 -->   data/
+INFO:root:data_name                -->   yelp
+INFO:root:emb_size                 -->   64
+INFO:root:lr_1                     -->   0.001
+INFO:root:lr_2                     -->   1e-05
+INFO:root:model                    -->   GDN
+INFO:root:multi_relation           -->   GNN
+INFO:root:no_cuda                  -->   True
+INFO:root:num_epochs               -->   51
+INFO:root:optimizer                -->   adam
+INFO:root:save_dir                 -->   ./pytorch_models/
+INFO:root:seed                     -->   42
+INFO:root:test_batch_size          -->   1024
+INFO:root:test_ratio               -->   0.33
+INFO:root:thres                    -->   0.2
+INFO:root:topk                     -->   10
+INFO:root:train_ratio              -->   0.6
+INFO:root:valid_epochs             -->   5
+INFO:root:weight_decay             -->   0.001
+INFO:root:weight_decay_2           -->   0.1
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:2023-12-19 15:06:11
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:Beta                     -->   0.1
+INFO:root:add_constraint           -->   True
+INFO:root:batch_size               -->   1024
+INFO:root:biased_split             -->   False
+INFO:root:cuda_id                  -->   2
+INFO:root:data_dir                 -->   data/
+INFO:root:data_name                -->   yelp
+INFO:root:emb_size                 -->   64
+INFO:root:lr_1                     -->   0.001
+INFO:root:lr_2                     -->   1e-05
+INFO:root:model                    -->   GDN
+INFO:root:multi_relation           -->   GNN
+INFO:root:no_cuda                  -->   True
+INFO:root:num_epochs               -->   51
+INFO:root:optimizer                -->   adam
+INFO:root:save_dir                 -->   ./pytorch_models/
+INFO:root:seed                     -->   42
+INFO:root:test_batch_size          -->   1024
+INFO:root:test_ratio               -->   0.33
+INFO:root:thres                    -->   0.2
+INFO:root:topk                     -->   10
+INFO:root:train_ratio              -->   0.6
+INFO:root:valid_epochs             -->   5
+INFO:root:weight_decay             -->   0.001
+INFO:root:weight_decay_2           -->   0.1
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:	F1-macro: 0.5191	G-Mean: 0.4758	AUC: 0.5517
+INFO:root:   GNN TP: 388	TN: 6000	FN: 934	FP: 1777

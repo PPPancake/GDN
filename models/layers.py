@@ -145,18 +145,14 @@ class InterAgg(nn.Module):
 									set.union(*to_neighs[2], set(nodes)))
 		self.unique_nodes = unique_nodes
 
-		# intra-aggregation steps for each relation
-		r1_feats = self.intra_agg1.forward(nodes, r1_list)
-		r2_feats = self.intra_agg2.forward(nodes, r2_list)
-		r3_feats = self.intra_agg3.forward(nodes, r3_list)
-
 		# get features or embeddings for batch nodes
 		self_feats = self.fetch_feat(nodes)
+		batch_features = self.fetch_feat(list(self.unique_nodes))
 
-		# if self.cuda and isinstance(nodes, list):
-		#	 self_feats = self.mlp(torch.cuda.LongTensor(nodes))
-		# else:
-		#	 self_feats = self.mlp(torch.LongTensor(nodes))
+		# intra-aggregation steps for each relation
+		r1_feats = self.intra_agg1.forward(batch_features[:, -self.embed_dim:], nodes, r1_list, self_feats[:, -self.embed_dim:])
+		r2_feats = self.intra_agg2.forward(batch_features[:, -self.embed_dim:], nodes, r2_list, self_feats[:, -self.embed_dim:])
+		r3_feats = self.intra_agg3.forward(batch_features[:, -self.embed_dim:], nodes, r3_list, self_feats[:, -self.embed_dim:])
 
 		# Update label vector
 		self.update_label_vector(self.features)
@@ -234,14 +230,16 @@ class InterAgg(nn.Module):
 		r1_list = [list(to_neigh) for to_neigh in to_neighs[0]]
 		r2_list = [list(to_neigh) for to_neigh in to_neighs[1]]
 		r3_list = [list(to_neigh) for to_neigh in to_neighs[2]]
+
+		batch_features = self.fetch_feat(list(self.unique_nodes))
 		
-		pos_1, neg_1 = self.intra_agg1.fn_loss(non_grad_idx, target[0], r1_list, self.unique_nodes, to_neighs_all)
-		pos_2, neg_2 = self.intra_agg2.fn_loss(non_grad_idx, target[1], r2_list, self.unique_nodes, to_neighs_all)
-		pos_3, neg_3 = self.intra_agg3.fn_loss(non_grad_idx, target[2], r3_list, self.unique_nodes, to_neighs_all)
+		pos_1, neg_1 = self.intra_agg1.fn_loss(non_grad_idx, target[0], r1_list, self.unique_nodes, to_neighs_all, self.features)
+		pos_2, neg_2 = self.intra_agg2.fn_loss(non_grad_idx, target[1], r2_list, self.unique_nodes, to_neighs_all, self.features)
+		pos_3, neg_3 = self.intra_agg3.fn_loss(non_grad_idx, target[2], r3_list, self.unique_nodes, to_neighs_all, self.features)
 		return pos_1 + pos_2 + pos_3, neg_1 + neg_2 + neg_3
 
 class IntraAgg(nn.Module):
-	def __init__(self, features, feat_dim, embed_dim, train_pos, cuda=False):
+	def __init__(self, cuda=False):
 		"""
 		Initialize the intra-relation aggregator
 		:param features: the input node features or embeddings for all nodes
@@ -252,16 +250,16 @@ class IntraAgg(nn.Module):
 		"""
 		super(IntraAgg, self).__init__()
 
-		self.features = features
+		#self.features = features
 		self.cuda = cuda
-		self.feat_dim = feat_dim
-		self.embed_dim = embed_dim
-		self.train_pos = train_pos
+		#self.train_pos = train_pos
+		#self.embed_dim = embed_dim
+		#self.feat_dim = feat_dim
 		# self.weight = nn.Parameter(torch.FloatTensor(2*self.feat_dim, self.embed_dim))
 		# init.xavier_uniform_(self.weight)
 		self.KLDiv = nn.KLDivLoss(reduction='batchmean')
 	
-	def forward(self, nodes, to_neighs_list):
+	def forward(self, features, nodes, to_neighs_list, self_feats):
 		"""
 		Code partially from https://github.com/williamleif/graphsage-simple/
 		:param nodes: list of nodes in a batch
@@ -277,6 +275,7 @@ class IntraAgg(nn.Module):
 		samp_neighs = [set(x) for x in to_neighs_list]
 		unique_nodes_list = list(set.union(*samp_neighs))
 		unique_nodes = {n: i for i, n in enumerate(unique_nodes_list)}
+		neighbors_new_index = [unique_nodes[n] for n in unique_nodes_list]
 
 		# 表示每个节点在整个特征矩阵中的位置
 		mask = Variable(torch.zeros(len(samp_neighs), len(unique_nodes)))
@@ -288,12 +287,15 @@ class IntraAgg(nn.Module):
 		num_neigh = mask.sum(1, keepdim=True)
 		mask = mask.div(num_neigh)# 归一化的权重矩阵
 		
-		if self.cuda:
-			self_feats = self.features(torch.LongTensor(nodes).cuda()) # 当前批次节点的特征
-			embed_matrix = self.features(torch.LongTensor(unique_nodes_list).cuda()) # 唯一邻居节点的特征
-		else:
-			self_feats = self.features(torch.LongTensor(nodes))
-			embed_matrix = self.features(torch.LongTensor(unique_nodes_list))
+		#if self.cuda:
+		#	self_feats = features(torch.LongTensor(nodes).cuda()) # 当前批次节点的特征
+		#	embed_matrix = features(torch.LongTensor(unique_nodes_list).cuda()) # 唯一邻居节点的特征
+		#else:
+		#	self_feats = features(torch.LongTensor(nodes))
+		#	embed_matrix = features(torch.LongTensor(unique_nodes_list))
+		embed_matrix = features[neighbors_new_index]
+		embed_matrix = embed_matrix.cpu()
+
 		agg_feats = mask.mm(embed_matrix) # 得到v的所有邻居节点的加权平均特征
 		diff_feats = self_feats - agg_feats
 		cat_feats = torch.cat((diff_feats, agg_feats), dim=1) # 自身特征与邻居特征进行聚合
@@ -301,21 +303,21 @@ class IntraAgg(nn.Module):
 		# return to_feats
 		return cat_feats
 
-	def fetch_feat(self, nodes):
+	def fetch_feat(self, features, nodes):
 		if self.cuda and isinstance(nodes, list):
 			index = torch.LongTensor(nodes).cuda()
 		else:
 			index = torch.LongTensor(nodes)
-		return self.features(index)
+		return features(index)
 	
-	def fn_loss(self, non_grad_idx, target, neights, all_nodes, all_neighs):
-		x = F.log_softmax(self.fetch_feat(target)[:, non_grad_idx], dim=-1)
-		pos = torch.zeros_like(self.fetch_feat(target))
-		neg = torch.zeros_like(self.fetch_feat(target))
+	def fn_loss(self, non_grad_idx, target, neights, all_nodes, all_neighs, features):
+		x = F.log_softmax(self.fetch_feat(features, target)[:, non_grad_idx], dim=-1)
+		pos = torch.zeros_like(self.fetch_feat(features, target))
+		neg = torch.zeros_like(self.fetch_feat(features, target))
 		for i in range(len(target)):
-			pos[i] = torch.mean(self.fetch_feat(neights[i]), dim=0, keepdim=True)
+			pos[i] = torch.mean(self.fetch_feat(features, neights[i]), dim=0, keepdim=True)
 			neg_idx = [random.choice(list(all_nodes.difference(all_neighs[i])))]
-			neg[i] = self.fetch_feat(neg_idx)
+			neg[i] = self.fetch_feat(features, neg_idx)
 		pos = pos[:, non_grad_idx].softmax(dim=-1)
 		neg = neg[:, non_grad_idx].softmax(dim=-1)
 		loss_pos = self.KLDiv(x, pos)
