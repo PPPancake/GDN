@@ -114,7 +114,7 @@ class ModelHandler(object):
 								self.dataset['train_neg'], gcn=True, cuda=args.cuda)
 
 		if args.model == 'GDN':
-			gnn_model = GDNLayer(2, inter1)
+			gnn_model = GDNLayer(1, 2, self.args.emb_size, inter1)
 		elif args.model == 'SAGE':
 			enc_sage.num_samples = 5
 			gnn_model = GraphSage(2, enc_sage)
