@@ -130,7 +130,7 @@ class InterAgg(nn.Module):
 		:return center_scores: the label-aware scores of batch nodes
 		"""
 
-		print(":::::::::::::::::::inter begin:::::::::::::::::::::::::::")
+		#print(":::::::::::::::::::inter begin:::::::::::::::::::::::::::")
 
 		# extract 1-hop neighbor ids from adj lists of each single-relation graph
 		to_neighs = []
@@ -157,32 +157,31 @@ class InterAgg(nn.Module):
 			batch_features = self.mlp(torch.LongTensor(list(unique_nodes)))
 			self_features = self.mlp(torch.LongTensor(nodes))
 		
-		print("befor inter - self_feats")
-		print(self_features.shape[0], self_features.shape[1])
-		
+		#print("befor inter - self_feats")
+		#print(self_features.shape[0], self_features.shape[1])
 
 		# intra-aggregation steps for each relation
 		r1_feats = self.intra_agg1.forward(batch_features[:, -self.embed_dim:], nodes, r1_list, self_features[:, -self.embed_dim:])
 		r2_feats = self.intra_agg2.forward(batch_features[:, -self.embed_dim:], nodes, r2_list, self_features[:, -self.embed_dim:])
 		r3_feats = self.intra_agg3.forward(batch_features[:, -self.embed_dim:], nodes, r3_list, self_features[:, -self.embed_dim:])
 
-		print("after inter - r1_feats")
-		print(r1_feats.shape[0], r1_feats.shape[1])
+		#print("after inter - r1_feats")
+		#print(r1_feats.shape[0], r1_feats.shape[1])
 
 		# Update label vector
 		self.update_label_vector(self.features)
 
 		# concat the intra-aggregated embeddings from each relatio
 		neigh_feats = torch.cat((r1_feats, r2_feats, r3_feats), dim = 0)
-		print("befor attention feat")
-		print(neigh_feats.shape[0], neigh_feats.shape[1])
+		#print("befor attention feat")
+		#print(neigh_feats.shape[0], neigh_feats.shape[1])
 		attention_layer_outputs = weight_inter_agg(len(self.adj_lists), neigh_feats, self.embed_dim * 2, self.alpha, len(nodes), self.cuda)
-		print("attention feat")
-		print(attention_layer_outputs.shape[0], attention_layer_outputs.shape[1])
+		#print("attention feat")
+		#print(attention_layer_outputs.shape[0], attention_layer_outputs.shape[1])
 		
 		cat_feats = torch.cat((self_features, attention_layer_outputs), dim=1)
-		print("result")
-		print(cat_feats.shape[0], cat_feats.shape[1])
+		#print("result")
+		#print(cat_feats.shape[0], cat_feats.shape[1])
 
 		return cat_feats
 	
@@ -317,17 +316,19 @@ class IntraAgg(nn.Module):
 		#	self_feats = features(torch.LongTensor(nodes))
 		#	embed_matrix = features(torch.LongTensor(unique_nodes_list))
 		embed_matrix = features[neighbors_new_index]
-		embed_matrix = embed_matrix.cpu()
+		#embed_matrix = embed_matrix.cpu()
+		#device = torch.device('cuda' if self.cuda and torch.cuda.is_available() else 'cpu')
+		#embed_matrix = embed_matrix.to(device)
 
 		agg_feats = mask.mm(embed_matrix) # 得到v的所有邻居节点的加权平均特征
 		diff_feats = self_feats - agg_feats
 		cat_feats = torch.cat((diff_feats, agg_feats), dim=1) # 自身特征与邻居特征进行聚合
 		#to_feats = F.relu(cat_feats.mm(self.weight))
 
-		print("intra:::::::::::::::::::::::::::")
-		print(self_feats.shape[0], self_feats.shape[1])
-		print(agg_feats.shape[0], agg_feats.shape[1])
-		print(cat_feats.shape[0], cat_feats.shape[1])
+		#print("intra:::::::::::::::::::::::::::")
+		#print(self_feats.shape[0], self_feats.shape[1])
+		#print(agg_feats.shape[0], agg_feats.shape[1])
+		#print(cat_feats.shape[0], cat_feats.shape[1])
 
 		return cat_feats
 		#return cat_feats
