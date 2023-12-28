@@ -10,7 +10,7 @@ import logging
 
 logging.basicConfig(filename='result.log', level=logging.INFO)
 
-def biased_split(dataset):
+def biased_split(dataset): # 构造具有SDS问题的训练集和测试集
 	prefix = '/data'
 	if dataset == 'yelp':
 		data_name = 'YelpChi.mat'
@@ -49,6 +49,7 @@ def biased_split(dataset):
 	p1 = p1 / p1.sum() # 归一化，确保和为1
 	# 按照同质性概率，随机选择60%的节点作为训练集
 	pos_index = np.random.choice(range(len(p1)), size=round(0.6 * len(pos_node_dict)), replace=False, p = p1.ravel())
+	
 	p2 = np.zeros(len(label))
 	for k in neg_node_dict:
 		p2[k] = neg_node_dict[k][1] / neg_node_dict[k][0]

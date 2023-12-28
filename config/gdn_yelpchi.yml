@@ -4,6 +4,7 @@ data_dir: 'data/'
 train_ratio: 0.6
 test_ratio: 0.33
 save_dir: './pytorch_models/'
+result_save: 'multi_result.log'
 
 # Model
 model: 'GDN'
@@ -19,6 +20,7 @@ thres: 0.2
 
 # Run multiple times with different random seeds
 seed:
+    #- 20
     - 42
     - 448
     - 854
@@ -39,12 +41,13 @@ valid_epochs: 5
 
 add_constraint: True
 Beta: 0.1
-    - 0.1
-    - 0.5
-    - 1
-    - 2
+#Beta:
+#    - 0.1
+#    - 0.5
+#    - 1
+#    - 2
 
-topk: 10
+topk: 
     - 6
     - 12
     - 18

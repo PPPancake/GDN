@@ -49,7 +49,6 @@ def weight_inter_agg(num_relations, neigh_feats, embed_dim, alpha, n, cuda): # �
 		aggregated += torch.mul(w[:, r].unsqueeze(1).repeat(1,n), neigh_h[:, r*n:(r+1)*n])
 	return aggregated.t()
 
-
 class InterAgg(nn.Module):
 	def __init__(self, features, feature_dim, embed_dim, 
 				 train_pos, train_neg, adj_lists, mlp, intraggs, inter='GNN', cuda=True):
@@ -114,10 +113,10 @@ class InterAgg(nn.Module):
 		
 		#初始化用于计算注意力权重的参数aplha
 		if self.cuda:
-			self.alpha = nn.Parameter(torch.FloatTensor(self.embed_dim*2, 3)).cuda()
+			self.alpha = nn.Parameter(torch.FloatTensor(self.embed_dim, 3)).cuda()
 
 		else:
-			self.alpha = nn.Parameter(torch.FloatTensor(self.embed_dim*2, 3))
+			self.alpha = nn.Parameter(torch.FloatTensor(self.embed_dim, 3))
 
 		init.xavier_uniform_(self.alpha)
 	
@@ -175,7 +174,7 @@ class InterAgg(nn.Module):
 		neigh_feats = torch.cat((r1_feats, r2_feats, r3_feats), dim = 0)
 		#print("befor attention feat")
 		#print(neigh_feats.shape[0], neigh_feats.shape[1])
-		attention_layer_outputs = weight_inter_agg(len(self.adj_lists), neigh_feats, self.embed_dim * 2, self.alpha, len(nodes), self.cuda)
+		attention_layer_outputs = weight_inter_agg(len(self.adj_lists), neigh_feats, self.embed_dim, self.alpha, len(nodes), self.cuda)
 		#print("attention feat")
 		#print(attention_layer_outputs.shape[0], attention_layer_outputs.shape[1])
 		
@@ -323,15 +322,15 @@ class IntraAgg(nn.Module):
 		agg_feats = mask.mm(embed_matrix) # 得到v的所有邻居节点的加权平均特征
 		diff_feats = self_feats - agg_feats
 		cat_feats = torch.cat((diff_feats, agg_feats), dim=1) # 自身特征与邻居特征进行聚合
-		#to_feats = F.relu(cat_feats.mm(self.weight))
+		to_feats = F.relu(cat_feats.mm(self.weight))
 
 		#print("intra:::::::::::::::::::::::::::")
 		#print(self_feats.shape[0], self_feats.shape[1])
 		#print(agg_feats.shape[0], agg_feats.shape[1])
 		#print(cat_feats.shape[0], cat_feats.shape[1])
 
-		return cat_feats
 		#return cat_feats
+		return to_feats
 
 	def fetch_feat(self, features, nodes):
 		if self.cuda and isinstance(nodes, list):

@@ -47,6 +47,8 @@ def grid(kwargs):
 			return z
 		return reduce(lambda a, nd: merge_two_dicts(a, nd if nd else {}), dicts, {})
 
+	print(kwargs)
+
 	sin = OrderedDict({k: v for k, v in kwargs.items() if isinstance(v, list)})
 	for k, v in sin.items():
 		copy_v = []
@@ -93,7 +95,8 @@ def multi_run_main(config):
 		if isinstance(v, list):
 			hyperparams.append(k)
 	
-	f1_list, f1_1_list, f1_0_list, auc_list, gmean_list = [], [], [], [], []
+	#f1_list, f1_1_list, f1_0_list, auc_list, gmean_list = [], [], [], [], []
+	f1_list, auc_list, gmean_list = [], [], []
 	configs = grid(config)
 	for i, cnf in enumerate(configs):
 		print('Running {}:\n'.format(i))
@@ -103,13 +106,15 @@ def multi_run_main(config):
 		set_random_seed(cnf['seed'])
 		st = time.time()
 		model = ModelHandler(cnf)
-		f1_mac_test, f1_1_test, f1_0_test, auc_test, gmean_test = model.train()
+		#f1_mac_test, f1_1_test, f1_0_test, auc_test, gmean_test = model.train()
+		f1_mac_test, auc_test, gmean_test = model.train()
 		f1_list.append(f1_mac_test)
-		f1_1_list.append(f1_1_test)
-		f1_0_list.append(f1_0_test)
+		#f1_1_list.append(f1_1_test)
+		#f1_0_list.append(f1_0_test)
 		auc_list.append(auc_test)
 		gmean_list.append(gmean_test)
 		print("Running {} done, elapsed time {}s".format(i, time.time()-st))
+		print('______________________________________________________-_')
 		with open(cnf['result_save'], 'a+') as f:
 			f.write("{}, F1-Macro: {}, AUC: {}, G-Mean: {}\n".format(cnf['save_dir'], f1_mac_test, auc_test, gmean_test))
 		f.close()
@@ -119,14 +124,14 @@ def multi_run_main(config):
 	print("G-Mean: {}".format(gmean_list))
 
 	f1_mean, f1_std = np.mean(f1_list), np.std(f1_list, ddof=1)
-	f1_1_mean, f1_1_std = np.mean(f1_1_list), np.std(f1_1_list, ddof=1)
-	f1_0_mean, f1_0_std = np.mean(f1_0_list), np.std(f1_0_list, ddof=1)
+	#f1_1_mean, f1_1_std = np.mean(f1_1_list), np.std(f1_1_list, ddof=1)
+	#f1_0_mean, f1_0_std = np.mean(f1_0_list), np.std(f1_0_list, ddof=1)
 	auc_mean, auc_std = np.mean(auc_list), np.std(auc_list, ddof=1)
 	gmean_mean, gmean_std = np.mean(gmean_list), np.std(gmean_list, ddof=1)
 
 	print("F1-Macro: {}+{}".format(f1_mean, f1_std))
-	print("F1-binary-1: {}+{}".format(f1_1_mean, f1_1_std))
-	print("F1-binary-0: {}+{}".format(f1_0_mean, f1_0_std))
+	#print("F1-binary-1: {}+{}".format(f1_1_mean, f1_1_std))
+	#print("F1-binary-0: {}+{}".format(f1_0_mean, f1_0_std))
 	print("AUC: {}+{}".format(auc_mean, auc_std))
 	print("G-Mean: {}+{}".format(gmean_mean, gmean_std))
 
