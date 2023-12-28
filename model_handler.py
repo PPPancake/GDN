@@ -179,14 +179,14 @@ class ModelHandler(object):
 
 				# 添加模型参数约束机制
 				if args.add_constraint:
-					# f1 step: 选取梯度值较大（对损失贡献较大）的节点特征作为C
+					# 选取梯度值较大（对损失贡献较大）的节点特征作为C
 					if args.model == 'GDN':
 						grad = torch.abs(torch.autograd.grad(outputs=loss, inputs=gnn_model.inter1.features.weight)[0])
 					elif args.model == 'GCN' or 'SAGE':
 						grad = torch.abs(torch.autograd.grad(outputs=loss, inputs=gnn_model.enc.features.weight)[0])
 					grads_idx = grad.mean(dim=0).topk(k=args.topk).indices
 
-					# 不参与梯度计算的特征索引作为S
+					# 其余节点作为S
 					mask_len = feat_data.shape[1] - args.topk
 					non_grads_idx = torch.zeros(mask_len, dtype=torch.long)
 					idx = 0
@@ -195,6 +195,7 @@ class ModelHandler(object):
 							non_grads_idx[idx] = i
 							idx += 1
 					
+					# 约束cla
 					if args.model == 'GDN':
 						loss_pos, loss_neg = gnn_model.inter1.fl_loss(grads_idx)
 					elif args.model == 'GCN' or 'SAGE':
@@ -202,7 +203,7 @@ class ModelHandler(object):
 					loss_stable = args.Beta * torch.exp((loss_pos - loss_neg))
 					loss_stable.backward(retain_graph=True)
 
-					# fn step
+					# 约束sur
 					if args.model == 'GDN':
 						fn_pos, fn_neg = gnn_model.inter1.fn_loss(batch_nodes, non_grads_idx)
 					elif args.model == 'GCN' or 'SAGE':

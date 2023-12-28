@@ -212,8 +212,8 @@ class InterAgg(nn.Module):
 			x_pos = x(self.pos_index)
 			x_neg = x(self.neg_index)
 		if self.pos_vector is None:
-			self.pos_vector = torch.mean(x_pos, dim=0, keepdim=True).detach()
-			self.neg_vector = torch.mean(x_neg, dim=0, keepdim=True).detach()
+			self.pos_vector = torch.mean(x_pos, dim=0, keepdim=True).detach() # proto+
+			self.neg_vector = torch.mean(x_neg, dim=0, keepdim=True).detach() # proto-
 		else:
 			cosine_pos = self.cos(self.pos_vector, x_pos)
 			cosine_neg = self.cos(self.neg_vector, x_neg)
@@ -224,8 +224,8 @@ class InterAgg(nn.Module):
 	
 	def fl_loss(self, grads_idx):
 		x = F.log_softmax(self.features(self.pos_index)[:, grads_idx], dim=1)
-		target_pos = self.pos_vector[:, grads_idx].repeat(x.shape[0], 1).softmax(dim=-1)
-		target_neg = self.neg_vector[:, grads_idx].repeat(x.shape[0], 1).softmax(dim=-1)
+		target_pos = self.pos_vector[:, grads_idx].repeat(x.shape[0], 1).softmax(dim=-1) # proto+
+		target_neg = self.neg_vector[:, grads_idx].repeat(x.shape[0], 1).softmax(dim=-1) # proto-
 		loss_pos = self.KLDiv(x, target_pos)
 		loss_neg = self.KLDiv(x, target_neg)
 		return loss_pos, loss_neg
@@ -349,6 +349,6 @@ class IntraAgg(nn.Module):
 			neg[i] = self.fetch_feat(features, neg_idx)
 		pos = pos[:, non_grad_idx].softmax(dim=-1)
 		neg = neg[:, non_grad_idx].softmax(dim=-1)
-		loss_pos = self.KLDiv(x, pos)
-		loss_neg = self.KLDiv(x, neg)
+		loss_pos = self.KLDiv(x, pos) # KL(S_u, S-v), u邻居节点们
+		loss_neg = self.KLDiv(x, neg) # KL(S_u, S-v), u非邻居节点
 		return loss_pos, loss_neg
