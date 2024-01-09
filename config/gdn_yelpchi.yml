@@ -19,13 +19,13 @@ thres: 0.2
 #seed: 42
 
 # Run multiple times with different random seeds
-seed:
-    #- 20
-    - 42
-    - 448
-    - 854
-    - 29493
-    - 88867
+seed: 42
+    ##- 20
+    #- 42
+    #- 448
+    #- 854
+    #- 29493
+    #- 88867
 
 
 # hyper-parameters
@@ -47,11 +47,11 @@ Beta: 0.1
 #    - 1
 #    - 2
 
-topk: 
-    - 6
-    - 12
-    - 18
-    - 24
+topk: 6
+    #- 6
+    #- 12
+    #- 18
+    #- 24
 biased_split: False
 # Device
 no_cuda: False
