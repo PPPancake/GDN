@@ -326,8 +326,8 @@ class IntraAgg(nn.Module):
 		#embed_matrix = embed_matrix.to(device)
 
 		agg_feats = mask.mm(embed_matrix) # 得到v的所有邻居节点的加权平均特征
-		#diff_feats = self_feats - agg_feats
-		cat_feats = torch.cat((self_feats, agg_feats), dim=1) # 自身特征与邻居特征进行聚合
+		diff_feats = self_feats - agg_feats
+		cat_feats = torch.cat((diff_feats, agg_feats), dim=1) # 自身特征与邻居特征进行聚合
 		to_feats = F.relu(cat_feats.mm(self.weight))
 
 		#print("intra:::::::::::::::::::::::::::")
