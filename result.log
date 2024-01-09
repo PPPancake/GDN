@@ -8605,3 +8605,280 @@ INFO:root:	F1-macro: 0.7520	G-Mean: 0.8355	AUC: 0.9117
 INFO:root:   GNN TP: 1093	TN: 6566	FN: 229	FP: 1211
 INFO:root:	F1-macro: 0.7531	G-Mean: 0.8382	AUC: 0.9135
 INFO:root:   GNN TP: 2225	TN: 13251	FN: 446	FP: 2460
+INFO:root:2024-01-09 19:57:46
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:Beta                     -->   0.1
+INFO:root:add_constraint           -->   True
+INFO:root:batch_size               -->   1024
+INFO:root:biased_split             -->   False
+INFO:root:cuda_id                  -->   0
+INFO:root:data_dir                 -->   data/
+INFO:root:data_name                -->   yelp
+INFO:root:emb_size                 -->   64
+INFO:root:lr_1                     -->   0.001
+INFO:root:lr_2                     -->   1e-05
+INFO:root:model                    -->   GDN
+INFO:root:multi_relation           -->   GNN
+INFO:root:no_cuda                  -->   False
+INFO:root:num_epochs               -->   101
+INFO:root:optimizer                -->   adam
+INFO:root:result_save              -->   multi_result.log
+INFO:root:save_dir                 -->   ./pytorch_models/
+INFO:root:seed                     -->   42
+INFO:root:test_batch_size          -->   1024
+INFO:root:test_ratio               -->   0.33
+INFO:root:thres                    -->   0.2
+INFO:root:topk                     -->   6
+INFO:root:train_ratio              -->   0.6
+INFO:root:valid_epochs             -->   5
+INFO:root:weight_decay             -->   0.001
+INFO:root:weight_decay_2           -->   0.1
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:2024-01-09 19:58:20
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:Beta                     -->   0.1
+INFO:root:add_constraint           -->   True
+INFO:root:batch_size               -->   1024
+INFO:root:biased_split             -->   False
+INFO:root:cuda_id                  -->   0
+INFO:root:data_dir                 -->   data/
+INFO:root:data_name                -->   yelp
+INFO:root:emb_size                 -->   64
+INFO:root:lr_1                     -->   0.001
+INFO:root:lr_2                     -->   1e-05
+INFO:root:model                    -->   GDN
+INFO:root:multi_relation           -->   GNN
+INFO:root:no_cuda                  -->   False
+INFO:root:num_epochs               -->   101
+INFO:root:optimizer                -->   adam
+INFO:root:result_save              -->   multi_result.log
+INFO:root:save_dir                 -->   ./pytorch_models/
+INFO:root:seed                     -->   42
+INFO:root:test_batch_size          -->   1024
+INFO:root:test_ratio               -->   0.33
+INFO:root:thres                    -->   0.2
+INFO:root:topk                     -->   6
+INFO:root:train_ratio              -->   0.6
+INFO:root:valid_epochs             -->   5
+INFO:root:weight_decay             -->   0.001
+INFO:root:weight_decay_2           -->   0.1
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:	F1-macro: 0.4732	G-Mean: 0.1195	AUC: 0.5432
+INFO:root:   GNN TP: 19	TN: 7723	FN: 1303	FP: 54
+INFO:root:	F1-macro: 0.6416	G-Mean: 0.6906	AUC: 0.7729
+INFO:root:   GNN TP: 791	TN: 6199	FN: 531	FP: 1578
+INFO:root:	F1-macro: 0.6725	G-Mean: 0.7334	AUC: 0.8092
+INFO:root:   GNN TP: 878	TN: 6299	FN: 444	FP: 1478
+INFO:root:	F1-macro: 0.7019	G-Mean: 0.7608	AUC: 0.8446
+INFO:root:   GNN TP: 918	TN: 6483	FN: 404	FP: 1294
+INFO:root:	F1-macro: 0.7169	G-Mean: 0.7918	AUC: 0.8708
+INFO:root:   GNN TP: 1000	TN: 6446	FN: 322	FP: 1331
+INFO:root:	F1-macro: 0.7198	G-Mean: 0.8048	AUC: 0.8838
+INFO:root:   GNN TP: 1043	TN: 6385	FN: 279	FP: 1392
+INFO:root:	F1-macro: 0.7273	G-Mean: 0.8114	AUC: 0.8904
+INFO:root:   GNN TP: 1052	TN: 6434	FN: 270	FP: 1343
+INFO:root:	F1-macro: 0.7300	G-Mean: 0.8155	AUC: 0.8941
+INFO:root:   GNN TP: 1062	TN: 6438	FN: 260	FP: 1339
+INFO:root:	F1-macro: 0.7300	G-Mean: 0.8155	AUC: 0.8964
+INFO:root:   GNN TP: 1062	TN: 6438	FN: 260	FP: 1339
+INFO:root:	F1-macro: 0.7338	G-Mean: 0.8196	AUC: 0.8982
+INFO:root:   GNN TP: 1070	TN: 6455	FN: 252	FP: 1322
+INFO:root:	F1-macro: 0.7352	G-Mean: 0.8196	AUC: 0.8993
+INFO:root:   GNN TP: 1067	TN: 6473	FN: 255	FP: 1304
+INFO:root:	F1-macro: 0.7352	G-Mean: 0.8220	AUC: 0.9004
+INFO:root:   GNN TP: 1076	TN: 6456	FN: 246	FP: 1321
+INFO:root:	F1-macro: 0.7366	G-Mean: 0.8212	AUC: 0.9012
+INFO:root:   GNN TP: 1070	TN: 6479	FN: 252	FP: 1298
+INFO:root:	F1-macro: 0.7381	G-Mean: 0.8215	AUC: 0.9019
+INFO:root:   GNN TP: 1068	TN: 6496	FN: 254	FP: 1281
+INFO:root:	F1-macro: 0.7380	G-Mean: 0.8211	AUC: 0.9027
+INFO:root:   GNN TP: 1067	TN: 6497	FN: 255	FP: 1280
+INFO:root:	F1-macro: 0.7380	G-Mean: 0.8233	AUC: 0.9035
+INFO:root:   GNN TP: 1075	TN: 6482	FN: 247	FP: 1295
+INFO:root:	F1-macro: 0.7423	G-Mean: 0.8243	AUC: 0.9042
+INFO:root:   GNN TP: 1070	TN: 6528	FN: 252	FP: 1249
+INFO:root:	F1-macro: 0.7332	G-Mean: 0.8257	AUC: 0.9048
+INFO:root:   GNN TP: 1095	TN: 6402	FN: 227	FP: 1375
+INFO:root:	F1-macro: 0.7393	G-Mean: 0.8261	AUC: 0.9053
+INFO:root:   GNN TP: 1083	TN: 6478	FN: 239	FP: 1299
+INFO:root:	F1-macro: 0.7398	G-Mean: 0.8266	AUC: 0.9059
+INFO:root:   GNN TP: 1084	TN: 6480	FN: 238	FP: 1297
+INFO:root:	F1-macro: 0.7393	G-Mean: 0.8284	AUC: 0.9064
+INFO:root:   GNN TP: 1092	TN: 6461	FN: 230	FP: 1316
+INFO:root:	F1-macro: 0.7438	G-Mean: 0.8330	AUC: 0.9099
+INFO:root:   GNN TP: 2223	TN: 13098	FN: 448	FP: 2613
+INFO:root:2024-01-09 20:37:18
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:Beta                     -->   0.1
+INFO:root:add_constraint           -->   True
+INFO:root:batch_size               -->   1024
+INFO:root:biased_split             -->   False
+INFO:root:cuda_id                  -->   0
+INFO:root:data_dir                 -->   data/
+INFO:root:data_name                -->   yelp
+INFO:root:emb_size                 -->   32
+INFO:root:lr_1                     -->   0.001
+INFO:root:lr_2                     -->   1e-05
+INFO:root:model                    -->   GDN
+INFO:root:multi_relation           -->   GNN
+INFO:root:no_cuda                  -->   False
+INFO:root:num_epochs               -->   101
+INFO:root:optimizer                -->   adam
+INFO:root:result_save              -->   multi_result.log
+INFO:root:save_dir                 -->   ./pytorch_models/
+INFO:root:seed                     -->   42
+INFO:root:test_batch_size          -->   1024
+INFO:root:test_ratio               -->   0.33
+INFO:root:thres                    -->   0.2
+INFO:root:topk                     -->   6
+INFO:root:train_ratio              -->   0.6
+INFO:root:valid_epochs             -->   5
+INFO:root:weight_decay             -->   0.001
+INFO:root:weight_decay_2           -->   0.1
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:	F1-macro: 0.4936	G-Mean: 0.2535	AUC: 0.5235
+INFO:root:   GNN TP: 91	TN: 7263	FN: 1231	FP: 514
+INFO:root:	F1-macro: 0.6160	G-Mean: 0.5930	AUC: 0.7342
+INFO:root:   GNN TP: 547	TN: 6609	FN: 775	FP: 1168
+INFO:root:	F1-macro: 0.6235	G-Mean: 0.6952	AUC: 0.7683
+INFO:root:   GNN TP: 846	TN: 5873	FN: 476	FP: 1904
+INFO:root:	F1-macro: 0.6500	G-Mean: 0.7077	AUC: 0.7892
+INFO:root:   GNN TP: 833	TN: 6182	FN: 489	FP: 1595
+INFO:root:	F1-macro: 0.6744	G-Mean: 0.7260	AUC: 0.8103
+INFO:root:   GNN TP: 849	TN: 6383	FN: 473	FP: 1394
+INFO:root:	F1-macro: 0.6992	G-Mean: 0.7548	AUC: 0.8329
+INFO:root:   GNN TP: 902	TN: 6494	FN: 420	FP: 1283
+INFO:root:	F1-macro: 0.7076	G-Mean: 0.7638	AUC: 0.8515
+INFO:root:   GNN TP: 918	TN: 6534	FN: 404	FP: 1243
+INFO:root:	F1-macro: 0.7200	G-Mean: 0.7739	AUC: 0.8643
+INFO:root:   GNN TP: 931	TN: 6614	FN: 391	FP: 1163
+INFO:root:	F1-macro: 0.7291	G-Mean: 0.7843	AUC: 0.8727
+INFO:root:   GNN TP: 951	TN: 6650	FN: 371	FP: 1127
+INFO:root:	F1-macro: 0.7353	G-Mean: 0.7955	AUC: 0.8784
+INFO:root:   GNN TP: 979	TN: 6646	FN: 343	FP: 1131
+INFO:root:	F1-macro: 0.7417	G-Mean: 0.8013	AUC: 0.8823
+INFO:root:   GNN TP: 988	TN: 6681	FN: 334	FP: 1096
+INFO:root:	F1-macro: 0.7413	G-Mean: 0.8039	AUC: 0.8850
+INFO:root:   GNN TP: 998	TN: 6658	FN: 324	FP: 1119
+INFO:root:	F1-macro: 0.7395	G-Mean: 0.8050	AUC: 0.8873
+INFO:root:   GNN TP: 1005	TN: 6629	FN: 317	FP: 1148
+INFO:root:	F1-macro: 0.7431	G-Mean: 0.8060	AUC: 0.8891
+INFO:root:   GNN TP: 1002	TN: 6665	FN: 320	FP: 1112
+INFO:root:	F1-macro: 0.7440	G-Mean: 0.8126	AUC: 0.8905
+INFO:root:   GNN TP: 1024	TN: 6630	FN: 298	FP: 1147
+INFO:root:	F1-macro: 0.7449	G-Mean: 0.8097	AUC: 0.8919
+INFO:root:   GNN TP: 1012	TN: 6660	FN: 310	FP: 1117
+INFO:root:	F1-macro: 0.7443	G-Mean: 0.8114	AUC: 0.8934
+INFO:root:   GNN TP: 1019	TN: 6642	FN: 303	FP: 1135
+INFO:root:	F1-macro: 0.7455	G-Mean: 0.8142	AUC: 0.8946
+INFO:root:   GNN TP: 1027	TN: 6636	FN: 295	FP: 1141
+INFO:root:	F1-macro: 0.7472	G-Mean: 0.8131	AUC: 0.8956
+INFO:root:   GNN TP: 1020	TN: 6664	FN: 302	FP: 1113
+INFO:root:	F1-macro: 0.7460	G-Mean: 0.8200	AUC: 0.8966
+INFO:root:   GNN TP: 1047	TN: 6602	FN: 275	FP: 1175
+INFO:root:	F1-macro: 0.7486	G-Mean: 0.8186	AUC: 0.8973
+INFO:root:   GNN TP: 1037	TN: 6643	FN: 285	FP: 1134
+INFO:root:	F1-macro: 0.7498	G-Mean: 0.8227	AUC: 0.9010
+INFO:root:   GNN TP: 2121	TN: 13390	FN: 550	FP: 2321
+INFO:root:2024-01-09 21:45:53
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:Beta                     -->   0.1
+INFO:root:add_constraint           -->   True
+INFO:root:batch_size               -->   1024
+INFO:root:biased_split             -->   False
+INFO:root:cuda_id                  -->   0
+INFO:root:data_dir                 -->   data/
+INFO:root:data_name                -->   yelp
+INFO:root:emb_size                 -->   64
+INFO:root:lr_1                     -->   0.001
+INFO:root:lr_2                     -->   1e-05
+INFO:root:model                    -->   GDN
+INFO:root:multi_relation           -->   GNN
+INFO:root:no_cuda                  -->   False
+INFO:root:num_epochs               -->   101
+INFO:root:optimizer                -->   adam
+INFO:root:result_save              -->   multi_result.log
+INFO:root:save_dir                 -->   ./pytorch_models/
+INFO:root:seed                     -->   42
+INFO:root:test_batch_size          -->   1024
+INFO:root:test_ratio               -->   0.33
+INFO:root:thres                    -->   0.2
+INFO:root:topk                     -->   6
+INFO:root:train_ratio              -->   0.6
+INFO:root:valid_epochs             -->   5
+INFO:root:weight_decay             -->   0.001
+INFO:root:weight_decay_2           -->   0.1
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:2024-01-09 21:46:30
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:Beta                     -->   0.1
+INFO:root:add_constraint           -->   True
+INFO:root:batch_size               -->   1024
+INFO:root:biased_split             -->   False
+INFO:root:cuda_id                  -->   0
+INFO:root:data_dir                 -->   data/
+INFO:root:data_name                -->   yelp
+INFO:root:emb_size                 -->   64
+INFO:root:lr_1                     -->   0.001
+INFO:root:lr_2                     -->   1e-05
+INFO:root:model                    -->   GDN
+INFO:root:multi_relation           -->   GNN
+INFO:root:no_cuda                  -->   False
+INFO:root:num_epochs               -->   101
+INFO:root:optimizer                -->   adam
+INFO:root:result_save              -->   multi_result.log
+INFO:root:save_dir                 -->   ./pytorch_models/
+INFO:root:seed                     -->   42
+INFO:root:test_batch_size          -->   1024
+INFO:root:test_ratio               -->   0.33
+INFO:root:thres                    -->   0.2
+INFO:root:topk                     -->   6
+INFO:root:train_ratio              -->   0.6
+INFO:root:valid_epochs             -->   5
+INFO:root:weight_decay             -->   0.001
+INFO:root:weight_decay_2           -->   0.1
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:	F1-macro: 0.4608	G-Mean: 0.0000	AUC: 0.5858
+INFO:root:   GNN TP: 0	TN: 7777	FN: 1322	FP: 0
+INFO:root:	F1-macro: 0.6205	G-Mean: 0.6840	AUC: 0.7618
+INFO:root:   GNN TP: 812	TN: 5924	FN: 510	FP: 1853
+INFO:root:	F1-macro: 0.6623	G-Mean: 0.7135	AUC: 0.7959
+INFO:root:   GNN TP: 829	TN: 6314	FN: 493	FP: 1463
+INFO:root:	F1-macro: 0.6908	G-Mean: 0.7526	AUC: 0.8300
+INFO:root:   GNN TP: 910	TN: 6400	FN: 412	FP: 1377
+INFO:root:	F1-macro: 0.7092	G-Mean: 0.7747	AUC: 0.8605
+INFO:root:   GNN TP: 953	TN: 6474	FN: 369	FP: 1303
+INFO:root:	F1-macro: 0.7147	G-Mean: 0.7999	AUC: 0.8779
+INFO:root:   GNN TP: 1035	TN: 6356	FN: 287	FP: 1421
+INFO:root:	F1-macro: 0.7233	G-Mean: 0.8065	AUC: 0.8858
+INFO:root:   GNN TP: 1042	TN: 6418	FN: 280	FP: 1359
+INFO:root:	F1-macro: 0.7302	G-Mean: 0.8100	AUC: 0.8900
+INFO:root:   GNN TP: 1041	TN: 6480	FN: 281	FP: 1297
+INFO:root:	F1-macro: 0.7317	G-Mean: 0.8138	AUC: 0.8931
+INFO:root:   GNN TP: 1052	TN: 6472	FN: 270	FP: 1305
+INFO:root:	F1-macro: 0.7336	G-Mean: 0.8161	AUC: 0.8955
+INFO:root:   GNN TP: 1057	TN: 6479	FN: 265	FP: 1298
+INFO:root:	F1-macro: 0.7435	G-Mean: 0.8170	AUC: 0.8972
+INFO:root:   GNN TP: 1041	TN: 6593	FN: 281	FP: 1184
+INFO:root:	F1-macro: 0.7378	G-Mean: 0.8202	AUC: 0.8989
+INFO:root:   GNN TP: 1064	TN: 6501	FN: 258	FP: 1276
+INFO:root:	F1-macro: 0.7380	G-Mean: 0.8233	AUC: 0.9003
+INFO:root:   GNN TP: 1075	TN: 6482	FN: 247	FP: 1295
+INFO:root:	F1-macro: 0.7387	G-Mean: 0.8234	AUC: 0.9015
+INFO:root:   GNN TP: 1074	TN: 6490	FN: 248	FP: 1287
+INFO:root:	F1-macro: 0.7384	G-Mean: 0.8229	AUC: 0.9025
+INFO:root:   GNN TP: 1073	TN: 6489	FN: 249	FP: 1288
+INFO:root:	F1-macro: 0.7326	G-Mean: 0.8279	AUC: 0.9036
+INFO:root:   GNN TP: 1105	TN: 6378	FN: 217	FP: 1399
+INFO:root:	F1-macro: 0.7415	G-Mean: 0.8246	AUC: 0.9045
+INFO:root:   GNN TP: 1073	TN: 6515	FN: 249	FP: 1262
+INFO:root:	F1-macro: 0.7390	G-Mean: 0.8261	AUC: 0.9052
+INFO:root:   GNN TP: 1084	TN: 6473	FN: 238	FP: 1304
+INFO:root:	F1-macro: 0.7404	G-Mean: 0.8271	AUC: 0.9060
+INFO:root:   GNN TP: 1085	TN: 6483	FN: 237	FP: 1294
+INFO:root:	F1-macro: 0.7427	G-Mean: 0.8289	AUC: 0.9067
+INFO:root:   GNN TP: 1087	TN: 6499	FN: 235	FP: 1278
+INFO:root:	F1-macro: 0.7419	G-Mean: 0.8293	AUC: 0.9075
+INFO:root:   GNN TP: 1090	TN: 6487	FN: 232	FP: 1290
+INFO:root:	F1-macro: 0.7453	G-Mean: 0.8350	AUC: 0.9091
+INFO:root:   GNN TP: 2233	TN: 13104	FN: 438	FP: 2607

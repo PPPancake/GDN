@@ -91,7 +91,8 @@ class InterAgg(nn.Module):
 		self.thresholds = [0.5, 0.5, 0.5]
 
 		# parameter used to transform node embeddings before inter-relation aggregation
-		self.weight = nn.Parameter(torch.FloatTensor(self.embed_dim*len(intraggs)+self.feat_dim, self.embed_dim))
+		#self.weight = nn.Parameter(torch.FloatTensor(self.embed_dim*len(intraggs)+self.feat_dim, self.embed_dim))
+		self.weight = nn.Parameter(torch.FloatTensor(self.embed_dim+self.feat_dim, self.embed_dim))
 		init.xavier_uniform_(self.weight)
 
 		# label predictor for similarity measure
@@ -109,14 +110,14 @@ class InterAgg(nn.Module):
 			self.pos_index = torch.LongTensor(self.train_pos)
 			self.neg_index = torch.LongTensor(self.train_neg)
 		
-		#初始化用于计算注意力权重的参数aplha
-		#if self.cuda:
-		#	self.alpha = nn.Parameter(torch.FloatTensor(self.embed_dim, 3)).cuda()
+		# 初始化用于计算注意力权重的参数aplha
+		if self.cuda:
+			self.alpha = nn.Parameter(torch.FloatTensor(self.embed_dim, 3)).cuda()
 
-		#else:
-		#	self.alpha = nn.Parameter(torch.FloatTensor(self.embed_dim, 3))
+		else:
+			self.alpha = nn.Parameter(torch.FloatTensor(self.embed_dim, 3))
 
-		#init.xavier_uniform_(self.alpha)
+		init.xavier_uniform_(self.alpha)
 	
 	def forward(self, nodes, labels):
 		"""
@@ -173,17 +174,17 @@ class InterAgg(nn.Module):
 		self.update_label_vector(self.features)
 
 		# concat the intra-aggregated embeddings from each relatio
-		#neigh_feats = torch.cat((r1_feats, r2_feats, r3_feats), dim = 0)
+		neigh_feats = torch.cat((r1_feats, r2_feats, r3_feats), dim = 0)
 		#print("befor attention feat")
 		#print(neigh_feats.shape[0], neigh_feats.shape[1])
-		#attention_layer_outputs = weight_inter_agg(len(self.adj_lists), neigh_feats, self.embed_dim, self.alpha, len(nodes), self.cuda)
+		attention_layer_outputs = weight_inter_agg(len(self.adj_lists), neigh_feats, self.embed_dim, self.alpha, len(nodes), self.cuda)
 		#print("attention feat")
 		#print(attention_layer_outputs.shape[0], attention_layer_outputs.shape[1])
 		
 		#cat_feats = torch.cat((self_features, attention_layer_outputs), dim=1)
-		cat_feats = torch.cat((self_feats, r1_feats, r2_feats, r3_feats), dim=1)
-		combined = F.relu(cat_feats.mm(self.weight))
-		return combined
+		cat_feats = torch.cat((self_feats, attention_layer_outputs), dim=1)
+		# combined = F.relu(cat_feats.mm(self.weight))
+		# return combined
 
 		#print("result")
 		#print(cat_feats.shape[0], cat_feats.shape[1])
