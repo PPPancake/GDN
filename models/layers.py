@@ -125,8 +125,6 @@ class InterAgg(nn.Module):
 		:param nodes: a list of batch node ids
 		"""
 
-		#print(":::::::::::::::::::inter begin:::::::::::::::::::::::::::")
-
 		# extract 1-hop neighbor ids from adj lists of each single-relation graph
 		to_neighs = []
 		for adj_list in self.adj_lists:
@@ -148,9 +146,6 @@ class InterAgg(nn.Module):
 		else:
 		#	batch_features = self.mlp(torch.LongTensor(list(unique_nodes)))
 			self_feats = self.features(torch.LongTensor(nodes))
-		
-		#print("befor inter - self_feats")
-		#print(self_features.shape[0], self_features.shape[1])
 
 		r1_feats = self.intra_agg1.forward(nodes, r1_list, self.features)
 		r2_feats = self.intra_agg2.forward(nodes, r2_list, self.features)
@@ -158,36 +153,19 @@ class InterAgg(nn.Module):
 		
 		#self_feats = self.fetch_feat(nodes)
 
-		#print("after inter - r1_feats")
-		#print(r1_feats.shape[0], r1_feats.shape[1])
-
 		# Update label vector
 		self.update_label_vector(self.features)
 
 		# concat the intra-aggregated embeddings from each relatio
 		neigh_feats = torch.cat((r1_feats, r2_feats, r3_feats), dim = 0)
-		#print("befor attention feat")
-		#print(neigh_feats.shape[0], neigh_feats.shape[1])
 		attention_layer_outputs = weight_inter_agg(len(self.adj_lists), neigh_feats, self.embed_dim, self.alpha, len(nodes), self.cuda)
-		#print("attention feat")
-		#print(attention_layer_outputs.shape[0], attention_layer_outputs.shape[1])
 		
 		#cat_feats = torch.cat((self_features, attention_layer_outputs), dim=1)
 		cat_feats = torch.cat((self_feats, attention_layer_outputs), dim=1)
 		# combined = F.relu(cat_feats.mm(self.weight))
 		# return combined
 
-		#print("result")
-		#print(cat_feats.shape[0], cat_feats.shape[1])
-
 		return cat_feats
-	
-	def fetch_feat(self, nodes):
-		if self.cuda and isinstance(nodes, list):
-			index = torch.LongTensor(nodes).cuda()
-		else:
-			index = torch.LongTensor(nodes)
-		return self.features(index)
 	
 	def softmax_with_temperature(self, input, t=1, axis=-1):
 		ex = torch.exp(input/t)
@@ -300,11 +278,6 @@ class IntraAgg(nn.Module):
 		diff_feats = self_feats - agg_feats
 		cat_feats = torch.cat((diff_feats, agg_feats), dim=1) # 自身特征与邻居特征进行聚合
 		to_feats = F.relu(cat_feats.mm(self.weight))
-
-		#print("intra:::::::::::::::::::::::::::")
-		#print(self_feats.shape[0], self_feats.shape[1])
-		#print(agg_feats.shape[0], agg_feats.shape[1])
-		#print(cat_feats.shape[0], cat_feats.shape[1])
 
 		#return cat_feats
 		return to_feats
