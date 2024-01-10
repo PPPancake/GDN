@@ -24,8 +24,8 @@ class GDNLayer(nn.Module):
 		init.xavier_uniform_(self.weight2)
 
 	# 前向传播
-	def forward(self, nodes, labels):
-		embeds1 = self.inter1(nodes, labels)
+	def forward(self, nodes):
+		embeds1 = self.inter1(nodes)
 
 		# scores = embeds1.mm(self.weight)
 
@@ -36,14 +36,14 @@ class GDNLayer(nn.Module):
 		return scores
 	
 	# 将模型的输出通过softmax转为概率
-	def to_prob(self, nodes, labels):
-		gnn_logits = self.forward(nodes, labels)
+	def to_prob(self, nodes):
+		gnn_logits = self.forward(nodes)
 		gnn_scores = self.softmax(gnn_logits)
 		return gnn_scores
 	
 	# 交叉熵损失函数
 	def loss(self, nodes, labels):
-		gnn_scores = self.forward(nodes, labels)
+		gnn_scores = self.forward(nodes)
 		gnn_loss = self.xent(gnn_scores, labels.squeeze())
 		return gnn_loss
 

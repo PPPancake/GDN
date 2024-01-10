@@ -120,10 +120,9 @@ class InterAgg(nn.Module):
 
 		init.xavier_uniform_(self.alpha)
 	
-	def forward(self, nodes, labels):
+	def forward(self, nodes):
 		"""
 		:param nodes: a list of batch node ids
-		:param labels: a list of batch node labels
 		"""
 
 		#print(":::::::::::::::::::inter begin:::::::::::::::::::::::::::")
@@ -143,13 +142,12 @@ class InterAgg(nn.Module):
 									set.union(*to_neighs[2], set(nodes)))
 		self.unique_nodes = unique_nodes
 
-		# get features or embeddings for batch nodes
-		#if self.cuda:
+		if self.cuda and isinstance(nodes, list):
 		#	batch_features = self.mlp(torch.cuda.LongTensor(list(unique_nodes)))
-		#	self_features = self.mlp(torch.cuda.LongTensor(nodes))
-		#else:
+			self_feats = self.features(torch.LongTensor(nodes).cuda())
+		else:
 		#	batch_features = self.mlp(torch.LongTensor(list(unique_nodes)))
-		#	self_features = self.mlp(torch.LongTensor(nodes))
+			self_feats = self.features(torch.LongTensor(nodes))
 		
 		#print("befor inter - self_feats")
 		#print(self_features.shape[0], self_features.shape[1])
@@ -158,7 +156,7 @@ class InterAgg(nn.Module):
 		r2_feats = self.intra_agg2.forward(nodes, r2_list, self.features)
 		r3_feats = self.intra_agg3.forward(nodes, r3_list, self.features)
 		
-		self_feats = self.fetch_feat(nodes)
+		#self_feats = self.fetch_feat(nodes)
 
 		#print("after inter - r1_feats")
 		#print(r1_feats.shape[0], r1_feats.shape[1])

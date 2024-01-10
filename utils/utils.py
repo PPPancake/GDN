@@ -228,7 +228,7 @@ def test_GDN(test_cases, labels, model, batch_size, thres=0.5, save=False):
 		i_end = min((iteration + 1) * batch_size, len(test_cases))
 		batch_nodes = test_cases[i_start:i_end]
 		batch_label = labels[i_start:i_end]
-		gnn_prob = model.to_prob(batch_nodes, batch_label)
+		gnn_prob = model.to_prob(batch_nodes)
 		gnn_prob_arr = gnn_prob.data.cpu().numpy()[:, 1]
 		gnn_pred = prob2pred(gnn_prob_arr, thres)
 
