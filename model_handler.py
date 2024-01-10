@@ -108,11 +108,11 @@ class ModelHandler(object):
 							  adj_lists, [intra1_1, intra1_2, intra1_3], inter=args.multi_relation, cuda=args.cuda)
 
 			# second convolution layer
-			# intra2_1 = IntraAgg(feat_data.shape[1], args.emb_size, cuda=args.cuda)
-			# intra2_2 = IntraAgg(feat_data.shape[1], args.emb_size, cuda=args.cuda)
-			# intra2_3 = IntraAgg(feat_data.shape[1], args.emb_size, cuda=args.cuda)
-			# inter2 = InterAgg(features, feat_data.shape[1], args.emb_size*2, self.dataset['train_pos'], self.dataset['train_neg'],
-			#				adj_lists, lambda nodes: inter1(nodes), [intra2_1, intra2_2, intra2_3], inter=args.multi_relation, cuda=args.cuda)
+			intra2_1 = IntraAgg(feat_data.shape[1], args.emb_size, cuda=args.cuda)
+			intra2_2 = IntraAgg(feat_data.shape[1], args.emb_size, cuda=args.cuda)
+			intra2_3 = IntraAgg(feat_data.shape[1], args.emb_size, cuda=args.cuda)
+			inter2 = InterAgg(lambda nodes: inter1(nodes), feat_data.shape[1], args.emb_size*2, self.dataset['train_pos'], self.dataset['train_neg'],
+							adj_lists, [intra2_1, intra2_2, intra2_3], inter=args.multi_relation, cuda=args.cuda)
 		elif args.model == 'SAGE':
 			agg_sage = MeanAggregator(features, cuda=args.cuda) # 均值聚合器
 			enc_sage = Encoder(features, feat_data.shape[1], args.emb_size, adj_lists, agg_sage, self.dataset['train_pos'], self.dataset['train_neg'], gcn=False, cuda=args.cuda)

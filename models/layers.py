@@ -160,10 +160,8 @@ class InterAgg(nn.Module):
 		neigh_feats = torch.cat((r1_feats, r2_feats, r3_feats), dim = 0)
 		attention_layer_outputs = weight_inter_agg(len(self.adj_lists), neigh_feats, self.embed_dim, self.alpha, len(nodes), self.cuda)
 		
-		#cat_feats = torch.cat((self_features, attention_layer_outputs), dim=1)
-		cat_feats = torch.cat((self_feats, attention_layer_outputs), dim=1)
-		# combined = F.relu(cat_feats.mm(self.weight))
-		# return combined
+		#cat_feats = torch.cat((self_feats, attention_layer_outputs), dim=1)
+		cat_feats = torch.cat((self_feats, r1_feats, r2_feats, r3_feats), dim=1)
 
 		return cat_feats
 	
@@ -219,8 +217,6 @@ class InterAgg(nn.Module):
 		r1_list = [list(to_neigh) for to_neigh in to_neighs[0]]
 		r2_list = [list(to_neigh) for to_neigh in to_neighs[1]]
 		r3_list = [list(to_neigh) for to_neigh in to_neighs[2]]
-
-		#batch_features = self.fetch_feat(list(self.unique_nodes))
 		
 		pos_1, neg_1 = self.intra_agg1.fn_loss(non_grad_idx, target[0], r1_list, self.unique_nodes, to_neighs_all, self.features)
 		pos_2, neg_2 = self.intra_agg2.fn_loss(non_grad_idx, target[1], r2_list, self.unique_nodes, to_neighs_all, self.features)
@@ -279,7 +275,6 @@ class IntraAgg(nn.Module):
 		cat_feats = torch.cat((diff_feats, agg_feats), dim=1) # 自身特征与邻居特征进行聚合
 		to_feats = F.relu(cat_feats.mm(self.weight))
 
-		#return cat_feats
 		return to_feats
 
 	def fetch_feat(self, features, nodes):
