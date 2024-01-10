@@ -22,7 +22,6 @@ class GDNLayer(nn.Module):
 		
 		init.xavier_uniform_(self.weight) # 初始化weight参数
 		init.xavier_uniform_(self.weight2)
-		#init.xavier_uniform_(self.weight_mlp)
 
 	# 前向传播
 	def forward(self, nodes, labels):

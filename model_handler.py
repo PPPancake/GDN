@@ -106,9 +106,9 @@ class ModelHandler(object):
 			#inter1 = InterAgg(features, feat_data.shape[1], args.emb_size, self.dataset['train_pos'], self.dataset['train_neg'],
 			#				adj_lists, lambda nodes: mlp(nodes), [intra1, intra2, intra3], inter=args.multi_relation, cuda=args.cuda)
 			
-			intra1_1 = IntraAgg(cuda=args.cuda)
-			intra1_2 = IntraAgg(cuda=args.cuda)
-			intra1_3 = IntraAgg(cuda=args.cuda)
+			intra1_1 = IntraAgg(feat_data.shape[1], args.emb_size, cuda=args.cuda)
+			intra1_2 = IntraAgg(feat_data.shape[1], args.emb_size, cuda=args.cuda)
+			intra1_3 = IntraAgg(feat_data.shape[1], args.emb_size, cuda=args.cuda)
 			inter1 = InterAgg(features, feat_data.shape[1], args.emb_size, self.dataset['train_pos'], self.dataset['train_neg'],
 							  adj_lists, [intra1_1, intra1_2, intra1_3], inter=args.multi_relation, cuda=args.cuda)
 

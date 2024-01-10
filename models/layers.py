@@ -57,6 +57,7 @@ class InterAgg(nn.Module):
 		:param feature_dim: the input dimension
 		:param embed_dim: the embed dimension
 		:param train_pos: positive samples in training set
+		:param train_neg: negative samples in training set
 		:param adj_lists: a list of adjacency lists for each single-relation graph
 		:param intraggs: the intra-relation aggregators used by each single-relation graph
 		:param inter: NOT used in this version, the aggregator type: 'Att', 'Weight', 'Mean', 'GNN'
@@ -123,9 +124,6 @@ class InterAgg(nn.Module):
 		"""
 		:param nodes: a list of batch node ids
 		:param labels: a list of batch node labels
-		:param train_flag: indicates whether in training or testing mode
-		:return combined: the embeddings of a batch of input node features
-		:return center_scores: the label-aware scores of batch nodes
 		"""
 
 		#print(":::::::::::::::::::inter begin:::::::::::::::::::::::::::")
@@ -156,11 +154,6 @@ class InterAgg(nn.Module):
 		#print("befor inter - self_feats")
 		#print(self_features.shape[0], self_features.shape[1])
 
-		# intra-aggregation steps for each relation
-		#r1_feats = self.intra_agg1.forward(batch_features[:, -self.embed_dim:], nodes, r1_list, self_features[:, -self.embed_dim:])
-		#r2_feats = self.intra_agg2.forward(batch_features[:, -self.embed_dim:], nodes, r2_list, self_features[:, -self.embed_dim:])
-		#r3_feats = self.intra_agg3.forward(batch_features[:, -self.embed_dim:], nodes, r3_list, self_features[:, -self.embed_dim:])
-		
 		r1_feats = self.intra_agg1.forward(nodes, r1_list, self.features)
 		r2_feats = self.intra_agg2.forward(nodes, r2_list, self.features)
 		r3_feats = self.intra_agg3.forward(nodes, r3_list, self.features)
@@ -197,14 +190,6 @@ class InterAgg(nn.Module):
 		else:
 			index = torch.LongTensor(nodes)
 		return self.features(index)
-	
-	# ---not used--- 
-	#def cal_simi_scores(self, nodes):
-	#	self_feats = self.fetch_feat(nodes)
-	#	cosine_pos = self.cos(self.pos_vector, self_feats).detach()
-	#	cosine_neg = self.cos(self.neg_vector, self_feats).detach()
-	#	simi_scores = torch.cat((cosine_neg.view(-1, 1), cosine_pos.view(-1, 1)), 1)
-	#	return simi_scores
 	
 	def softmax_with_temperature(self, input, t=1, axis=-1):
 		ex = torch.exp(input/t)
@@ -267,24 +252,20 @@ class InterAgg(nn.Module):
 		return pos_1 + pos_2 + pos_3, neg_1 + neg_2 + neg_3
 
 class IntraAgg(nn.Module):
-	def __init__(self, cuda=False):
+	def __init__(self, feat_dim, embed_dim, cuda=False):
 		"""
 		Initialize the intra-relation aggregator
-		:param features: the input node features or embeddings for all nodes
 		:param feat_dim: the input dimension
 		:param embed_dim: the embed dimension
-		:param train_pos: positive samples in training set
 		:param cuda: whether to use GPU
 		"""
 		super(IntraAgg, self).__init__()
 
-		#self.features = features
+		self.embed_dim = embed_dim
+		self.feat_dim = feat_dim
 		self.cuda = cuda
-		#self.train_pos = train_pos
-		#self.embed_dim = embed_dim
-		#self.feat_dim = feat_dim
-		self.weight = nn.Parameter(torch.FloatTensor(64, 64))
-		#self.weight = nn.Parameter(torch.FloatTensor(2*self.feat_dim, self.embed_dim))
+		
+		self.weight = nn.Parameter(torch.FloatTensor(2*self.feat_dim, self.embed_dim))
 		init.xavier_uniform_(self.weight)
 		self.KLDiv = nn.KLDivLoss(reduction='batchmean')
 	
@@ -293,13 +274,7 @@ class IntraAgg(nn.Module):
 		Code partially from https://github.com/williamleif/graphsage-simple/
 		:param nodes: list of nodes in a batch
 		:param to_neighs_list: neighbor node id list for each batch node in one relation
-		:param batch_scores: the label-aware scores of batch nodes
-		:param neigh_scores: the label-aware scores 1-hop neighbors each batch node in one relation
-		:param pos_scores: the label-aware scores 1-hop neighbors for the minority positive nodes
-		:param train_flag: indicates whether in training or testing mode
-		:param sample_list: the number of neighbors kept for each batch node in one relation
-		:return to_feats: the aggregated embeddings of batch nodes neighbors in one relation
-		:return samp_scores: the average neighbor distances for each relation after filtering
+		:param features: the input node features or embeddings for all nodes
 		"""
 		samp_neighs = [set(x) for x in to_neighs_list]
 		unique_nodes_list = list(set.union(*samp_neighs))
@@ -322,10 +297,6 @@ class IntraAgg(nn.Module):
 		else:
 			self_feats = features(torch.LongTensor(nodes))
 			embed_matrix = features(torch.LongTensor(unique_nodes_list))
-		#embed_matrix = features[neighbors_new_index]
-		#embed_matrix = embed_matrix.cpu()
-		#device = torch.device('cuda' if self.cuda and torch.cuda.is_available() else 'cpu')
-		#embed_matrix = embed_matrix.to(device)
 
 		agg_feats = mask.mm(embed_matrix) # 得到v的所有邻居节点的加权平均特征
 		diff_feats = self_feats - agg_feats
