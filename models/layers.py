@@ -161,9 +161,9 @@ class InterAgg(nn.Module):
 		#r2_feats = self.intra_agg2.forward(batch_features[:, -self.embed_dim:], nodes, r2_list, self_features[:, -self.embed_dim:])
 		#r3_feats = self.intra_agg3.forward(batch_features[:, -self.embed_dim:], nodes, r3_list, self_features[:, -self.embed_dim:])
 		
-		r1_feats = self.intra_agg1.forward(nodes, r1_list)
-		r2_feats = self.intra_agg2.forward(nodes, r2_list)
-		r3_feats = self.intra_agg3.forward(nodes, r3_list)
+		r1_feats = self.intra_agg1.forward(nodes, r1_list, self.features)
+		r2_feats = self.intra_agg2.forward(nodes, r2_list, self.features)
+		r3_feats = self.intra_agg3.forward(nodes, r3_list, self.features)
 		
 		self_feats = self.fetch_feat(nodes)
 
@@ -267,7 +267,7 @@ class InterAgg(nn.Module):
 		return pos_1 + pos_2 + pos_3, neg_1 + neg_2 + neg_3
 
 class IntraAgg(nn.Module):
-	def __init__(self, features, feat_dim, embed_dim, train_pos, cuda=False):
+	def __init__(self, cuda=False):
 		"""
 		Initialize the intra-relation aggregator
 		:param features: the input node features or embeddings for all nodes
@@ -278,16 +278,17 @@ class IntraAgg(nn.Module):
 		"""
 		super(IntraAgg, self).__init__()
 
-		self.features = features
+		#self.features = features
 		self.cuda = cuda
-		self.train_pos = train_pos
-		self.embed_dim = embed_dim
-		self.feat_dim = feat_dim
-		self.weight = nn.Parameter(torch.FloatTensor(2*self.feat_dim, self.embed_dim))
+		#self.train_pos = train_pos
+		#self.embed_dim = embed_dim
+		#self.feat_dim = feat_dim
+		self.weight = nn.Parameter(torch.FloatTensor(64, 64))
+		#self.weight = nn.Parameter(torch.FloatTensor(2*self.feat_dim, self.embed_dim))
 		init.xavier_uniform_(self.weight)
 		self.KLDiv = nn.KLDivLoss(reduction='batchmean')
 	
-	def forward(self, nodes, to_neighs_list):
+	def forward(self, nodes, to_neighs_list, features):
 		"""
 		Code partially from https://github.com/williamleif/graphsage-simple/
 		:param nodes: list of nodes in a batch
@@ -316,11 +317,11 @@ class IntraAgg(nn.Module):
 		mask = mask.div(num_neigh)# 归一化的权重矩阵
 		
 		if self.cuda:
-			self_feats = self.features(torch.LongTensor(nodes).cuda()) # 当前批次节点的特征
-			embed_matrix = self.features(torch.LongTensor(unique_nodes_list).cuda()) # 唯一邻居节点的特征
+			self_feats = features(torch.LongTensor(nodes).cuda()) # 当前批次节点的特征
+			embed_matrix = features(torch.LongTensor(unique_nodes_list).cuda()) # 唯一邻居节点的特征
 		else:
-			self_feats = self.features(torch.LongTensor(nodes))
-			embed_matrix = self.features(torch.LongTensor(unique_nodes_list))
+			self_feats = features(torch.LongTensor(nodes))
+			embed_matrix = features(torch.LongTensor(unique_nodes_list))
 		#embed_matrix = features[neighbors_new_index]
 		#embed_matrix = embed_matrix.cpu()
 		#device = torch.device('cuda' if self.cuda and torch.cuda.is_available() else 'cpu')
