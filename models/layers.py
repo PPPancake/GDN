@@ -242,7 +242,7 @@ class InterAgg(nn.Module):
 		r2_list = [list(to_neigh) for to_neigh in to_neighs[1]]
 		r3_list = [list(to_neigh) for to_neigh in to_neighs[2]]
 
-		batch_features = self.fetch_feat(list(self.unique_nodes))
+		#batch_features = self.fetch_feat(list(self.unique_nodes))
 		
 		pos_1, neg_1 = self.intra_agg1.fn_loss(non_grad_idx, target[0], r1_list, self.unique_nodes, to_neighs_all, self.features)
 		pos_2, neg_2 = self.intra_agg2.fn_loss(non_grad_idx, target[1], r2_list, self.unique_nodes, to_neighs_all, self.features)
