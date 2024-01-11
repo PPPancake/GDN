@@ -14,7 +14,7 @@ class GDNLayer(nn.Module):
 		self.cos = nn.CosineSimilarity(dim=1, eps=1e-6) 
 		#self.weight = nn.Parameter(torch.FloatTensor((int(math.pow(2, K+1)-1) * self.embed_dim), self.embed_dim))
 		#self.weight = nn.Parameter(torch.FloatTensor((2 * self.embed_dim), self.embed_dim))
-		self.weight = nn.Parameter(torch.FloatTensor(32 + 64 * 3, inter1.embed_dim))
+		self.weight = nn.Parameter(torch.FloatTensor(64 * 4, inter1.embed_dim))
 		self.weight2 = nn.Parameter(torch.FloatTensor(inter1.embed_dim, num_classes))
 		self.fn = nn.LeakyReLU(0.3)
 		

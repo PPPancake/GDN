@@ -97,21 +97,25 @@ class ModelHandler(object):
 		if args.cuda:
 			features.cuda()
 		
-		# mlp = MLP_(features, feat_data.shape[1], args.emb_size, cuda = args.cuda)
+		#print("hey::::::")
+		#print(features.weight.data.size())
+		#print(features)
+		
+		mlp = MLP_(features, feat_data.shape[1], args.emb_size, cuda = args.cuda)
 
 		if args.model == 'GDN':
 			#first convolution layer
 			intra1_1 = IntraAgg(feat_data.shape[1], args.emb_size, cuda=args.cuda)
 			intra1_2 = IntraAgg(feat_data.shape[1], args.emb_size, cuda=args.cuda)
 			intra1_3 = IntraAgg(feat_data.shape[1], args.emb_size, cuda=args.cuda)
-			inter1 = InterAgg(features, feat_data.shape[1], args.emb_size, self.dataset['train_pos'], self.dataset['train_neg'],
+			inter1 = InterAgg(features, lambda nodes: mlp(nodes), feat_data.shape[1], args.emb_size, self.dataset['train_pos'], self.dataset['train_neg'],
 							  adj_lists, [intra1_1, intra1_2, intra1_3], inter=args.multi_relation, cuda=args.cuda)
 
 			# second convolution layer
 			intra2_1 = IntraAgg(feat_data.shape[1], args.emb_size, cuda=args.cuda)
 			intra2_2 = IntraAgg(feat_data.shape[1], args.emb_size, cuda=args.cuda)
 			intra2_3 = IntraAgg(feat_data.shape[1], args.emb_size, cuda=args.cuda)
-			inter2 = InterAgg(lambda nodes: inter1(nodes), feat_data.shape[1], args.emb_size*2, self.dataset['train_pos'], self.dataset['train_neg'],
+			inter2 = InterAgg(features, lambda nodes: inter1(nodes), feat_data.shape[1], args.emb_size*2, self.dataset['train_pos'], self.dataset['train_neg'],
 							adj_lists, [intra2_1, intra2_2, intra2_3], inter=args.multi_relation, cuda=args.cuda)
 		elif args.model == 'SAGE':
 			agg_sage = MeanAggregator(features, cuda=args.cuda) # 均值聚合器
@@ -137,7 +141,7 @@ class ModelHandler(object):
 			group_1 = []
 			group_2 = []
 			for name, param in gnn_model.named_parameters():
-				if name == 'inter1.features.weight':
+				if name == 'inter1.f.weight':
 					group_2 += [param]
 				else:
 					group_1 += [param]
@@ -182,7 +186,7 @@ class ModelHandler(object):
 				if args.add_constraint:
 					# 选取梯度值较大（对损失贡献较大）的节点特征作为C
 					if args.model == 'GDN':
-						grad = torch.abs(torch.autograd.grad(outputs=loss, inputs=gnn_model.inter1.features.weight)[0])
+						grad = torch.abs(torch.autograd.grad(outputs=loss, inputs=gnn_model.inter1.f.weight)[0])
 					elif args.model == 'GCN' or 'SAGE':
 						grad = torch.abs(torch.autograd.grad(outputs=loss, inputs=gnn_model.enc.features.weight)[0])
 					grads_idx = grad.mean(dim=0).topk(k=args.topk).indices
@@ -241,7 +245,7 @@ class ModelHandler(object):
 						print('  Saving model ...')
 						torch.save(gnn_model.state_dict(), path_saver)
 						with open(args.data_name+'_features.pkl', 'wb+') as f:
-							pkl.dump(gnn_model.inter1.features.weight, f)
+							pkl.dump(gnn_model.inter1.f.weight, f)
 		
 		# 加载最佳模型
 		print("Restore model from epoch {}".format(ep_best))
