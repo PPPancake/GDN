@@ -10,7 +10,7 @@ class GDNLayer(nn.Module):
 
 		self.xent = nn.CrossEntropyLoss()
 		self.softmax = nn.Softmax(dim=-1)
-		self.KLDiv = nn.KLDivLoss(reduction='batchmean') # KL 散度损失函数, 衡量两个概率分布之间的差异
+		self.KLDiv = nn.KLDivLoss(reduction='batchmean') # KL散度损失函数, 衡量两个概率分布之间的差异
 		self.cos = nn.CosineSimilarity(dim=1, eps=1e-6) 
 		#self.weight = nn.Parameter(torch.FloatTensor((int(math.pow(2, K+1)-1) * self.embed_dim), self.embed_dim))
 		#self.weight = nn.Parameter(torch.FloatTensor((2 * self.embed_dim), self.embed_dim))
@@ -18,10 +18,9 @@ class GDNLayer(nn.Module):
 		self.weight2 = nn.Parameter(torch.FloatTensor(inter1.embed_dim, num_classes))
 		self.fn = nn.LeakyReLU(0.3)
 		
-		init.xavier_uniform_(self.weight) # 初始化weight参数
+		init.xavier_uniform_(self.weight) # initialize the parameter weight
 		init.xavier_uniform_(self.weight2)
 
-	# 前向传播
 	def forward(self, nodes):
 		embeds1 = self.inter1(nodes)
 
@@ -32,13 +31,13 @@ class GDNLayer(nn.Module):
 
 		return scores
 	
-	# 将模型的输出通过softmax转为概率
+	# convert the output to probability via softmax
 	def to_prob(self, nodes):
 		gnn_logits = self.forward(nodes)
 		gnn_scores = self.softmax(gnn_logits)
 		return gnn_scores
 	
-	# 交叉熵损失函数
+	# cross Entropy Loss Function
 	def loss(self, nodes, labels):
 		gnn_scores = self.forward(nodes)
 		gnn_loss = self.xent(gnn_scores, labels.squeeze())

@@ -97,10 +97,6 @@ class ModelHandler(object):
 		if args.cuda:
 			features.cuda()
 		
-		#print("hey::::::")
-		#print(features.weight.data.size())
-		#print(features)
-		
 		mlp = MLP_(features, feat_data.shape[1], args.emb_size, cuda = args.cuda)
 
 		if args.model == 'GDN':
@@ -247,12 +243,12 @@ class ModelHandler(object):
 						with open(args.data_name+'_features.pkl', 'wb+') as f:
 							pkl.dump(gnn_model.inter1.f.weight, f)
 		
-		# 加载最佳模型
+		# load the best model
 		print("Restore model from epoch {}".format(ep_best))
 		print("Model path: {}".format(path_saver))
 		gnn_model.load_state_dict(torch.load(path_saver))
 
-		# 返回测试结果
+		# return test results
 		if args.model == 'SAGE' or args.model == 'GCN':
 			f1_mac_test, auc_test, gmean_test = test_sage(idx_test, y_test, gnn_model, args.test_batch_size, args.thres)
 		else:

@@ -112,7 +112,7 @@ class InterAgg(nn.Module):
 			self.pos_index = torch.LongTensor(self.train_pos)
 			self.neg_index = torch.LongTensor(self.train_neg)
 		
-		# 初始化用于计算注意力权重的参数aplha
+		# initialize the attention parameter aplha
 		if self.cuda:
 			self.alpha = nn.Parameter(torch.FloatTensor(self.embed_dim, 3)).cuda()
 
@@ -154,8 +154,6 @@ class InterAgg(nn.Module):
 		r1_feats = self.intra_agg1.forward(nodes, r1_list, self.features, batch_feats, self_feats, unique_nodes_new_index)
 		r2_feats = self.intra_agg2.forward(nodes, r2_list, self.features, batch_feats, self_feats, unique_nodes_new_index)
 		r3_feats = self.intra_agg3.forward(nodes, r3_list, self.features, batch_feats, self_feats, unique_nodes_new_index)
-		
-		#self_feats = self.fetch_feat(nodes)
 
 		# Update label vector
 		self.update_label_vector(self.f)
@@ -262,7 +260,7 @@ class IntraAgg(nn.Module):
 		mask = Variable(torch.zeros(len(samp_neighs), len(unique_nodes)))
 		column_indices = [unique_nodes[n] for samp_neigh in samp_neighs for n in samp_neigh]
 		row_indices = [i for i in range(len(samp_neighs)) for _ in range(len(samp_neighs[i]))]
-		mask[row_indices, column_indices] = 1 # 对值为1的节点进行采样
+		mask[row_indices, column_indices] = 1
 		if self.cuda:
 			mask = mask.cuda()
 		num_neigh = mask.sum(1, keepdim=True)
@@ -271,7 +269,7 @@ class IntraAgg(nn.Module):
 		embed_matrix = batch_feats[neighbors_new_index]
 		agg_feats = mask.mm(embed_matrix) # 得到v的所有邻居节点的加权平均特征
 		diff_feats = self_feats - agg_feats
-		cat_feats = torch.cat((diff_feats, agg_feats), dim=1) # 自身特征与邻居特征进行聚合
+		cat_feats = torch.cat((diff_feats, agg_feats), dim=1)
 		to_feats = F.relu(cat_feats.mm(self.weight))
 
 		return to_feats
