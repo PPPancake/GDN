@@ -19,12 +19,13 @@ thres: 0.2
 #seed: 42
 
 # Run multiple times with different random seeds
-seed: 42
-    ##- 20
+#seed: 42
+seed:
+    - 20
     #- 42
-    #- 448
+    - 448
     #- 854
-    #- 29493
+    - 29493
     #- 88867
 
 
@@ -40,19 +41,20 @@ num_epochs: 101
 valid_epochs: 5
 
 add_constraint: True
-Beta: 0.1
-#Beta:
-#    - 0.1
-#    - 0.5
-#    - 1
-#    - 2
+#Beta: 0.1
+Beta:
+    - 0.1
+    - 0.5
+    #- 1
+    - 2
 
-topk: 6
+#topk: 6
+topk:
     #- 6
-    #- 12
-    #- 18
-    #- 24
+    - 12
+    - 18
+    - 24
 biased_split: False
 # Device
-no_cuda: False
+no_cuda: True
 cuda_id: '0'

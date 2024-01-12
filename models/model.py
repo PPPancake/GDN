@@ -1,3 +1,4 @@
+import math
 import torch
 import torch.nn as nn
 from torch.nn import init
@@ -12,7 +13,7 @@ class GDNLayer(nn.Module):
 		self.softmax = nn.Softmax(dim=-1)
 		self.KLDiv = nn.KLDivLoss(reduction='batchmean') # KL散度损失函数, 衡量两个概率分布之间的差异
 		self.cos = nn.CosineSimilarity(dim=1, eps=1e-6) 
-		#self.weight = nn.Parameter(torch.FloatTensor((int(math.pow(2, K+1)-1) * self.embed_dim), self.embed_dim))
+		#self.weight = nn.Parameter(torch.FloatTensor((int(math.pow(2, K+1)-1) * inter1.embed_dim), inter1.embed_dim))
 		#self.weight = nn.Parameter(torch.FloatTensor((2 * self.embed_dim), self.embed_dim))
 		self.weight = nn.Parameter(torch.FloatTensor(64 * 4, inter1.embed_dim))
 		self.weight2 = nn.Parameter(torch.FloatTensor(inter1.embed_dim, num_classes))

@@ -180,8 +180,8 @@ class InterAgg(nn.Module):
 			x_pos = x(self.pos_index)
 			x_neg = x(self.neg_index)
 		if self.pos_vector is None:
-			self.pos_vector = torch.mean(x_pos, dim=0, keepdim=True).detach() # proto+
-			self.neg_vector = torch.mean(x_neg, dim=0, keepdim=True).detach() # proto-
+			self.pos_vector = torch.mean(x_pos, dim=0, keepdim=True).detach() # proto_0 +
+			self.neg_vector = torch.mean(x_neg, dim=0, keepdim=True).detach() # proto_0 -
 		else:
 			cosine_pos = self.cos(self.pos_vector, x_pos)
 			cosine_neg = self.cos(self.neg_vector, x_neg)
