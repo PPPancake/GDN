@@ -10105,7 +10105,6 @@ INFO:root:	F1-macro: 0.4608	G-Mean: 0.0000	AUC: 0.5858
 INFO:root:   GNN TP: 0	TN: 7777	FN: 1322	FP: 0
 INFO:root:	F1-macro: 0.6205	G-Mean: 0.6840	AUC: 0.7618
 INFO:root:   GNN TP: 812	TN: 5924	FN: 510	FP: 1853
-INFO:root:2024-01-10 16:53:18
 INFO:root:**************** MODEL CONFIGURATION ****************
 INFO:root:Beta                     -->   0.1
 INFO:root:add_constraint           -->   True
@@ -12921,3 +12920,694 @@ INFO:root:weight_decay_2           -->   0.1
 INFO:root:**************** MODEL CONFIGURATION ****************
 INFO:root:	F1-macro: 0.4608	G-Mean: 0.0000	AUC: 0.6352
 INFO:root:   GNN TP: 0	TN: 7777	FN: 1322	FP: 0
+INFO:root:2024-01-12 09:48:50
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:Beta                     -->   [0.1, 0.5, 2]
+INFO:root:add_constraint           -->   True
+INFO:root:batch_size               -->   1024
+INFO:root:biased_split             -->   False
+INFO:root:cuda_id                  -->   0
+INFO:root:data_dir                 -->   data/
+INFO:root:data_name                -->   yelp
+INFO:root:emb_size                 -->   64
+INFO:root:lr_1                     -->   0.001
+INFO:root:lr_2                     -->   1e-05
+INFO:root:model                    -->   GDN
+INFO:root:multi_relation           -->   GNN
+INFO:root:no_cuda                  -->   True
+INFO:root:num_epochs               -->   101
+INFO:root:optimizer                -->   adam
+INFO:root:result_save              -->   multi_result.log
+INFO:root:save_dir                 -->   ./pytorch_models/
+INFO:root:seed                     -->   [20, 448, 29493]
+INFO:root:test_batch_size          -->   1024
+INFO:root:test_ratio               -->   0.33
+INFO:root:thres                    -->   0.2
+INFO:root:topk                     -->   [12, 18, 24]
+INFO:root:train_ratio              -->   0.6
+INFO:root:valid_epochs             -->   5
+INFO:root:weight_decay             -->   0.001
+INFO:root:weight_decay_2           -->   0.1
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:	F1-macro: 0.4608	G-Mean: 0.0000	AUC: 0.6352
+INFO:root:   GNN TP: 0	TN: 7777	FN: 1322	FP: 0
+INFO:root:	F1-macro: 0.6352	G-Mean: 0.7025	AUC: 0.7713
+INFO:root:   GNN TP: 846	TN: 5998	FN: 476	FP: 1779
+INFO:root:	F1-macro: 0.6839	G-Mean: 0.7533	AUC: 0.8341
+INFO:root:   GNN TP: 926	TN: 6300	FN: 396	FP: 1477
+INFO:root:	F1-macro: 0.7068	G-Mean: 0.7833	AUC: 0.8629
+INFO:root:   GNN TP: 989	TN: 6378	FN: 333	FP: 1399
+INFO:root:	F1-macro: 0.7219	G-Mean: 0.7953	AUC: 0.8729
+INFO:root:   GNN TP: 1003	TN: 6484	FN: 319	FP: 1293
+INFO:root:	F1-macro: 0.7227	G-Mean: 0.7998	AUC: 0.8794
+INFO:root:   GNN TP: 1018	TN: 6461	FN: 304	FP: 1316
+INFO:root:	F1-macro: 0.7278	G-Mean: 0.8031	AUC: 0.8837
+INFO:root:   GNN TP: 1020	TN: 6501	FN: 302	FP: 1276
+INFO:root:	F1-macro: 0.7293	G-Mean: 0.8082	AUC: 0.8869
+INFO:root:   GNN TP: 1036	TN: 6482	FN: 286	FP: 1295
+INFO:root:	F1-macro: 0.7301	G-Mean: 0.8089	AUC: 0.8893
+INFO:root:   GNN TP: 1037	TN: 6487	FN: 285	FP: 1290
+INFO:root:	F1-macro: 0.7290	G-Mean: 0.8089	AUC: 0.8911
+INFO:root:   GNN TP: 1039	TN: 6474	FN: 283	FP: 1303
+INFO:root:	F1-macro: 0.7311	G-Mean: 0.8100	AUC: 0.8927
+INFO:root:   GNN TP: 1039	TN: 6492	FN: 283	FP: 1285
+INFO:root:	F1-macro: 0.7322	G-Mean: 0.8132	AUC: 0.8937
+INFO:root:   GNN TP: 1049	TN: 6482	FN: 273	FP: 1295
+INFO:root:	F1-macro: 0.7347	G-Mean: 0.8172	AUC: 0.8946
+INFO:root:   GNN TP: 1059	TN: 6484	FN: 263	FP: 1293
+INFO:root:	F1-macro: 0.7355	G-Mean: 0.8185	AUC: 0.8954
+INFO:root:   GNN TP: 1062	TN: 6485	FN: 260	FP: 1292
+INFO:root:	F1-macro: 0.7341	G-Mean: 0.8159	AUC: 0.8960
+INFO:root:   GNN TP: 1055	TN: 6487	FN: 267	FP: 1290
+INFO:root:	F1-macro: 0.7300	G-Mean: 0.8128	AUC: 0.8965
+INFO:root:   GNN TP: 1052	TN: 6457	FN: 270	FP: 1320
+INFO:root:	F1-macro: 0.7311	G-Mean: 0.8127	AUC: 0.8969
+INFO:root:   GNN TP: 1049	TN: 6473	FN: 273	FP: 1304
+INFO:root:	F1-macro: 0.7318	G-Mean: 0.8136	AUC: 0.8975
+INFO:root:   GNN TP: 1051	TN: 6475	FN: 271	FP: 1302
+INFO:root:	F1-macro: 0.7309	G-Mean: 0.8126	AUC: 0.8980
+INFO:root:   GNN TP: 1049	TN: 6471	FN: 273	FP: 1306
+INFO:root:	F1-macro: 0.7307	G-Mean: 0.8135	AUC: 0.8983
+INFO:root:   GNN TP: 1053	TN: 6461	FN: 269	FP: 1316
+INFO:root:	F1-macro: 0.7315	G-Mean: 0.8137	AUC: 0.8986
+INFO:root:   GNN TP: 1052	TN: 6470	FN: 270	FP: 1307
+INFO:root:	F1-macro: 0.7348	G-Mean: 0.8225	AUC: 0.9004
+INFO:root:   GNN TP: 2180	TN: 13023	FN: 491	FP: 2688
+INFO:root:	F1-macro: 0.4608	G-Mean: 0.0000	AUC: 0.6352
+INFO:root:   GNN TP: 0	TN: 7777	FN: 1322	FP: 0
+INFO:root:	F1-macro: 0.6352	G-Mean: 0.7025	AUC: 0.7713
+INFO:root:   GNN TP: 846	TN: 5998	FN: 476	FP: 1779
+INFO:root:	F1-macro: 0.6827	G-Mean: 0.7526	AUC: 0.8339
+INFO:root:   GNN TP: 926	TN: 6289	FN: 396	FP: 1488
+INFO:root:	F1-macro: 0.7064	G-Mean: 0.7849	AUC: 0.8626
+INFO:root:   GNN TP: 996	TN: 6360	FN: 326	FP: 1417
+INFO:root:	F1-macro: 0.7193	G-Mean: 0.7961	AUC: 0.8731
+INFO:root:   GNN TP: 1011	TN: 6445	FN: 311	FP: 1332
+INFO:root:	F1-macro: 0.7234	G-Mean: 0.7997	AUC: 0.8793
+INFO:root:   GNN TP: 1016	TN: 6471	FN: 306	FP: 1306
+INFO:root:	F1-macro: 0.7281	G-Mean: 0.8060	AUC: 0.8837
+INFO:root:   GNN TP: 1030	TN: 6484	FN: 292	FP: 1293
+INFO:root:	F1-macro: 0.7303	G-Mean: 0.8095	AUC: 0.8872
+INFO:root:   GNN TP: 1039	TN: 6485	FN: 283	FP: 1292
+INFO:root:	F1-macro: 0.7304	G-Mean: 0.8088	AUC: 0.8893
+INFO:root:   GNN TP: 1036	TN: 6492	FN: 286	FP: 1285
+INFO:root:	F1-macro: 0.7298	G-Mean: 0.8085	AUC: 0.8910
+INFO:root:   GNN TP: 1036	TN: 6487	FN: 286	FP: 1290
+INFO:root:2024-01-12 10:43:11
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:Beta                     -->   [0.1, 0.5, 1, 2]
+INFO:root:add_constraint           -->   True
+INFO:root:batch_size               -->   1024
+INFO:root:biased_split             -->   False
+INFO:root:cuda_id                  -->   0
+INFO:root:data_dir                 -->   data/
+INFO:root:data_name                -->   yelp
+INFO:root:emb_size                 -->   64
+INFO:root:lr_1                     -->   0.001
+INFO:root:lr_2                     -->   1e-05
+INFO:root:model                    -->   GDN
+INFO:root:multi_relation           -->   GNN
+INFO:root:no_cuda                  -->   True
+INFO:root:num_epochs               -->   101
+INFO:root:optimizer                -->   adam
+INFO:root:result_save              -->   multi_result.log
+INFO:root:save_dir                 -->   ./pytorch_models/
+INFO:root:seed                     -->   [29493, 88867]
+INFO:root:test_batch_size          -->   1024
+INFO:root:test_ratio               -->   0.33
+INFO:root:thres                    -->   0.2
+INFO:root:topk                     -->   [6]
+INFO:root:train_ratio              -->   0.6
+INFO:root:valid_epochs             -->   5
+INFO:root:weight_decay             -->   0.001
+INFO:root:weight_decay_2           -->   0.1
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:	F1-macro: 0.4608	G-Mean: 0.0000	AUC: 0.5331
+INFO:root:   GNN TP: 0	TN: 7777	FN: 1322	FP: 0
+INFO:root:	F1-macro: 0.6291	G-Mean: 0.6726	AUC: 0.7489
+INFO:root:   GNN TP: 755	TN: 6160	FN: 567	FP: 1617
+INFO:root:	F1-macro: 0.6672	G-Mean: 0.7343	AUC: 0.8124
+INFO:root:   GNN TP: 892	TN: 6215	FN: 430	FP: 1562
+INFO:root:	F1-macro: 0.6986	G-Mean: 0.7725	AUC: 0.8516
+INFO:root:   GNN TP: 966	TN: 6351	FN: 356	FP: 1426
+INFO:root:	F1-macro: 0.7130	G-Mean: 0.7837	AUC: 0.8668
+INFO:root:   GNN TP: 978	TN: 6456	FN: 344	FP: 1321
+INFO:root:	F1-macro: 0.7159	G-Mean: 0.7937	AUC: 0.8737
+INFO:root:   GNN TP: 1009	TN: 6419	FN: 313	FP: 1358
+INFO:root:	F1-macro: 0.7182	G-Mean: 0.7984	AUC: 0.8776
+INFO:root:   GNN TP: 1022	TN: 6413	FN: 300	FP: 1364
+INFO:root:	F1-macro: 0.7199	G-Mean: 0.8004	AUC: 0.8809
+INFO:root:   GNN TP: 1026	TN: 6420	FN: 296	FP: 1357
+INFO:root:	F1-macro: 0.7216	G-Mean: 0.8000	AUC: 0.8832
+INFO:root:   GNN TP: 1021	TN: 6445	FN: 301	FP: 1332
+INFO:root:	F1-macro: 0.7221	G-Mean: 0.8013	AUC: 0.8851
+INFO:root:   GNN TP: 1025	TN: 6441	FN: 297	FP: 1336
+INFO:root:	F1-macro: 0.7238	G-Mean: 0.8012	AUC: 0.8868
+INFO:root:   GNN TP: 1021	TN: 6464	FN: 301	FP: 1313
+INFO:root:	F1-macro: 0.7250	G-Mean: 0.8027	AUC: 0.8883
+INFO:root:   GNN TP: 1024	TN: 6469	FN: 298	FP: 1308
+INFO:root:	F1-macro: 0.7249	G-Mean: 0.8029	AUC: 0.8896
+INFO:root:   GNN TP: 1025	TN: 6466	FN: 297	FP: 1311
+INFO:root:	F1-macro: 0.7255	G-Mean: 0.8037	AUC: 0.8908
+INFO:root:   GNN TP: 1027	TN: 6467	FN: 295	FP: 1310
+INFO:root:	F1-macro: 0.7266	G-Mean: 0.8054	AUC: 0.8917
+INFO:root:   GNN TP: 1031	TN: 6469	FN: 291	FP: 1308
+INFO:root:	F1-macro: 0.7275	G-Mean: 0.8075	AUC: 0.8927
+INFO:root:   GNN TP: 1037	TN: 6465	FN: 285	FP: 1312
+INFO:root:	F1-macro: 0.7298	G-Mean: 0.8093	AUC: 0.8936
+INFO:root:   GNN TP: 1039	TN: 6481	FN: 283	FP: 1296
+INFO:root:	F1-macro: 0.7288	G-Mean: 0.8095	AUC: 0.8941
+INFO:root:   GNN TP: 1042	TN: 6466	FN: 280	FP: 1311
+INFO:root:	F1-macro: 0.7304	G-Mean: 0.8112	AUC: 0.8949
+INFO:root:   GNN TP: 1045	TN: 6474	FN: 277	FP: 1303
+INFO:root:	F1-macro: 0.7291	G-Mean: 0.8108	AUC: 0.8955
+INFO:root:   GNN TP: 1046	TN: 6461	FN: 276	FP: 1316
+INFO:root:	F1-macro: 0.7311	G-Mean: 0.8127	AUC: 0.8962
+INFO:root:   GNN TP: 1049	TN: 6473	FN: 273	FP: 1304
+INFO:root:	F1-macro: 0.7354	G-Mean: 0.8225	AUC: 0.9032
+INFO:root:   GNN TP: 2177	TN: 13040	FN: 494	FP: 2671
+INFO:root:	F1-macro: 0.4608	G-Mean: 0.0000	AUC: 0.5331
+INFO:root:   GNN TP: 0	TN: 7777	FN: 1322	FP: 0
+INFO:root:	F1-macro: 0.6291	G-Mean: 0.6726	AUC: 0.7489
+INFO:root:   GNN TP: 755	TN: 6160	FN: 567	FP: 1617
+INFO:root:	F1-macro: 0.6665	G-Mean: 0.7353	AUC: 0.8122
+INFO:root:   GNN TP: 897	TN: 6197	FN: 425	FP: 1580
+INFO:root:	F1-macro: 0.6983	G-Mean: 0.7660	AUC: 0.8496
+INFO:root:   GNN TP: 943	TN: 6397	FN: 379	FP: 1380
+INFO:root:	F1-macro: 0.7080	G-Mean: 0.7834	AUC: 0.8648
+INFO:root:   GNN TP: 987	TN: 6393	FN: 335	FP: 1384
+INFO:root:	F1-macro: 0.7138	G-Mean: 0.7901	AUC: 0.8710
+INFO:root:   GNN TP: 1000	TN: 6418	FN: 322	FP: 1359
+INFO:root:	F1-macro: 0.7153	G-Mean: 0.7979	AUC: 0.8759
+INFO:root:   GNN TP: 1026	TN: 6379	FN: 296	FP: 1398
+INFO:root:	F1-macro: 0.7167	G-Mean: 0.7966	AUC: 0.8795
+INFO:root:   GNN TP: 1018	TN: 6408	FN: 304	FP: 1369
+INFO:root:	F1-macro: 0.7180	G-Mean: 0.7978	AUC: 0.8821
+INFO:root:   GNN TP: 1020	TN: 6415	FN: 302	FP: 1362
+INFO:root:	F1-macro: 0.7221	G-Mean: 0.8019	AUC: 0.8844
+INFO:root:   GNN TP: 1027	TN: 6437	FN: 295	FP: 1340
+INFO:root:	F1-macro: 0.7220	G-Mean: 0.8021	AUC: 0.8863
+INFO:root:   GNN TP: 1028	TN: 6435	FN: 294	FP: 1342
+INFO:root:	F1-macro: 0.7235	G-Mean: 0.8045	AUC: 0.8878
+INFO:root:   GNN TP: 1034	TN: 6436	FN: 288	FP: 1341
+INFO:root:	F1-macro: 0.7248	G-Mean: 0.8058	AUC: 0.8893
+INFO:root:   GNN TP: 1036	TN: 6443	FN: 286	FP: 1334
+INFO:root:	F1-macro: 0.7265	G-Mean: 0.8067	AUC: 0.8907
+INFO:root:   GNN TP: 1036	TN: 6458	FN: 286	FP: 1319
+INFO:root:	F1-macro: 0.7257	G-Mean: 0.8078	AUC: 0.8919
+INFO:root:   GNN TP: 1042	TN: 6439	FN: 280	FP: 1338
+INFO:root:	F1-macro: 0.7264	G-Mean: 0.8074	AUC: 0.8932
+INFO:root:   GNN TP: 1039	TN: 6451	FN: 283	FP: 1326
+INFO:root:	F1-macro: 0.7285	G-Mean: 0.8094	AUC: 0.8941
+INFO:root:   GNN TP: 1042	TN: 6464	FN: 280	FP: 1313
+INFO:root:	F1-macro: 0.7292	G-Mean: 0.8108	AUC: 0.8950
+INFO:root:   GNN TP: 1046	TN: 6462	FN: 276	FP: 1315
+INFO:root:	F1-macro: 0.7278	G-Mean: 0.8111	AUC: 0.8958
+INFO:root:   GNN TP: 1050	TN: 6442	FN: 272	FP: 1335
+INFO:root:	F1-macro: 0.7304	G-Mean: 0.8133	AUC: 0.8966
+INFO:root:   GNN TP: 1053	TN: 6459	FN: 269	FP: 1318
+INFO:root:	F1-macro: 0.7320	G-Mean: 0.8142	AUC: 0.8973
+INFO:root:   GNN TP: 1053	TN: 6473	FN: 269	FP: 1304
+INFO:root:	F1-macro: 0.7323	G-Mean: 0.8192	AUC: 0.9024
+INFO:root:   GNN TP: 2165	TN: 13008	FN: 506	FP: 2703
+INFO:root:	F1-macro: 0.4608	G-Mean: 0.0000	AUC: 0.5331
+INFO:root:   GNN TP: 0	TN: 7777	FN: 1322	FP: 0
+INFO:root:	F1-macro: 0.6291	G-Mean: 0.6726	AUC: 0.7489
+INFO:root:   GNN TP: 755	TN: 6160	FN: 567	FP: 1617
+INFO:root:	F1-macro: 0.6666	G-Mean: 0.7354	AUC: 0.8121
+INFO:root:   GNN TP: 897	TN: 6198	FN: 425	FP: 1579
+INFO:root:	F1-macro: 0.7011	G-Mean: 0.7708	AUC: 0.8521
+INFO:root:   GNN TP: 955	TN: 6397	FN: 367	FP: 1380
+INFO:root:	F1-macro: 0.7108	G-Mean: 0.7833	AUC: 0.8654
+INFO:root:   GNN TP: 981	TN: 6430	FN: 341	FP: 1347
+INFO:root:	F1-macro: 0.7155	G-Mean: 0.7907	AUC: 0.8716
+INFO:root:   GNN TP: 999	TN: 6435	FN: 323	FP: 1342
+INFO:root:	F1-macro: 0.7146	G-Mean: 0.7975	AUC: 0.8764
+INFO:root:   GNN TP: 1026	TN: 6373	FN: 296	FP: 1404
+INFO:root:	F1-macro: 0.7202	G-Mean: 0.8006	AUC: 0.8799
+INFO:root:   GNN TP: 1026	TN: 6423	FN: 296	FP: 1354
+INFO:root:	F1-macro: 0.7198	G-Mean: 0.8022	AUC: 0.8827
+INFO:root:   GNN TP: 1033	TN: 6405	FN: 289	FP: 1372
+INFO:root:	F1-macro: 0.7211	G-Mean: 0.8014	AUC: 0.8849
+INFO:root:   GNN TP: 1027	TN: 6429	FN: 295	FP: 1348
+INFO:root:	F1-macro: 0.7231	G-Mean: 0.8040	AUC: 0.8867
+INFO:root:   GNN TP: 1033	TN: 6434	FN: 289	FP: 1343
+INFO:root:	F1-macro: 0.7237	G-Mean: 0.8057	AUC: 0.8882
+INFO:root:   GNN TP: 1038	TN: 6430	FN: 284	FP: 1347
+INFO:root:	F1-macro: 0.7260	G-Mean: 0.8059	AUC: 0.8896
+INFO:root:   GNN TP: 1034	TN: 6458	FN: 288	FP: 1319
+INFO:root:	F1-macro: 0.7275	G-Mean: 0.8083	AUC: 0.8907
+INFO:root:   GNN TP: 1040	TN: 6459	FN: 282	FP: 1318
+INFO:root:	F1-macro: 0.7285	G-Mean: 0.8094	AUC: 0.8921
+INFO:root:   GNN TP: 1042	TN: 6464	FN: 280	FP: 1313
+INFO:root:	F1-macro: 0.7285	G-Mean: 0.8115	AUC: 0.8931
+INFO:root:   GNN TP: 1050	TN: 6448	FN: 272	FP: 1329
+INFO:root:	F1-macro: 0.7299	G-Mean: 0.8109	AUC: 0.8941
+INFO:root:   GNN TP: 1045	TN: 6470	FN: 277	FP: 1307
+INFO:root:	F1-macro: 0.7294	G-Mean: 0.8107	AUC: 0.8952
+INFO:root:   GNN TP: 1045	TN: 6466	FN: 277	FP: 1311
+INFO:root:	F1-macro: 0.7305	G-Mean: 0.8115	AUC: 0.8958
+INFO:root:   GNN TP: 1046	TN: 6473	FN: 276	FP: 1304
+INFO:root:	F1-macro: 0.7306	G-Mean: 0.8124	AUC: 0.8967
+INFO:root:   GNN TP: 1049	TN: 6468	FN: 273	FP: 1309
+INFO:root:	F1-macro: 0.7310	G-Mean: 0.8129	AUC: 0.8975
+INFO:root:   GNN TP: 1050	TN: 6470	FN: 272	FP: 1307
+INFO:root:	F1-macro: 0.7352	G-Mean: 0.8235	AUC: 0.9033
+INFO:root:   GNN TP: 2186	TN: 13019	FN: 485	FP: 2692
+INFO:root:	F1-macro: 0.4608	G-Mean: 0.0000	AUC: 0.5331
+INFO:root:   GNN TP: 0	TN: 7777	FN: 1322	FP: 0
+INFO:root:	F1-macro: 0.6291	G-Mean: 0.6726	AUC: 0.7489
+INFO:root:   GNN TP: 755	TN: 6160	FN: 567	FP: 1617
+INFO:root:	F1-macro: 0.6667	G-Mean: 0.7365	AUC: 0.8123
+INFO:root:   GNN TP: 901	TN: 6190	FN: 421	FP: 1587
+INFO:root:	F1-macro: 0.6954	G-Mean: 0.7685	AUC: 0.8480
+INFO:root:   GNN TP: 958	TN: 6339	FN: 364	FP: 1438
+INFO:root:	F1-macro: 0.7075	G-Mean: 0.7818	AUC: 0.8628
+INFO:root:   GNN TP: 982	TN: 6399	FN: 340	FP: 1378
+INFO:root:	F1-macro: 0.7152	G-Mean: 0.7909	AUC: 0.8706
+INFO:root:   GNN TP: 1000	TN: 6431	FN: 322	FP: 1346
+INFO:root:	F1-macro: 0.7169	G-Mean: 0.7934	AUC: 0.8753
+INFO:root:   GNN TP: 1006	TN: 6434	FN: 316	FP: 1343
+INFO:root:	F1-macro: 0.7201	G-Mean: 0.8003	AUC: 0.8786
+INFO:root:   GNN TP: 1025	TN: 6424	FN: 297	FP: 1353
+INFO:root:	F1-macro: 0.7218	G-Mean: 0.7999	AUC: 0.8811
+INFO:root:   GNN TP: 1020	TN: 6449	FN: 302	FP: 1328
+INFO:root:	F1-macro: 0.7226	G-Mean: 0.8022	AUC: 0.8832
+INFO:root:   GNN TP: 1027	TN: 6442	FN: 295	FP: 1335
+INFO:root:	F1-macro: 0.7242	G-Mean: 0.8017	AUC: 0.8850
+INFO:root:   GNN TP: 1022	TN: 6466	FN: 300	FP: 1311
+INFO:root:	F1-macro: 0.7244	G-Mean: 0.8037	AUC: 0.8868
+INFO:root:   GNN TP: 1029	TN: 6454	FN: 293	FP: 1323
+INFO:root:	F1-macro: 0.7271	G-Mean: 0.8057	AUC: 0.8883
+INFO:root:   GNN TP: 1031	TN: 6473	FN: 291	FP: 1304
+INFO:root:	F1-macro: 0.7268	G-Mean: 0.8063	AUC: 0.8897
+INFO:root:   GNN TP: 1034	TN: 6465	FN: 288	FP: 1312
+INFO:root:	F1-macro: 0.7264	G-Mean: 0.8058	AUC: 0.8910
+INFO:root:   GNN TP: 1033	TN: 6463	FN: 289	FP: 1314
+INFO:root:	F1-macro: 0.7285	G-Mean: 0.8097	AUC: 0.8923
+INFO:root:   GNN TP: 1043	TN: 6462	FN: 279	FP: 1315
+INFO:root:	F1-macro: 0.7290	G-Mean: 0.8099	AUC: 0.8932
+INFO:root:   GNN TP: 1043	TN: 6466	FN: 279	FP: 1311
+INFO:root:	F1-macro: 0.7296	G-Mean: 0.8102	AUC: 0.8940
+INFO:root:   GNN TP: 1043	TN: 6471	FN: 279	FP: 1306
+INFO:root:	F1-macro: 0.7294	G-Mean: 0.8110	AUC: 0.8950
+INFO:root:   GNN TP: 1046	TN: 6464	FN: 276	FP: 1313
+INFO:root:	F1-macro: 0.7291	G-Mean: 0.8118	AUC: 0.8959
+INFO:root:   GNN TP: 1050	TN: 6453	FN: 272	FP: 1324
+INFO:root:	F1-macro: 0.7298	G-Mean: 0.8122	AUC: 0.8965
+INFO:root:   GNN TP: 1050	TN: 6459	FN: 272	FP: 1318
+INFO:root:	F1-macro: 0.7329	G-Mean: 0.8203	AUC: 0.9024
+INFO:root:   GNN TP: 2171	TN: 13007	FN: 500	FP: 2704
+INFO:root:	F1-macro: 0.5392	G-Mean: 0.6448	AUC: 0.7033
+INFO:root:   GNN TP: 896	TN: 4770	FN: 426	FP: 3007
+INFO:root:	F1-macro: 0.6482	G-Mean: 0.7053	AUC: 0.7869
+INFO:root:   GNN TP: 828	TN: 6176	FN: 494	FP: 1601
+INFO:root:	F1-macro: 0.6995	G-Mean: 0.7834	AUC: 0.8563
+INFO:root:   GNN TP: 1005	TN: 6278	FN: 317	FP: 1499
+INFO:root:	F1-macro: 0.7076	G-Mean: 0.8007	AUC: 0.8728
+INFO:root:   GNN TP: 1054	TN: 6253	FN: 268	FP: 1524
+INFO:root:	F1-macro: 0.7169	G-Mean: 0.8045	AUC: 0.8794
+INFO:root:   GNN TP: 1048	TN: 6350	FN: 274	FP: 1427
+INFO:root:	F1-macro: 0.7230	G-Mean: 0.8095	AUC: 0.8834
+INFO:root:   GNN TP: 1054	TN: 6392	FN: 268	FP: 1385
+INFO:root:	F1-macro: 0.7200	G-Mean: 0.8107	AUC: 0.8863
+INFO:root:   GNN TP: 1065	TN: 6344	FN: 257	FP: 1433
+INFO:root:	F1-macro: 0.7223	G-Mean: 0.8112	AUC: 0.8883
+INFO:root:   GNN TP: 1062	TN: 6370	FN: 260	FP: 1407
+INFO:root:	F1-macro: 0.7226	G-Mean: 0.8124	AUC: 0.8899
+INFO:root:   GNN TP: 1066	TN: 6365	FN: 256	FP: 1412
+INFO:root:	F1-macro: 0.7256	G-Mean: 0.8146	AUC: 0.8916
+INFO:root:   GNN TP: 1068	TN: 6388	FN: 254	FP: 1389
+INFO:root:	F1-macro: 0.7261	G-Mean: 0.8159	AUC: 0.8926
+INFO:root:   GNN TP: 1072	TN: 6384	FN: 250	FP: 1393
+INFO:root:	F1-macro: 0.7263	G-Mean: 0.8165	AUC: 0.8937
+INFO:root:   GNN TP: 1074	TN: 6382	FN: 248	FP: 1395
+INFO:root:	F1-macro: 0.7266	G-Mean: 0.8157	AUC: 0.8946
+INFO:root:   GNN TP: 1070	TN: 6393	FN: 252	FP: 1384
+INFO:root:	F1-macro: 0.7281	G-Mean: 0.8170	AUC: 0.8953
+INFO:root:   GNN TP: 1072	TN: 6402	FN: 250	FP: 1375
+INFO:root:	F1-macro: 0.7285	G-Mean: 0.8193	AUC: 0.8960
+INFO:root:   GNN TP: 1080	TN: 6390	FN: 242	FP: 1387
+INFO:root:	F1-macro: 0.7309	G-Mean: 0.8201	AUC: 0.8968
+INFO:root:   GNN TP: 1078	TN: 6415	FN: 244	FP: 1362
+INFO:root:	F1-macro: 0.7312	G-Mean: 0.8187	AUC: 0.8972
+INFO:root:   GNN TP: 1072	TN: 6429	FN: 250	FP: 1348
+INFO:root:	F1-macro: 0.7367	G-Mean: 0.8199	AUC: 0.8977
+INFO:root:   GNN TP: 1065	TN: 6490	FN: 257	FP: 1287
+INFO:root:	F1-macro: 0.7408	G-Mean: 0.8181	AUC: 0.8980
+INFO:root:   GNN TP: 1050	TN: 6553	FN: 272	FP: 1224
+INFO:root:	F1-macro: 0.7477	G-Mean: 0.8170	AUC: 0.8987
+INFO:root:   GNN TP: 1033	TN: 6643	FN: 289	FP: 1134
+INFO:root:	F1-macro: 0.7514	G-Mean: 0.8177	AUC: 0.8989
+INFO:root:   GNN TP: 1029	TN: 6681	FN: 293	FP: 1096
+INFO:root:	F1-macro: 0.7531	G-Mean: 0.8227	AUC: 0.9027
+INFO:root:   GNN TP: 2109	TN: 13467	FN: 562	FP: 2244
+INFO:root:	F1-macro: 0.5392	G-Mean: 0.6448	AUC: 0.7033
+INFO:root:   GNN TP: 896	TN: 4770	FN: 426	FP: 3007
+INFO:root:	F1-macro: 0.6483	G-Mean: 0.7050	AUC: 0.7870
+INFO:root:   GNN TP: 827	TN: 6179	FN: 495	FP: 1598
+INFO:root:	F1-macro: 0.7000	G-Mean: 0.7810	AUC: 0.8557
+INFO:root:   GNN TP: 995	TN: 6303	FN: 327	FP: 1474
+INFO:root:	F1-macro: 0.7109	G-Mean: 0.8010	AUC: 0.8728
+INFO:root:   GNN TP: 1048	TN: 6295	FN: 274	FP: 1482
+INFO:root:	F1-macro: 0.7148	G-Mean: 0.8031	AUC: 0.8793
+INFO:root:   GNN TP: 1047	TN: 6333	FN: 275	FP: 1444
+INFO:root:	F1-macro: 0.7189	G-Mean: 0.8082	AUC: 0.8833
+INFO:root:   GNN TP: 1058	TN: 6348	FN: 264	FP: 1429
+INFO:root:	F1-macro: 0.7214	G-Mean: 0.8124	AUC: 0.8860
+INFO:root:   GNN TP: 1069	TN: 6348	FN: 253	FP: 1429
+INFO:root:	F1-macro: 0.7208	G-Mean: 0.8106	AUC: 0.8881
+INFO:root:   GNN TP: 1063	TN: 6355	FN: 259	FP: 1422
+INFO:root:	F1-macro: 0.7225	G-Mean: 0.8115	AUC: 0.8900
+INFO:root:   GNN TP: 1063	TN: 6370	FN: 259	FP: 1407
+INFO:root:	F1-macro: 0.7237	G-Mean: 0.8140	AUC: 0.8914
+INFO:root:   GNN TP: 1070	TN: 6367	FN: 252	FP: 1410
+INFO:root:	F1-macro: 0.7253	G-Mean: 0.8157	AUC: 0.8925
+INFO:root:   GNN TP: 1073	TN: 6375	FN: 249	FP: 1402
+INFO:root:	F1-macro: 0.7279	G-Mean: 0.8156	AUC: 0.8934
+INFO:root:   GNN TP: 1067	TN: 6410	FN: 255	FP: 1367
+INFO:root:	F1-macro: 0.7282	G-Mean: 0.8171	AUC: 0.8942
+INFO:root:   GNN TP: 1072	TN: 6403	FN: 250	FP: 1374
+INFO:root:	F1-macro: 0.7270	G-Mean: 0.8180	AUC: 0.8951
+INFO:root:   GNN TP: 1078	TN: 6381	FN: 244	FP: 1396
+INFO:root:	F1-macro: 0.7265	G-Mean: 0.8181	AUC: 0.8956
+INFO:root:   GNN TP: 1080	TN: 6372	FN: 242	FP: 1405
+INFO:root:	F1-macro: 0.7257	G-Mean: 0.8195	AUC: 0.8962
+INFO:root:   GNN TP: 1087	TN: 6352	FN: 235	FP: 1425
+INFO:root:	F1-macro: 0.7276	G-Mean: 0.8198	AUC: 0.8968
+INFO:root:   GNN TP: 1084	TN: 6374	FN: 238	FP: 1403
+INFO:root:	F1-macro: 0.7300	G-Mean: 0.8206	AUC: 0.8973
+INFO:root:   GNN TP: 1082	TN: 6399	FN: 240	FP: 1378
+INFO:root:	F1-macro: 0.7337	G-Mean: 0.8214	AUC: 0.8977
+INFO:root:   GNN TP: 1077	TN: 6441	FN: 245	FP: 1336
+INFO:root:	F1-macro: 0.7373	G-Mean: 0.8173	AUC: 0.8981
+INFO:root:   GNN TP: 1054	TN: 6516	FN: 268	FP: 1261
+INFO:root:	F1-macro: 0.7442	G-Mean: 0.8174	AUC: 0.8983
+INFO:root:   GNN TP: 1041	TN: 6599	FN: 281	FP: 1178
+INFO:root:	F1-macro: 0.7491	G-Mean: 0.8257	AUC: 0.9027
+INFO:root:   GNN TP: 2146	TN: 13331	FN: 525	FP: 2380
+INFO:root:	F1-macro: 0.5392	G-Mean: 0.6448	AUC: 0.7033
+INFO:root:   GNN TP: 896	TN: 4770	FN: 426	FP: 3007
+INFO:root:	F1-macro: 0.6482	G-Mean: 0.7053	AUC: 0.7869
+INFO:root:   GNN TP: 828	TN: 6176	FN: 494	FP: 1601
+INFO:root:	F1-macro: 0.6985	G-Mean: 0.7799	AUC: 0.8561
+INFO:root:   GNN TP: 994	TN: 6292	FN: 328	FP: 1485
+INFO:root:	F1-macro: 0.7105	G-Mean: 0.8006	AUC: 0.8729
+INFO:root:   GNN TP: 1047	TN: 6294	FN: 275	FP: 1483
+INFO:root:	F1-macro: 0.7145	G-Mean: 0.8057	AUC: 0.8799
+INFO:root:   GNN TP: 1058	TN: 6308	FN: 264	FP: 1469
+INFO:root:	F1-macro: 0.7208	G-Mean: 0.8093	AUC: 0.8837
+INFO:root:   GNN TP: 1058	TN: 6365	FN: 264	FP: 1412
+INFO:root:	F1-macro: 0.7244	G-Mean: 0.8124	AUC: 0.8865
+INFO:root:   GNN TP: 1062	TN: 6389	FN: 260	FP: 1388
+INFO:root:	F1-macro: 0.7221	G-Mean: 0.8108	AUC: 0.8883
+INFO:root:   GNN TP: 1061	TN: 6370	FN: 261	FP: 1407
+INFO:root:	F1-macro: 0.7243	G-Mean: 0.8133	AUC: 0.8902
+INFO:root:   GNN TP: 1066	TN: 6380	FN: 256	FP: 1397
+INFO:root:	F1-macro: 0.7246	G-Mean: 0.8148	AUC: 0.8916
+INFO:root:   GNN TP: 1071	TN: 6373	FN: 251	FP: 1404
+INFO:root:	F1-macro: 0.7254	G-Mean: 0.8160	AUC: 0.8929
+INFO:root:   GNN TP: 1074	TN: 6374	FN: 248	FP: 1403
+INFO:root:	F1-macro: 0.7270	G-Mean: 0.8164	AUC: 0.8937
+INFO:root:   GNN TP: 1072	TN: 6392	FN: 250	FP: 1385
+INFO:root:	F1-macro: 0.7269	G-Mean: 0.8174	AUC: 0.8946
+INFO:root:   GNN TP: 1076	TN: 6384	FN: 246	FP: 1393
+INFO:root:	F1-macro: 0.7247	G-Mean: 0.8169	AUC: 0.8955
+INFO:root:   GNN TP: 1079	TN: 6358	FN: 243	FP: 1419
+INFO:root:	F1-macro: 0.7254	G-Mean: 0.8178	AUC: 0.8962
+INFO:root:   GNN TP: 1081	TN: 6361	FN: 241	FP: 1416
+INFO:root:	F1-macro: 0.7281	G-Mean: 0.8190	AUC: 0.8969
+INFO:root:   GNN TP: 1080	TN: 6386	FN: 242	FP: 1391
+INFO:root:	F1-macro: 0.7357	G-Mean: 0.8207	AUC: 0.8976
+INFO:root:   GNN TP: 1070	TN: 6472	FN: 252	FP: 1305
+INFO:root:	F1-macro: 0.7467	G-Mean: 0.8206	AUC: 0.8980
+INFO:root:   GNN TP: 1048	TN: 6606	FN: 274	FP: 1171
+INFO:root:	F1-macro: 0.7530	G-Mean: 0.8188	AUC: 0.8983
+INFO:root:   GNN TP: 1030	TN: 6692	FN: 292	FP: 1085
+INFO:root:	F1-macro: 0.7542	G-Mean: 0.8188	AUC: 0.8985
+INFO:root:   GNN TP: 1028	TN: 6705	FN: 294	FP: 1072
+INFO:root:	F1-macro: 0.7533	G-Mean: 0.8166	AUC: 0.8988
+INFO:root:   GNN TP: 1022	TN: 6709	FN: 300	FP: 1068
+INFO:root:	F1-macro: 0.7544	G-Mean: 0.8217	AUC: 0.9022
+INFO:root:   GNN TP: 2097	TN: 13511	FN: 574	FP: 2200
+INFO:root:	F1-macro: 0.5392	G-Mean: 0.6448	AUC: 0.7033
+INFO:root:   GNN TP: 896	TN: 4770	FN: 426	FP: 3007
+INFO:root:	F1-macro: 0.6480	G-Mean: 0.7051	AUC: 0.7869
+INFO:root:   GNN TP: 828	TN: 6174	FN: 494	FP: 1603
+INFO:root:	F1-macro: 0.6992	G-Mean: 0.7819	AUC: 0.8563
+INFO:root:   GNN TP: 1000	TN: 6286	FN: 322	FP: 1491
+INFO:root:	F1-macro: 0.7132	G-Mean: 0.8011	AUC: 0.8730
+INFO:root:   GNN TP: 1043	TN: 6326	FN: 279	FP: 1451
+INFO:root:	F1-macro: 0.7168	G-Mean: 0.8032	AUC: 0.8795
+INFO:root:   GNN TP: 1043	TN: 6359	FN: 279	FP: 1418
+INFO:root:	F1-macro: 0.7222	G-Mean: 0.8096	AUC: 0.8837
+INFO:root:   GNN TP: 1056	TN: 6381	FN: 266	FP: 1396
+INFO:root:	F1-macro: 0.7244	G-Mean: 0.8116	AUC: 0.8864
+INFO:root:   GNN TP: 1059	TN: 6395	FN: 263	FP: 1382
+INFO:root:	F1-macro: 0.7215	G-Mean: 0.8107	AUC: 0.8881
+INFO:root:   GNN TP: 1062	TN: 6363	FN: 260	FP: 1414
+INFO:root:	F1-macro: 0.7245	G-Mean: 0.8106	AUC: 0.8900
+INFO:root:   GNN TP: 1055	TN: 6403	FN: 267	FP: 1374
+INFO:root:	F1-macro: 0.7240	G-Mean: 0.8129	AUC: 0.8916
+INFO:root:   GNN TP: 1065	TN: 6379	FN: 257	FP: 1398
+INFO:root:	F1-macro: 0.7252	G-Mean: 0.8133	AUC: 0.8925
+INFO:root:   GNN TP: 1064	TN: 6392	FN: 258	FP: 1385
+INFO:root:	F1-macro: 0.7263	G-Mean: 0.8140	AUC: 0.8937
+INFO:root:   GNN TP: 1064	TN: 6402	FN: 258	FP: 1375
+INFO:root:	F1-macro: 0.7268	G-Mean: 0.8168	AUC: 0.8944
+INFO:root:   GNN TP: 1074	TN: 6387	FN: 248	FP: 1390
+INFO:root:	F1-macro: 0.7285	G-Mean: 0.8172	AUC: 0.8951
+INFO:root:   GNN TP: 1072	TN: 6405	FN: 250	FP: 1372
+INFO:root:	F1-macro: 0.7279	G-Mean: 0.8179	AUC: 0.8958
+INFO:root:   GNN TP: 1076	TN: 6392	FN: 246	FP: 1385
+INFO:root:	F1-macro: 0.7307	G-Mean: 0.8195	AUC: 0.8965
+INFO:root:   GNN TP: 1076	TN: 6417	FN: 246	FP: 1360
+INFO:root:	F1-macro: 0.7379	G-Mean: 0.8200	AUC: 0.8970
+INFO:root:   GNN TP: 1063	TN: 6504	FN: 259	FP: 1273
+INFO:root:	F1-macro: 0.7446	G-Mean: 0.8171	AUC: 0.8974
+INFO:root:   GNN TP: 1039	TN: 6606	FN: 283	FP: 1171
+INFO:root:	F1-macro: 0.7519	G-Mean: 0.8157	AUC: 0.8979
+INFO:root:   GNN TP: 1021	TN: 6700	FN: 301	FP: 1077
+INFO:root:	F1-macro: 0.7539	G-Mean: 0.8149	AUC: 0.8984
+INFO:root:   GNN TP: 1015	TN: 6727	FN: 307	FP: 1050
+INFO:root:	F1-macro: 0.7524	G-Mean: 0.8154	AUC: 0.8986
+INFO:root:   GNN TP: 1019	TN: 6708	FN: 303	FP: 1069
+INFO:root:	F1-macro: 0.7552	G-Mean: 0.8214	AUC: 0.9024
+INFO:root:   GNN TP: 2092	TN: 13534	FN: 579	FP: 2177
+INFO:root:2024-01-12 18:48:44
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:Beta                     -->   [0.1, 0.5, 1, 2]
+INFO:root:add_constraint           -->   True
+INFO:root:batch_size               -->   1024
+INFO:root:biased_split             -->   False
+INFO:root:cuda_id                  -->   0
+INFO:root:data_dir                 -->   data/
+INFO:root:data_name                -->   yelp
+INFO:root:emb_size                 -->   64
+INFO:root:lr_1                     -->   0.001
+INFO:root:lr_2                     -->   1e-05
+INFO:root:model                    -->   GDN
+INFO:root:multi_relation           -->   GNN
+INFO:root:no_cuda                  -->   True
+INFO:root:num_epochs               -->   101
+INFO:root:optimizer                -->   adam
+INFO:root:result_save              -->   multi_result.log
+INFO:root:save_dir                 -->   ./pytorch_models/
+INFO:root:seed                     -->   [20, 42, 448, 854, 29493, 88867]
+INFO:root:test_batch_size          -->   1024
+INFO:root:test_ratio               -->   0.33
+INFO:root:thres                    -->   0.2
+INFO:root:topk                     -->   [12]
+INFO:root:train_ratio              -->   0.6
+INFO:root:valid_epochs             -->   5
+INFO:root:weight_decay             -->   0.001
+INFO:root:weight_decay_2           -->   0.1
+INFO:root:**************** MODEL CONFIGURATION ****************
+INFO:root:	F1-macro: 0.4608	G-Mean: 0.0000	AUC: 0.6352
+INFO:root:   GNN TP: 0	TN: 7777	FN: 1322	FP: 0
+INFO:root:	F1-macro: 0.6352	G-Mean: 0.7025	AUC: 0.7713
+INFO:root:   GNN TP: 846	TN: 5998	FN: 476	FP: 1779
+INFO:root:	F1-macro: 0.6839	G-Mean: 0.7533	AUC: 0.8341
+INFO:root:   GNN TP: 926	TN: 6300	FN: 396	FP: 1477
+INFO:root:	F1-macro: 0.7068	G-Mean: 0.7833	AUC: 0.8629
+INFO:root:   GNN TP: 989	TN: 6378	FN: 333	FP: 1399
+INFO:root:	F1-macro: 0.7219	G-Mean: 0.7953	AUC: 0.8729
+INFO:root:   GNN TP: 1003	TN: 6484	FN: 319	FP: 1293
+INFO:root:	F1-macro: 0.7227	G-Mean: 0.7998	AUC: 0.8794
+INFO:root:   GNN TP: 1018	TN: 6461	FN: 304	FP: 1316
+INFO:root:	F1-macro: 0.7278	G-Mean: 0.8031	AUC: 0.8837
+INFO:root:   GNN TP: 1020	TN: 6501	FN: 302	FP: 1276
+INFO:root:	F1-macro: 0.7293	G-Mean: 0.8082	AUC: 0.8869
+INFO:root:   GNN TP: 1036	TN: 6482	FN: 286	FP: 1295
+INFO:root:	F1-macro: 0.7301	G-Mean: 0.8089	AUC: 0.8893
+INFO:root:   GNN TP: 1037	TN: 6487	FN: 285	FP: 1290
+INFO:root:	F1-macro: 0.7290	G-Mean: 0.8089	AUC: 0.8911
+INFO:root:   GNN TP: 1039	TN: 6474	FN: 283	FP: 1303
+INFO:root:	F1-macro: 0.7311	G-Mean: 0.8100	AUC: 0.8927
+INFO:root:   GNN TP: 1039	TN: 6492	FN: 283	FP: 1285
+INFO:root:	F1-macro: 0.7322	G-Mean: 0.8132	AUC: 0.8937
+INFO:root:   GNN TP: 1049	TN: 6482	FN: 273	FP: 1295
+INFO:root:	F1-macro: 0.7347	G-Mean: 0.8172	AUC: 0.8946
+INFO:root:   GNN TP: 1059	TN: 6484	FN: 263	FP: 1293
+INFO:root:	F1-macro: 0.7355	G-Mean: 0.8185	AUC: 0.8954
+INFO:root:   GNN TP: 1062	TN: 6485	FN: 260	FP: 1292
+INFO:root:	F1-macro: 0.7341	G-Mean: 0.8159	AUC: 0.8960
+INFO:root:   GNN TP: 1055	TN: 6487	FN: 267	FP: 1290
+INFO:root:	F1-macro: 0.7300	G-Mean: 0.8128	AUC: 0.8965
+INFO:root:   GNN TP: 1052	TN: 6457	FN: 270	FP: 1320
+INFO:root:	F1-macro: 0.7311	G-Mean: 0.8127	AUC: 0.8969
+INFO:root:   GNN TP: 1049	TN: 6473	FN: 273	FP: 1304
+INFO:root:	F1-macro: 0.7318	G-Mean: 0.8136	AUC: 0.8975
+INFO:root:   GNN TP: 1051	TN: 6475	FN: 271	FP: 1302
+INFO:root:	F1-macro: 0.7309	G-Mean: 0.8126	AUC: 0.8980
+INFO:root:   GNN TP: 1049	TN: 6471	FN: 273	FP: 1306
+INFO:root:	F1-macro: 0.7307	G-Mean: 0.8135	AUC: 0.8983
+INFO:root:   GNN TP: 1053	TN: 6461	FN: 269	FP: 1316
+INFO:root:	F1-macro: 0.7315	G-Mean: 0.8137	AUC: 0.8986
+INFO:root:   GNN TP: 1052	TN: 6470	FN: 270	FP: 1307
+INFO:root:	F1-macro: 0.7348	G-Mean: 0.8225	AUC: 0.9004
+INFO:root:   GNN TP: 2180	TN: 13023	FN: 491	FP: 2688
+INFO:root:	F1-macro: 0.4608	G-Mean: 0.0000	AUC: 0.6352
+INFO:root:   GNN TP: 0	TN: 7777	FN: 1322	FP: 0
+INFO:root:	F1-macro: 0.6352	G-Mean: 0.7025	AUC: 0.7713
+INFO:root:   GNN TP: 846	TN: 5998	FN: 476	FP: 1779
+INFO:root:	F1-macro: 0.6827	G-Mean: 0.7526	AUC: 0.8339
+INFO:root:   GNN TP: 926	TN: 6289	FN: 396	FP: 1488
+INFO:root:	F1-macro: 0.7064	G-Mean: 0.7849	AUC: 0.8626
+INFO:root:   GNN TP: 996	TN: 6360	FN: 326	FP: 1417
+INFO:root:	F1-macro: 0.7193	G-Mean: 0.7961	AUC: 0.8731
+INFO:root:   GNN TP: 1011	TN: 6445	FN: 311	FP: 1332
+INFO:root:	F1-macro: 0.7234	G-Mean: 0.7997	AUC: 0.8793
+INFO:root:   GNN TP: 1016	TN: 6471	FN: 306	FP: 1306
+INFO:root:	F1-macro: 0.7281	G-Mean: 0.8060	AUC: 0.8837
+INFO:root:   GNN TP: 1030	TN: 6484	FN: 292	FP: 1293
+INFO:root:	F1-macro: 0.7303	G-Mean: 0.8095	AUC: 0.8872
+INFO:root:   GNN TP: 1039	TN: 6485	FN: 283	FP: 1292
+INFO:root:	F1-macro: 0.7304	G-Mean: 0.8088	AUC: 0.8893
+INFO:root:   GNN TP: 1036	TN: 6492	FN: 286	FP: 1285
+INFO:root:	F1-macro: 0.7298	G-Mean: 0.8085	AUC: 0.8910
+INFO:root:   GNN TP: 1036	TN: 6487	FN: 286	FP: 1290
+INFO:root:	F1-macro: 0.7328	G-Mean: 0.8117	AUC: 0.8924
+INFO:root:   GNN TP: 1042	TN: 6501	FN: 280	FP: 1276
+INFO:root:	F1-macro: 0.7328	G-Mean: 0.8133	AUC: 0.8935
+INFO:root:   GNN TP: 1048	TN: 6489	FN: 274	FP: 1288
+INFO:root:	F1-macro: 0.7338	G-Mean: 0.8154	AUC: 0.8945
+INFO:root:   GNN TP: 1054	TN: 6486	FN: 268	FP: 1291
+INFO:root:	F1-macro: 0.7346	G-Mean: 0.8146	AUC: 0.8951
+INFO:root:   GNN TP: 1049	TN: 6503	FN: 273	FP: 1274
+INFO:root:	F1-macro: 0.7339	G-Mean: 0.8142	AUC: 0.8959
+INFO:root:   GNN TP: 1049	TN: 6497	FN: 273	FP: 1280
+INFO:root:	F1-macro: 0.7346	G-Mean: 0.8151	AUC: 0.8965
+INFO:root:   GNN TP: 1051	TN: 6499	FN: 271	FP: 1278
+INFO:root:	F1-macro: 0.7336	G-Mean: 0.8150	AUC: 0.8970
+INFO:root:   GNN TP: 1053	TN: 6486	FN: 269	FP: 1291
+INFO:root:	F1-macro: 0.7339	G-Mean: 0.8147	AUC: 0.8974
+INFO:root:   GNN TP: 1051	TN: 6493	FN: 271	FP: 1284
+INFO:root:	F1-macro: 0.7307	G-Mean: 0.8127	AUC: 0.8979
+INFO:root:   GNN TP: 1050	TN: 6467	FN: 272	FP: 1310
+INFO:root:	F1-macro: 0.7332	G-Mean: 0.8138	AUC: 0.8983
+INFO:root:   GNN TP: 1049	TN: 6491	FN: 273	FP: 1286
+INFO:root:	F1-macro: 0.7338	G-Mean: 0.8160	AUC: 0.8987
+INFO:root:   GNN TP: 1056	TN: 6482	FN: 266	FP: 1295
+INFO:root:	F1-macro: 0.7357	G-Mean: 0.8228	AUC: 0.9008
+INFO:root:   GNN TP: 2178	TN: 13043	FN: 493	FP: 2668
+INFO:root:	F1-macro: 0.4608	G-Mean: 0.0000	AUC: 0.6352
+INFO:root:   GNN TP: 0	TN: 7777	FN: 1322	FP: 0
+INFO:root:	F1-macro: 0.6353	G-Mean: 0.7026	AUC: 0.7713
+INFO:root:   GNN TP: 846	TN: 5999	FN: 476	FP: 1778
+INFO:root:	F1-macro: 0.6830	G-Mean: 0.7528	AUC: 0.8339
+INFO:root:   GNN TP: 926	TN: 6292	FN: 396	FP: 1485
+INFO:root:	F1-macro: 0.7071	G-Mean: 0.7835	AUC: 0.8627
+INFO:root:   GNN TP: 989	TN: 6381	FN: 333	FP: 1396
+INFO:root:	F1-macro: 0.7201	G-Mean: 0.7941	AUC: 0.8728
+INFO:root:   GNN TP: 1002	TN: 6470	FN: 320	FP: 1307
+INFO:root:	F1-macro: 0.7216	G-Mean: 0.7979	AUC: 0.8791
+INFO:root:   GNN TP: 1013	TN: 6461	FN: 309	FP: 1316
+INFO:root:	F1-macro: 0.7257	G-Mean: 0.8063	AUC: 0.8834
+INFO:root:   GNN TP: 1036	TN: 6451	FN: 286	FP: 1326
+INFO:root:	F1-macro: 0.7303	G-Mean: 0.8082	AUC: 0.8867
+INFO:root:   GNN TP: 1034	TN: 6495	FN: 288	FP: 1282
+INFO:root:	F1-macro: 0.7312	G-Mean: 0.8114	AUC: 0.8890
+INFO:root:   GNN TP: 1044	TN: 6483	FN: 278	FP: 1294
+INFO:root:	F1-macro: 0.7318	G-Mean: 0.8101	AUC: 0.8908
+INFO:root:   GNN TP: 1038	TN: 6500	FN: 284	FP: 1277
+INFO:root:	F1-macro: 0.7299	G-Mean: 0.8109	AUC: 0.8921
+INFO:root:   GNN TP: 1045	TN: 6470	FN: 277	FP: 1307
+INFO:root:	F1-macro: 0.7310	G-Mean: 0.8129	AUC: 0.8929
+INFO:root:   GNN TP: 1050	TN: 6470	FN: 272	FP: 1307
+INFO:root:	F1-macro: 0.7310	G-Mean: 0.8131	AUC: 0.8939
+INFO:root:   GNN TP: 1051	TN: 6468	FN: 271	FP: 1309
+INFO:root:	F1-macro: 0.7317	G-Mean: 0.8151	AUC: 0.8946
+INFO:root:   GNN TP: 1057	TN: 6462	FN: 265	FP: 1315
+INFO:root:	F1-macro: 0.7323	G-Mean: 0.8151	AUC: 0.8954
+INFO:root:   GNN TP: 1056	TN: 6469	FN: 266	FP: 1308
+INFO:root:	F1-macro: 0.7321	G-Mean: 0.8134	AUC: 0.8960
+INFO:root:   GNN TP: 1050	TN: 6479	FN: 272	FP: 1298
+INFO:root:	F1-macro: 0.7280	G-Mean: 0.8112	AUC: 0.8966
+INFO:root:   GNN TP: 1050	TN: 6444	FN: 272	FP: 1333
+INFO:root:	F1-macro: 0.7301	G-Mean: 0.8126	AUC: 0.8970
+INFO:root:   GNN TP: 1051	TN: 6460	FN: 271	FP: 1317
+INFO:root:	F1-macro: 0.7312	G-Mean: 0.8138	AUC: 0.8975
+INFO:root:   GNN TP: 1053	TN: 6466	FN: 269	FP: 1311
+INFO:root:	F1-macro: 0.7319	G-Mean: 0.8142	AUC: 0.8978
+INFO:root:   GNN TP: 1053	TN: 6472	FN: 269	FP: 1305
+INFO:root:	F1-macro: 0.7310	G-Mean: 0.8142	AUC: 0.8982
+INFO:root:   GNN TP: 1055	TN: 6460	FN: 267	FP: 1317
+INFO:root:	F1-macro: 0.7331	G-Mean: 0.8211	AUC: 0.9007
+INFO:root:   GNN TP: 2176	TN: 13001	FN: 495	FP: 2710
+INFO:root:	F1-macro: 0.4608	G-Mean: 0.0000	AUC: 0.6352
+INFO:root:   GNN TP: 0	TN: 7777	FN: 1322	FP: 0
+INFO:root:	F1-macro: 0.6348	G-Mean: 0.7023	AUC: 0.7713
+INFO:root:   GNN TP: 846	TN: 5994	FN: 476	FP: 1783
+INFO:root:	F1-macro: 0.6841	G-Mean: 0.7537	AUC: 0.8341
+INFO:root:   GNN TP: 927	TN: 6300	FN: 395	FP: 1477
+INFO:root:	F1-macro: 0.7090	G-Mean: 0.7848	AUC: 0.8633
+INFO:root:   GNN TP: 990	TN: 6396	FN: 332	FP: 1381
+INFO:root:	F1-macro: 0.7200	G-Mean: 0.7957	AUC: 0.8739
+INFO:root:   GNN TP: 1008	TN: 6457	FN: 314	FP: 1320
+INFO:root:	F1-macro: 0.7234	G-Mean: 0.8010	AUC: 0.8806
+INFO:root:   GNN TP: 1021	TN: 6461	FN: 301	FP: 1316
+INFO:root:	F1-macro: 0.7274	G-Mean: 0.8053	AUC: 0.8848
+INFO:root:   GNN TP: 1029	TN: 6480	FN: 293	FP: 1297
+INFO:root:	F1-macro: 0.7302	G-Mean: 0.8084	AUC: 0.8879
+INFO:root:   GNN TP: 1035	TN: 6492	FN: 287	FP: 1285
+INFO:root:	F1-macro: 0.7309	G-Mean: 0.8083	AUC: 0.8902
+INFO:root:   GNN TP: 1033	TN: 6502	FN: 289	FP: 1275
+INFO:root:	F1-macro: 0.7302	G-Mean: 0.8079	AUC: 0.8920
+INFO:root:   GNN TP: 1033	TN: 6496	FN: 289	FP: 1281
+INFO:root:	F1-macro: 0.7326	G-Mean: 0.8092	AUC: 0.8933
+INFO:root:   GNN TP: 1033	TN: 6517	FN: 289	FP: 1260
+INFO:root:	F1-macro: 0.7309	G-Mean: 0.8115	AUC: 0.8944
+INFO:root:   GNN TP: 1045	TN: 6479	FN: 277	FP: 1298
+INFO:root:	F1-macro: 0.7337	G-Mean: 0.8127	AUC: 0.8954
+INFO:root:   GNN TP: 1044	TN: 6505	FN: 278	FP: 1272
+INFO:root:	F1-macro: 0.7340	G-Mean: 0.8150	AUC: 0.8961
+INFO:root:   GNN TP: 1052	TN: 6492	FN: 270	FP: 1285
+INFO:root:	F1-macro: 0.7351	G-Mean: 0.8175	AUC: 0.8969
+INFO:root:   GNN TP: 1059	TN: 6488	FN: 263	FP: 1289
+INFO:root:	F1-macro: 0.7366	G-Mean: 0.8188	AUC: 0.8975
+INFO:root:   GNN TP: 1061	TN: 6497	FN: 261	FP: 1280
+INFO:root:	F1-macro: 0.7370	G-Mean: 0.8180	AUC: 0.8979
+INFO:root:   GNN TP: 1057	TN: 6508	FN: 265	FP: 1269
+INFO:root:	F1-macro: 0.7385	G-Mean: 0.8193	AUC: 0.8983
+INFO:root:   GNN TP: 1059	TN: 6517	FN: 263	FP: 1260
+INFO:root:	F1-macro: 0.7377	G-Mean: 0.8191	AUC: 0.8987
+INFO:root:   GNN TP: 1060	TN: 6508	FN: 262	FP: 1269
+INFO:root:	F1-macro: 0.7388	G-Mean: 0.8213	AUC: 0.8989
+INFO:root:   GNN TP: 1066	TN: 6506	FN: 256	FP: 1271
+INFO:root:	F1-macro: 0.7392	G-Mean: 0.8210	AUC: 0.8991
+INFO:root:   GNN TP: 1064	TN: 6513	FN: 258	FP: 1264
+INFO:root:	F1-macro: 0.7375	G-Mean: 0.8229	AUC: 0.9008
+INFO:root:   GNN TP: 2171	TN: 13088	FN: 500	FP: 2623
+INFO:root:	F1-macro: 0.5733	G-Mean: 0.4321	AUC: 0.6581
+INFO:root:   GNN TP: 266	TN: 7215	FN: 1056	FP: 562
+INFO:root:	F1-macro: 0.6698	G-Mean: 0.7221	AUC: 0.8034
+INFO:root:   GNN TP: 844	TN: 6351	FN: 478	FP: 1426
+INFO:root:	F1-macro: 0.7133	G-Mean: 0.7708	AUC: 0.8584
+INFO:root:   GNN TP: 932	TN: 6554	FN: 390	FP: 1223
+INFO:root:	F1-macro: 0.7307	G-Mean: 0.7980	AUC: 0.8750
+INFO:root:   GNN TP: 996	TN: 6573	FN: 326	FP: 1204
+INFO:root:	F1-macro: 0.7357	G-Mean: 0.8059	AUC: 0.8815
+INFO:root:   GNN TP: 1015	TN: 6578	FN: 307	FP: 1199
+INFO:root:	F1-macro: 0.7382	G-Mean: 0.8052	AUC: 0.8851
+INFO:root:   GNN TP: 1008	TN: 6613	FN: 314	FP: 1164
